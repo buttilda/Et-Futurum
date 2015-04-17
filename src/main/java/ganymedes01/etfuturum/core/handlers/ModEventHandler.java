@@ -158,7 +158,8 @@ public class ModEventHandler {
 		if (event.entityLiving.worldObj.isRemote)
 			return;
 
-		dropHead(event.entityLiving, event.source, event.lootingLevel, event.drops);
+		if (EtFuturum.enableSkullDrop)
+			dropHead(event.entityLiving, event.source, event.lootingLevel, event.drops);
 
 		Random rand = event.entityLiving.worldObj.rand;
 		if (EtFuturum.enableMutton && event.entityLiving instanceof EntitySheep) {
@@ -172,8 +173,6 @@ public class ModEventHandler {
 	}
 
 	private void dropHead(EntityLivingBase entity, DamageSource source, int looting, List<EntityItem> drops) {
-		if (entity.worldObj.isRemote)
-			return;
 		if (isPoweredCreeper(source)) {
 			int meta = getHeadMetadata(entity);
 			if (meta >= 0)

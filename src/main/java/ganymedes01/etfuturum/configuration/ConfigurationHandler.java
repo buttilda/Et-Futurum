@@ -55,6 +55,7 @@ public class ConfigurationHandler {
 		EtFuturum.enableSlimeBlock = configBoolean("Slime Block", true, true);
 
 		EtFuturum.enableFancySkulls = configBoolean("Fancy Skulls", true, true);
+		EtFuturum.enableSkullDrop = configBoolean("Skulls drop from charged creeper kills", true, true);
 		EtFuturum.enableBurnableBlocks = configBoolean("Fences, gates and dead bushes burn", true, true);
 
 		EtFuturum.maxStonesPerCluster = configInteger("Max number of 1.8 stones in a cluster", true, EtFuturum.maxStonesPerCluster);

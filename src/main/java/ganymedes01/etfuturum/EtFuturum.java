@@ -53,6 +53,7 @@ public class EtFuturum {
 
 	public static boolean enableBurnableBlocks = true;
 	public static boolean enableFancySkulls = true;
+	public static boolean enableSkullDrop = true;
 
 	public static int maxStonesPerCluster = 33;
 
