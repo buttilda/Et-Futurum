@@ -5,6 +5,7 @@ import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.entities.EntityArmourStand;
 import ganymedes01.etfuturum.entities.Rotations;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -12,6 +13,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
@@ -20,6 +22,7 @@ import net.minecraft.world.World;
 public class ItemArmourStand extends Item {
 
 	public ItemArmourStand() {
+		setMaxStackSize(16);
 		setTextureName("wooden_armorstand");
 		setUnlocalizedName(Utils.getUnlocalisedName("wooden_armorstand"));
 		setCreativeTab(EtFuturum.enableArmourStand ? EtFuturum.creativeTab : null);
@@ -71,7 +74,7 @@ public class ItemArmourStand extends Item {
 							if (nbt != null && nbt.hasKey("EntityTag", 10)) {
 								NBTTagCompound nbt1 = new NBTTagCompound();
 								stand.writeToNBTOptional(nbt1);
-								nbt1.merge(nbt.getCompoundTag("EntityTag"));
+								merge(nbt1, nbt.getCompoundTag("EntityTag"));
 								stand.readFromNBT(nbt1);
 							}
 
@@ -96,5 +99,24 @@ public class ItemArmourStand extends Item {
 		f = rand.nextFloat() * 10.0F - 5.0F;
 		rotations1 = new Rotations(rotations.getX(), rotations.getY() + f, rotations.getZ());
 		armorStand.setBodyRotation(rotations1);
+	}
+
+	@SuppressWarnings("unchecked")
+	public void merge(NBTTagCompound nbt, NBTTagCompound other) {
+		Iterator<String> iterator = other.func_150296_c().iterator();
+
+		while (iterator.hasNext()) {
+			String s = iterator.next();
+			NBTBase nbtbase = other.getTag(s);
+
+			if (nbtbase.getId() == 10) {
+				if (nbt.hasKey(s, 10)) {
+					NBTTagCompound nbttagcompound1 = nbt.getCompoundTag(s);
+					merge(nbttagcompound1, (NBTTagCompound) nbtbase);
+				} else
+					nbt.setTag(s, nbtbase.copy());
+			} else
+				nbt.setTag(s, nbtbase.copy());
+		}
 	}
 }

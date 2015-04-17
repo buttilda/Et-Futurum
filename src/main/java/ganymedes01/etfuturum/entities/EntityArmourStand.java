@@ -45,8 +45,8 @@ public class EntityArmourStand extends EntityLivingBase {
 	private Rotations leftLegRotation;
 	private Rotations rightLegRotation;
 
-	public EntityArmourStand(World worldIn) {
-		super(worldIn);
+	public EntityArmourStand(World world) {
+		super(world);
 		contents = new ItemStack[5];
 		headRotation = DEFAULT_HEAD_ROTATION;
 		bodyRotation = DEFAULT_BODY_ROTATION;
@@ -54,26 +54,31 @@ public class EntityArmourStand extends EntityLivingBase {
 		rightArmRotation = DEFAULT_RIGHTARM_ROTATION;
 		leftLegRotation = DEFAULT_LEFTLEG_ROTATION;
 		rightLegRotation = DEFAULT_RIGHTLEG_ROTATION;
-		this.setSilent(true);
 		noClip = hasNoGravity();
 		setSize(0.5F, 1.975F);
 	}
 
-	public EntityArmourStand(World worldIn, double posX, double posY, double posZ) {
-		this(worldIn);
+	public EntityArmourStand(World world, double posX, double posY, double posZ) {
+		this(world);
 		setPosition(posX, posY, posZ);
 	}
 
 	@Override
 	protected void entityInit() {
 		super.entityInit();
-		dataWatcher.addObject(10, Byte.valueOf((byte) 0));
-		dataWatcher.addObject(11, DEFAULT_HEAD_ROTATION);
-		dataWatcher.addObject(12, DEFAULT_BODY_ROTATION);
-		dataWatcher.addObject(13, DEFAULT_LEFTARM_ROTATION);
-		dataWatcher.addObject(14, DEFAULT_RIGHTARM_ROTATION);
-		dataWatcher.addObject(15, DEFAULT_LEFTLEG_ROTATION);
-		dataWatcher.addObject(16, DEFAULT_RIGHTLEG_ROTATION);
+		dataWatcher.addObject(10, (byte) 0);
+		addRotationsToDataWatcher(11, DEFAULT_HEAD_ROTATION);
+		addRotationsToDataWatcher(14, DEFAULT_BODY_ROTATION);
+		addRotationsToDataWatcher(17, DEFAULT_LEFTARM_ROTATION);
+		addRotationsToDataWatcher(20, DEFAULT_RIGHTARM_ROTATION);
+		addRotationsToDataWatcher(23, DEFAULT_LEFTLEG_ROTATION);
+		addRotationsToDataWatcher(26, DEFAULT_RIGHTLEG_ROTATION);
+	}
+
+	private void addRotationsToDataWatcher(int index, Rotations rotations) {
+		dataWatcher.addObject(index, rotations.getX());
+		dataWatcher.addObject(index + 1, rotations.getY());
+		dataWatcher.addObject(index + 2, rotations.getZ());
 	}
 
 	@Override
@@ -211,27 +216,22 @@ public class EntityArmourStand extends EntityLivingBase {
 	}
 
 	private NBTTagCompound readPoseFromNBT() {
-		NBTTagCompound nbttagcompound = new NBTTagCompound();
+		NBTTagCompound nbt = new NBTTagCompound();
 
 		if (!DEFAULT_HEAD_ROTATION.equals(headRotation))
-			nbttagcompound.setTag("Head", headRotation.writeToNBT());
-
+			nbt.setTag("Head", headRotation.writeToNBT());
 		if (!DEFAULT_BODY_ROTATION.equals(bodyRotation))
-			nbttagcompound.setTag("Body", bodyRotation.writeToNBT());
-
+			nbt.setTag("Body", bodyRotation.writeToNBT());
 		if (!DEFAULT_LEFTARM_ROTATION.equals(leftArmRotation))
-			nbttagcompound.setTag("LeftArm", leftArmRotation.writeToNBT());
-
+			nbt.setTag("LeftArm", leftArmRotation.writeToNBT());
 		if (!DEFAULT_RIGHTARM_ROTATION.equals(rightArmRotation))
-			nbttagcompound.setTag("RightArm", rightArmRotation.writeToNBT());
-
+			nbt.setTag("RightArm", rightArmRotation.writeToNBT());
 		if (!DEFAULT_LEFTLEG_ROTATION.equals(leftLegRotation))
-			nbttagcompound.setTag("LeftLeg", leftLegRotation.writeToNBT());
-
+			nbt.setTag("LeftLeg", leftLegRotation.writeToNBT());
 		if (!DEFAULT_RIGHTLEG_ROTATION.equals(rightLegRotation))
-			nbttagcompound.setTag("RightLeg", rightLegRotation.writeToNBT());
+			nbt.setTag("RightLeg", rightLegRotation.writeToNBT());
 
-		return nbttagcompound;
+		return nbt;
 	}
 
 	@Override
@@ -240,13 +240,13 @@ public class EntityArmourStand extends EntityLivingBase {
 	}
 
 	@Override
-	protected void collideWithEntity(Entity p_82167_1_) {
+	protected void collideWithEntity(Entity entity) {
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	protected void collideWithNearbyEntities() {
-		List<Entity> list = worldObj.getEntitiesWithinAABBExcludingEntity(this, getBoundingBox());
+		List<Entity> list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox);
 
 		if (list != null && !list.isEmpty())
 			for (int i = 0; i < list.size(); i++) {
@@ -455,35 +455,39 @@ public class EntityArmourStand extends EntityLivingBase {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		Rotations rotations = dataWatcher.getWatchableObjectRotations(11);
+		Rotations rotations = getRotations(11);
 
 		if (!headRotation.equals(rotations))
 			setHeadRotation(rotations);
 
-		Rotations rotations1 = dataWatcher.getWatchableObjectRotations(12);
+		Rotations rotations1 = getRotations(14);
 
 		if (!bodyRotation.equals(rotations1))
 			setBodyRotation(rotations1);
 
-		Rotations rotations2 = dataWatcher.getWatchableObjectRotations(13);
+		Rotations rotations2 = getRotations(17);
 
 		if (!leftArmRotation.equals(rotations2))
 			setLeftArmRotation(rotations2);
 
-		Rotations rotations3 = dataWatcher.getWatchableObjectRotations(14);
+		Rotations rotations3 = getRotations(20);
 
 		if (!rightArmRotation.equals(rotations3))
 			setRightArmRotation(rotations3);
 
-		Rotations rotations4 = dataWatcher.getWatchableObjectRotations(15);
+		Rotations rotations4 = getRotations(23);
 
 		if (!leftLegRotation.equals(rotations4))
 			setLeftLegRotation(rotations4);
 
-		Rotations rotations5 = dataWatcher.getWatchableObjectRotations(16);
+		Rotations rotations5 = getRotations(26);
 
 		if (!rightLegRotation.equals(rotations5))
 			setRightLegRotation(rotations5);
+	}
+
+	private Rotations getRotations(int index) {
+		return new Rotations(dataWatcher.getWatchableObjectFloat(index), dataWatcher.getWatchableObjectFloat(index + 1), dataWatcher.getWatchableObjectFloat(index + 2));
 	}
 
 	protected void func_175135_B() {
@@ -571,32 +575,38 @@ public class EntityArmourStand extends EntityLivingBase {
 
 	public void setHeadRotation(Rotations p_175415_1_) {
 		headRotation = p_175415_1_;
-		dataWatcher.updateObject(11, p_175415_1_);
+		updateRotations(11, p_175415_1_);
 	}
 
 	public void setBodyRotation(Rotations p_175424_1_) {
 		bodyRotation = p_175424_1_;
-		dataWatcher.updateObject(12, p_175424_1_);
+		updateRotations(14, p_175424_1_);
 	}
 
 	public void setLeftArmRotation(Rotations p_175405_1_) {
 		leftArmRotation = p_175405_1_;
-		dataWatcher.updateObject(13, p_175405_1_);
+		updateRotations(17, p_175405_1_);
 	}
 
 	public void setRightArmRotation(Rotations p_175428_1_) {
 		rightArmRotation = p_175428_1_;
-		dataWatcher.updateObject(14, p_175428_1_);
+		updateRotations(20, p_175428_1_);
 	}
 
 	public void setLeftLegRotation(Rotations p_175417_1_) {
 		leftLegRotation = p_175417_1_;
-		dataWatcher.updateObject(15, p_175417_1_);
+		updateRotations(23, p_175417_1_);
 	}
 
 	public void setRightLegRotation(Rotations p_175427_1_) {
 		rightLegRotation = p_175427_1_;
-		dataWatcher.updateObject(16, p_175427_1_);
+		updateRotations(26, p_175427_1_);
+	}
+
+	private void updateRotations(int index, Rotations rotations) {
+		dataWatcher.updateObject(index, rotations.getX());
+		dataWatcher.updateObject(index + 1, rotations.getY());
+		dataWatcher.updateObject(index + 2, rotations.getZ());
 	}
 
 	public Rotations getHeadRotation() {
@@ -629,6 +639,6 @@ public class EntityArmourStand extends EntityLivingBase {
 
 	@Override
 	public ItemStack[] getLastActiveItems() {
-		return null;
+		return contents;
 	}
 }

@@ -30,12 +30,7 @@ public class ModRecipes {
 		}
 
 		registerOreDictionary();
-
-		registerBlockRecipes();
-		registerItemRecipes();
-
-		add18Recipes();
-
+		registerRecipes();
 		tweakRecipes();
 	}
 
@@ -87,13 +82,7 @@ public class ModRecipes {
 			OreDictionary.registerOre("trapdoorIron", ModBlocks.iron_trapdoor);
 	}
 
-	private static void registerItemRecipes() {
-	}
-
-	private static void registerBlockRecipes() {
-	}
-
-	private static void add18Recipes() {
+	private static void registerRecipes() {
 		addShapelessRecipe(new ItemStack(Blocks.mossy_cobblestone), new ItemStack(Blocks.cobblestone), new ItemStack(Blocks.vine));
 		addShapelessRecipe(new ItemStack(Blocks.stonebrick, 1, 1), new ItemStack(Blocks.stonebrick), new ItemStack(Blocks.vine));
 		addShapedRecipe(new ItemStack(Blocks.stonebrick, 1, 3), "x", "x", 'x', new ItemStack(Blocks.stone_slab, 1, 5));
@@ -170,6 +159,9 @@ public class ModRecipes {
 			GameRegistry.addRecipe(new RecipeDuplicatePattern());
 			GameRegistry.addRecipe(new RecipeAddPattern());
 		}
+
+		if (EtFuturum.enableArmourStand)
+			addShapedRecipe(new ItemStack(ModItems.armour_stand), "xxx", " x ", "xyx", 'x', "stickWood", 'y', new ItemStack(Blocks.stone_slab));
 	}
 
 	private static void addShapedRecipe(ItemStack output, Object... objects) {

@@ -1,7 +1,8 @@
-package net.minecraft.client.model;
+package ganymedes01.etfuturum.client.model;
 
 import ganymedes01.etfuturum.entities.EntityArmourStand;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -48,5 +49,14 @@ public class ModelArmorStandArmor extends ModelBiped {
 			bipedRightLeg.setRotationPoint(-1.9F, 11.0F, 0.0F);
 			copyModelAngles(bipedHead, bipedHeadwear);
 		}
+	}
+
+	public static void copyModelAngles(ModelRenderer source, ModelRenderer dest) {
+		dest.rotateAngleX = source.rotateAngleX;
+		dest.rotateAngleY = source.rotateAngleY;
+		dest.rotateAngleZ = source.rotateAngleZ;
+		dest.rotationPointX = source.rotationPointX;
+		dest.rotationPointY = source.rotationPointY;
+		dest.rotationPointZ = source.rotationPointZ;
 	}
 }
