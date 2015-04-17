@@ -77,7 +77,7 @@ public class EtFuturum {
 		ModRecipes.init();
 
 		proxy.registerEvents();
-		proxy.registerTileEntities();
+		proxy.registerEntities();
 		proxy.registerRenderers();
 	}
 }

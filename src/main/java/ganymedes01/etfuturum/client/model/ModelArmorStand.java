@@ -19,40 +19,40 @@ public class ModelArmorStand extends ModelArmorStandArmor {
 		this(0.0F);
 	}
 
-	public ModelArmorStand(float p_i46306_1_) {
-		super(p_i46306_1_, 64, 64);
+	public ModelArmorStand(float size) {
+		super(size, 64, 64);
 		bipedHead = new ModelRenderer(this, 0, 0);
-		bipedHead.addBox(-1.0F, -7.0F, -1.0F, 2, 7, 2, p_i46306_1_);
+		bipedHead.addBox(-1.0F, -7.0F, -1.0F, 2, 7, 2, size);
 		bipedHead.setRotationPoint(0.0F, 0.0F, 0.0F);
 		bipedBody = new ModelRenderer(this, 0, 26);
-		bipedBody.addBox(-6.0F, 0.0F, -1.5F, 12, 3, 3, p_i46306_1_);
+		bipedBody.addBox(-6.0F, 0.0F, -1.5F, 12, 3, 3, size);
 		bipedBody.setRotationPoint(0.0F, 0.0F, 0.0F);
 		bipedRightArm = new ModelRenderer(this, 24, 0);
-		bipedRightArm.addBox(-2.0F, -2.0F, -1.0F, 2, 12, 2, p_i46306_1_);
+		bipedRightArm.addBox(-2.0F, -2.0F, -1.0F, 2, 12, 2, size);
 		bipedRightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
 		bipedLeftArm = new ModelRenderer(this, 32, 16);
 		bipedLeftArm.mirror = true;
-		bipedLeftArm.addBox(0.0F, -2.0F, -1.0F, 2, 12, 2, p_i46306_1_);
+		bipedLeftArm.addBox(0.0F, -2.0F, -1.0F, 2, 12, 2, size);
 		bipedLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
 		bipedRightLeg = new ModelRenderer(this, 8, 0);
-		bipedRightLeg.addBox(-1.0F, 0.0F, -1.0F, 2, 11, 2, p_i46306_1_);
+		bipedRightLeg.addBox(-1.0F, 0.0F, -1.0F, 2, 11, 2, size);
 		bipedRightLeg.setRotationPoint(-1.9F, 12.0F, 0.0F);
 		bipedLeftLeg = new ModelRenderer(this, 40, 16);
 		bipedLeftLeg.mirror = true;
-		bipedLeftLeg.addBox(-1.0F, 0.0F, -1.0F, 2, 11, 2, p_i46306_1_);
+		bipedLeftLeg.addBox(-1.0F, 0.0F, -1.0F, 2, 11, 2, size);
 		bipedLeftLeg.setRotationPoint(1.9F, 12.0F, 0.0F);
 		standRightSide = new ModelRenderer(this, 16, 0);
-		standRightSide.addBox(-3.0F, 3.0F, -1.0F, 2, 7, 2, p_i46306_1_);
+		standRightSide.addBox(-3.0F, 3.0F, -1.0F, 2, 7, 2, size);
 		standRightSide.setRotationPoint(0.0F, 0.0F, 0.0F);
 		standRightSide.showModel = true;
 		standLeftSide = new ModelRenderer(this, 48, 16);
-		standLeftSide.addBox(1.0F, 3.0F, -1.0F, 2, 7, 2, p_i46306_1_);
+		standLeftSide.addBox(1.0F, 3.0F, -1.0F, 2, 7, 2, size);
 		standLeftSide.setRotationPoint(0.0F, 0.0F, 0.0F);
 		standWaist = new ModelRenderer(this, 0, 48);
-		standWaist.addBox(-4.0F, 10.0F, -1.0F, 8, 2, 2, p_i46306_1_);
+		standWaist.addBox(-4.0F, 10.0F, -1.0F, 8, 2, 2, size);
 		standWaist.setRotationPoint(0.0F, 0.0F, 0.0F);
 		standBase = new ModelRenderer(this, 0, 32);
-		standBase.addBox(-6.0F, 11.0F, -6.0F, 12, 1, 12, p_i46306_1_);
+		standBase.addBox(-6.0F, 11.0F, -6.0F, 12, 1, 12, size);
 		standBase.setRotationPoint(0.0F, 12.0F, 0.0F);
 	}
 
