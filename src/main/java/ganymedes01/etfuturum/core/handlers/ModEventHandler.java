@@ -18,13 +18,20 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityEnchantmentTable;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -150,6 +157,9 @@ public class ModEventHandler {
 	public void dropEvent(LivingDropsEvent event) {
 		if (event.entityLiving.worldObj.isRemote)
 			return;
+
+		dropHead(event.entityLiving, event.source, event.lootingLevel, event.drops);
+
 		Random rand = event.entityLiving.worldObj.rand;
 		if (EtFuturum.enableMutton && event.entityLiving instanceof EntitySheep) {
 			int amount = rand.nextInt(3) + 1 + rand.nextInt(1 + event.lootingLevel);
@@ -161,6 +171,17 @@ public class ModEventHandler {
 		}
 	}
 
+	private void dropHead(EntityLivingBase entity, DamageSource source, int looting, List<EntityItem> drops) {
+		if (entity.worldObj.isRemote)
+			return;
+		if (isPoweredCreeper(source)) {
+			int meta = getHeadMetadata(entity);
+			if (meta >= 0)
+				addDrop(new ItemStack(Items.skull, 1, meta), entity, drops);
+		}
+
+	}
+
 	private void addDrop(ItemStack stack, EntityLivingBase entity, List<EntityItem> list) {
 		if (stack.stackSize <= 0)
 			return;
@@ -168,5 +189,27 @@ public class ModEventHandler {
 		EntityItem entityItem = new EntityItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack);
 		entityItem.delayBeforeCanPickup = 10;
 		list.add(entityItem);
+	}
+
+	private boolean isPoweredCreeper(DamageSource source) {
+		if (source.isExplosion() && source instanceof EntityDamageSource) {
+			Entity entity = ((EntityDamageSource) source).getEntity();
+			if (entity != null && entity instanceof EntityCreeper)
+				return ((EntityCreeper) entity).getPowered();
+		}
+
+		return false;
+	}
+
+	private int getHeadMetadata(EntityLivingBase entity) {
+		System.out.println(entity);
+		if (entity.getClass() == EntityZombie.class)
+			return 2;
+		else if (entity.getClass() == EntitySkeleton.class && ((EntitySkeleton) entity).getSkeletonType() == 0)
+			return 0;
+		else if (entity.getClass() == EntityCreeper.class)
+			return 4;
+
+		return -1;
 	}
 }
