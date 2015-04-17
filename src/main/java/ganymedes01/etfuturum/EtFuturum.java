@@ -45,7 +45,6 @@ public class EtFuturum {
 	public static boolean enableSilkTouchingMushrooms = true;
 	public static boolean enableBanners = true;
 	public static boolean enableSlimeBlock = true;
-	public static boolean enableBeetroots = true;
 	public static boolean enableBurnableBlocks = true;
 
 	public static int max18StonesPerCluster = 33;

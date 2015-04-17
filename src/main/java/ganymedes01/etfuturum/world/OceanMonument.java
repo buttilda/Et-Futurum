@@ -2,7 +2,6 @@ package ganymedes01.etfuturum.world;
 
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
-import ganymedes01.etfuturum.lib.Reference;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -31,7 +30,7 @@ public class OceanMonument {
 
 	public static void makeMap() {
 		try {
-			InputStream is = EtFuturum.class.getResourceAsStream("/assets/" + Reference.MOD_ID + "/Temple.txt");
+			InputStream is = EtFuturum.class.getResourceAsStream("/assets/OceanMonument.txt");
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
 			String s;
@@ -84,7 +83,7 @@ public class OceanMonument {
 					block = Blocks.gold_block;
 					break;
 				case 5:
-					block = Blocks.sponge;
+					block = ModBlocks.sponge;
 					break;
 				case 6:
 					block = Blocks.water;

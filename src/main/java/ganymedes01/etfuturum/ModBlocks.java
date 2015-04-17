@@ -1,7 +1,6 @@
 package ganymedes01.etfuturum;
 
 import ganymedes01.etfuturum.blocks.BlockBanner;
-import ganymedes01.etfuturum.blocks.BlockBeetroot;
 import ganymedes01.etfuturum.blocks.BlockSilkedMushroom;
 import ganymedes01.etfuturum.blocks.BlockWoodDoor;
 import ganymedes01.etfuturum.blocks.BlockWoodFence;
@@ -27,9 +26,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModBlocks {
 
-	// MC:PE
-	public static final Block beetroot = new BlockBeetroot();
-
 	// 1.8 stuff
 	public static final Block newStones = new Stones18();
 	public static final Block ironTrapdoor = new IronTrapdoor();
@@ -47,6 +43,7 @@ public class ModBlocks {
 	public static final Block coarseDirt = new CoarseDirt();
 	public static final Block banner = new BlockBanner();
 	public static final Block slimeBlock = new SlimeBlock();
+	public static final Block sponge = Blocks.sponge;
 
 	static {
 		for (int i = 0; i < doors.length; i++)

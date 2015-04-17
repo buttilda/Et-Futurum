@@ -1,8 +1,5 @@
 package ganymedes01.etfuturum;
 
-import ganymedes01.etfuturum.items.Beetroot;
-import ganymedes01.etfuturum.items.BeetrootSeeds;
-import ganymedes01.etfuturum.items.BeetrootSoup;
 import ganymedes01.etfuturum.items.ItemNewDoor;
 import ganymedes01.etfuturum.items.MuttonCooked;
 import ganymedes01.etfuturum.items.MuttonRaw;
@@ -21,11 +18,6 @@ public class ModItems {
 	public static final Item cookedMutton = new MuttonCooked();
 	public static final Item prismarineItems = new PrismarineItems();
 	public static final Item[] doors = new Item[BlockWood.field_150096_a.length - 1];
-
-	// MC:PE
-	public static final Item beetroot = new Beetroot();
-	public static final Item beetrootSoup = new BeetrootSoup();
-	public static final Item beetrootSeeds = new BeetrootSeeds();
 
 	static {
 		for (int i = 0; i < doors.length; i++)
