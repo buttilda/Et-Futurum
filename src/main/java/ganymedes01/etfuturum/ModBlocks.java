@@ -14,7 +14,8 @@ import ganymedes01.etfuturum.blocks.RedSandstoneSlab;
 import ganymedes01.etfuturum.blocks.RedSandstoneStairs;
 import ganymedes01.etfuturum.blocks.SeaLantern;
 import ganymedes01.etfuturum.blocks.SlimeBlock;
-import ganymedes01.etfuturum.blocks.Stones18;
+import ganymedes01.etfuturum.blocks.Sponge;
+import ganymedes01.etfuturum.blocks.Stone;
 
 import java.lang.reflect.Field;
 
@@ -27,7 +28,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ModBlocks {
 
 	// 1.8 stuff
-	public static final Block newStones = new Stones18();
+	public static final Block newStones = new Stone();
 	public static final Block ironTrapdoor = new IronTrapdoor();
 	public static final Block prismarineBlocks = new PrismarineBlocks();
 	public static final Block seaLantern = new SeaLantern();
@@ -43,7 +44,7 @@ public class ModBlocks {
 	public static final Block coarseDirt = new CoarseDirt();
 	public static final Block banner = new BlockBanner();
 	public static final Block slimeBlock = new SlimeBlock();
-	public static final Block sponge = Blocks.sponge;
+	public static final Block sponge = new Sponge();
 
 	static {
 		for (int i = 0; i < doors.length; i++)

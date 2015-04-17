@@ -1,13 +1,11 @@
 package ganymedes01.etfuturum;
 
-import ganymedes01.etfuturum.items.ItemNewDoor;
 import ganymedes01.etfuturum.items.MuttonCooked;
 import ganymedes01.etfuturum.items.MuttonRaw;
 import ganymedes01.etfuturum.items.PrismarineItems;
 
 import java.lang.reflect.Field;
 
-import net.minecraft.block.BlockWood;
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -17,12 +15,6 @@ public class ModItems {
 	public static final Item rawMutton = new MuttonRaw();
 	public static final Item cookedMutton = new MuttonCooked();
 	public static final Item prismarineItems = new PrismarineItems();
-	public static final Item[] doors = new Item[BlockWood.field_150096_a.length - 1];
-
-	static {
-		for (int i = 0; i < doors.length; i++)
-			doors[i] = new ItemNewDoor(i + 1);
-	}
 
 	public static void init() {
 		try {

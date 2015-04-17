@@ -2,7 +2,6 @@ package ganymedes01.etfuturum.core.handlers;
 
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
-import ganymedes01.etfuturum.ModItems;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.inventory.ContainerEnchantment;
 import ganymedes01.etfuturum.lib.GUIsID;
@@ -16,22 +15,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityEnchantmentTable;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.common.eventhandler.Event.Result;
-import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class MiscEventHandler {
@@ -142,30 +136,5 @@ public class MiscEventHandler {
 				event.setResult(Result.ALLOW);
 			}
 		}
-	}
-
-	@SubscribeEvent
-	public void spawnEvent(EntityJoinWorldEvent event) {
-		if (event.entity instanceof EntityPig) {
-			EntityPig pig = (EntityPig) event.entity;
-			pig.tasks.addTask(4, new EntityAITempt(pig, 1.2, ModItems.beetroot, false));
-		}
-	}
-
-	@SubscribeEvent(priority = EventPriority.HIGHEST)
-	public void interactEntityEvent(EntityInteractEvent event) {
-		ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
-		if (stack != null && event.target instanceof EntityPig)
-			if (stack.getItem() == ModItems.beetroot) {
-				EntityPig pig = (EntityPig) event.target;
-				if (!pig.isChild() && !pig.isInLove()) {
-					pig.func_146082_f(event.entityPlayer);
-					if (!event.entityPlayer.capabilities.isCreativeMode) {
-						stack.stackSize--;
-						if (stack.stackSize <= 0)
-							event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
-					}
-				}
-			}
 	}
 }

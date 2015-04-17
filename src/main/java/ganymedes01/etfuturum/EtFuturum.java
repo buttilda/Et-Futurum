@@ -34,7 +34,7 @@ public class EtFuturum {
 	public static boolean enable18Stones = true;
 	public static boolean enableIronTrapdoor = true;
 	public static boolean enableMutton = true;
-	public static boolean enableSpongeTexture = true;
+	public static boolean enableSponge = true;
 	public static boolean enablePrismarineStuff = true;
 	public static boolean enableDoors = true;
 	public static boolean enableInvertedDaylightSensor = true;

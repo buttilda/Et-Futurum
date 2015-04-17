@@ -43,7 +43,7 @@ public class ConfigurationHandler {
 		EtFuturum.enable18Stones = configBoolean("Enable 1.8 Stones", true, true);
 		EtFuturum.enableIronTrapdoor = configBoolean("Enable Iron Trapdoor", true, true);
 		EtFuturum.enableMutton = configBoolean("Enable Mutton", true, true);
-		EtFuturum.enableSpongeTexture = configBoolean("Enable new sponge texture", true, true);
+		EtFuturum.enableSponge = configBoolean("Enable new sponge texture", true, true);
 		EtFuturum.enablePrismarineStuff = configBoolean("Enable Prismarine stuff", true, true);
 		EtFuturum.enableDoors = configBoolean("Enable 1.8 style doors", true, true);
 		EtFuturum.enableInvertedDaylightSensor = configBoolean("Enable inverted daylight sensor", true, true);

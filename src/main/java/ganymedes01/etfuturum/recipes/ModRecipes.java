@@ -3,8 +3,7 @@ package ganymedes01.etfuturum.recipes;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.ModItems;
-import ganymedes01.etfuturum.blocks.Stones18;
-import ganymedes01.etfuturum.core.utils.Utils;
+import ganymedes01.etfuturum.blocks.Stone;
 import ganymedes01.etfuturum.lib.EnumColour;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -44,8 +43,6 @@ public class ModRecipes {
 		if (EtFuturum.enableDoors) {
 			Items.wooden_door.setMaxStackSize(64);
 			Items.iron_door.setMaxStackSize(64);
-			Items.wooden_door.setTextureName(Utils.getItemTexture("door_wood"));
-			Items.iron_door.setTextureName(Utils.getItemTexture("door_iron"));
 			removeFirstRecipeFor(Items.wooden_door);
 			removeFirstRecipeFor(Items.iron_door);
 		}
@@ -75,29 +72,22 @@ public class ModRecipes {
 		}
 
 		if (EtFuturum.enable18Stones) {
-			OreDictionary.registerOre("stoneGranite", new ItemStack(ModBlocks.newStones, 1, Stones18.GRANITE));
-			OreDictionary.registerOre("stoneDiorite", new ItemStack(ModBlocks.newStones, 1, Stones18.DIORITE));
-			OreDictionary.registerOre("stoneAndesite", new ItemStack(ModBlocks.newStones, 1, Stones18.ANDESITE));
-			OreDictionary.registerOre("stoneGranitePolished", new ItemStack(ModBlocks.newStones, 1, Stones18.POLISHED_GRANITE));
-			OreDictionary.registerOre("stoneDioritePolished", new ItemStack(ModBlocks.newStones, 1, Stones18.POLISHED_DIORITE));
-			OreDictionary.registerOre("stoneAndesitePolished", new ItemStack(ModBlocks.newStones, 1, Stones18.POLISHED_ANDESITE));
+			OreDictionary.registerOre("stoneGranite", new ItemStack(ModBlocks.newStones, 1, Stone.GRANITE));
+			OreDictionary.registerOre("stoneDiorite", new ItemStack(ModBlocks.newStones, 1, Stone.DIORITE));
+			OreDictionary.registerOre("stoneAndesite", new ItemStack(ModBlocks.newStones, 1, Stone.ANDESITE));
+			OreDictionary.registerOre("stoneGranitePolished", new ItemStack(ModBlocks.newStones, 1, Stone.POLISHED_GRANITE));
+			OreDictionary.registerOre("stoneDioritePolished", new ItemStack(ModBlocks.newStones, 1, Stone.POLISHED_DIORITE));
+			OreDictionary.registerOre("stoneAndesitePolished", new ItemStack(ModBlocks.newStones, 1, Stone.POLISHED_ANDESITE));
 		}
 
 		if (EtFuturum.enableSlimeBlock)
 			OreDictionary.registerOre("blockSlime", new ItemStack(ModBlocks.slimeBlock));
-
-		if (EtFuturum.enableBeetroots)
-			OreDictionary.registerOre("cropBeetroot", ModItems.beetroot);
 
 		if (EtFuturum.enableIronTrapdoor)
 			OreDictionary.registerOre("trapdoorIron", ModBlocks.ironTrapdoor);
 	}
 
 	private static void registerItemRecipes() {
-		if (EtFuturum.enableBeetroots) {
-			addShapelessRecipe(new ItemStack(ModItems.beetrootSoup), "cropBeetroot", "cropBeetroot", "cropBeetroot", "cropBeetroot", Items.bowl);
-			addShapelessRecipe(new ItemStack(Items.dye, 1, 1), "cropBeetroot");
-		}
 	}
 
 	private static void registerBlockRecipes() {
@@ -125,14 +115,14 @@ public class ModRecipes {
 
 		if (EtFuturum.enable18Stones) {
 			// Diorite
-			addShapedRecipe(new ItemStack(ModBlocks.newStones, 2, Stones18.DIORITE), "xy", "yx", 'x', new ItemStack(Blocks.cobblestone), 'y', "gemQuartz");
-			addShapedRecipe(new ItemStack(ModBlocks.newStones, 4, Stones18.POLISHED_DIORITE), "xx", "xx", 'x', "stoneDiorite");
+			addShapedRecipe(new ItemStack(ModBlocks.newStones, 2, Stone.DIORITE), "xy", "yx", 'x', new ItemStack(Blocks.cobblestone), 'y', "gemQuartz");
+			addShapedRecipe(new ItemStack(ModBlocks.newStones, 4, Stone.POLISHED_DIORITE), "xx", "xx", 'x', "stoneDiorite");
 			// Andesite
-			addShapelessRecipe(new ItemStack(ModBlocks.newStones, 2, Stones18.ANDESITE), new ItemStack(Blocks.cobblestone), "stoneDiorite");
-			addShapedRecipe(new ItemStack(ModBlocks.newStones, 4, Stones18.POLISHED_ANDESITE), "xx", "xx", 'x', "stoneAndesite");
+			addShapelessRecipe(new ItemStack(ModBlocks.newStones, 2, Stone.ANDESITE), new ItemStack(Blocks.cobblestone), "stoneDiorite");
+			addShapedRecipe(new ItemStack(ModBlocks.newStones, 4, Stone.POLISHED_ANDESITE), "xx", "xx", 'x', "stoneAndesite");
 			// Granite
-			addShapelessRecipe(new ItemStack(ModBlocks.newStones, 2, Stones18.GRANITE), "gemQuartz", "stoneDiorite");
-			addShapedRecipe(new ItemStack(ModBlocks.newStones, 4, Stones18.POLISHED_GRANITE), "xx", "xx", 'x', "stoneGranite");
+			addShapelessRecipe(new ItemStack(ModBlocks.newStones, 2, Stone.GRANITE), "gemQuartz", "stoneDiorite");
+			addShapedRecipe(new ItemStack(ModBlocks.newStones, 4, Stone.POLISHED_GRANITE), "xx", "xx", 'x', "stoneGranite");
 		}
 
 		if (EtFuturum.enablePrismarineStuff) {
@@ -147,8 +137,8 @@ public class ModRecipes {
 		}
 
 		if (EtFuturum.enableDoors) {
-			for (int i = 0; i < ModItems.doors.length; i++)
-				addShapedRecipe(new ItemStack(ModItems.doors[i], 3), "xx", "xx", "xx", 'x', new ItemStack(Blocks.planks, 1, i + 1));
+			for (int i = 0; i < ModBlocks.doors.length; i++)
+				addShapedRecipe(new ItemStack(ModBlocks.doors[i], 3), "xx", "xx", "xx", 'x', new ItemStack(Blocks.planks, 1, i + 1));
 			addShapedRecipe(new ItemStack(Items.wooden_door, 3), "xx", "xx", "xx", 'x', "plankWood");
 			addShapedRecipe(new ItemStack(Items.iron_door, 3), "xx", "xx", "xx", 'x', "ingotIron");
 		}
