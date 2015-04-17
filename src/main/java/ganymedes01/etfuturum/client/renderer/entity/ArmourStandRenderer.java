@@ -3,7 +3,8 @@ package ganymedes01.etfuturum.client.renderer.entity;
 import ganymedes01.etfuturum.client.OpenGLHelper;
 import ganymedes01.etfuturum.client.model.ModelArmorStand;
 import ganymedes01.etfuturum.client.model.ModelArmorStandArmor;
-import net.minecraft.client.renderer.entity.RendererLivingEntity;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
@@ -11,22 +12,21 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ArmourStandRenderer extends RendererLivingEntity {
+public class ArmourStandRenderer extends RenderBiped {
 
-	private static final ResourceLocation TEXTURE_ARMOR_STAND = new ResourceLocation("textures/entity/armorstand/wood.png");
+	private static final ResourceLocation TEXTURE_ARMOUR_STAND = new ResourceLocation("textures/entity/armorstand/wood.png");
 
 	public ArmourStandRenderer() {
 		super(new ModelArmorStand(), 0.0F);
-		LayerBipedArmor layerbipedarmor = new LayerBipedArmor(this) {
+		modelBipedMain = (ModelBiped) mainModel;
+		field_82423_g = new ModelArmorStandArmor(1.0F);
+		field_82425_h = new ModelArmorStandArmor(0.5F);
+	}
 
-			protected void func_177177_a() {
-				field_177189_c = new ModelArmorStandArmor(0.5F);
-				field_177186_d = new ModelArmorStandArmor(1.0F);
-			}
-		};
-		this.addLayer(layerbipedarmor);
-		this.addLayer(new LayerHeldItem(this));
-		this.addLayer(new LayerCustomHead(func_177100_a().bipedHead));
+	@Override
+	protected void func_82421_b() {
+		field_82423_g = new ModelArmorStandArmor(1.0F);
+		field_82425_h = new ModelArmorStandArmor(0.5F);
 	}
 
 	@Override
@@ -36,6 +36,6 @@ public class ArmourStandRenderer extends RendererLivingEntity {
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
-		return TEXTURE_ARMOR_STAND;
+		return TEXTURE_ARMOUR_STAND;
 	}
 }
