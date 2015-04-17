@@ -10,6 +10,6 @@ public class MuttonRaw extends ItemFood {
 		super(2, 0.3F, true);
 		setTextureName("mutton_raw");
 		setUnlocalizedName(Utils.getUnlocalisedName("mutton_raw"));
-		setCreativeTab(EtFuturum.enableMutton ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableMutton ? EtFuturum.creativeTab : null);
 	}
 }

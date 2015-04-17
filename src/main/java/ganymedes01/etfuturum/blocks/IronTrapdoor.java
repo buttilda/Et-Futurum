@@ -15,7 +15,7 @@ public class IronTrapdoor extends BlockTrapDoor {
 		setStepSound(soundTypeMetal);
 		setBlockTextureName("iron_trapdoor");
 		setBlockName(Utils.getUnlocalisedName("iron_trapdoor"));
-		setCreativeTab(EtFuturum.enableIronTrapdoor ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableIronTrapdoor ? EtFuturum.creativeTab : null);
 	}
 
 	@Override

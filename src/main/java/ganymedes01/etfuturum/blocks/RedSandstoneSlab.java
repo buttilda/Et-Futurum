@@ -31,7 +31,7 @@ public class RedSandstoneSlab extends Block implements ISubBlocksBlock {
 		setLightOpacity(0);
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
 		setBlockName(Utils.getUnlocalisedName("red_sandstone_slab"));
-		setCreativeTab(EtFuturum.enableRedSandstone ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableRedSandstone ? EtFuturum.creativeTab : null);
 	}
 
 	@Override

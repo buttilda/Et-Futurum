@@ -19,7 +19,7 @@ public class BlockWoodFenceGate extends BlockFenceGate implements IBurnableBlock
 		setResistance(5.0F);
 		setStepSound(soundTypeWood);
 		setBlockName(Utils.getUnlocalisedName("fence_gate_" + meta));
-		setCreativeTab(EtFuturum.enableFences ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableFences ? EtFuturum.creativeTab : null);
 	}
 
 	@Override

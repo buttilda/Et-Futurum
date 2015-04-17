@@ -14,7 +14,7 @@ public class BeetrootSeeds extends ItemSeeds {
 		super(ModBlocks.beetroot, Blocks.farmland);
 		setTextureName(Utils.getItemTexture("beetroot_seeds"));
 		setUnlocalizedName(Utils.getUnlocalisedName("beetroot_seeds"));
-		setCreativeTab(EtFuturum.enableBeetroots ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableBeetroots ? EtFuturum.creativeTab : null);
 
 		if (EtFuturum.enableBeetroots)
 			MinecraftForge.addGrassSeed(new ItemStack(this), 7);

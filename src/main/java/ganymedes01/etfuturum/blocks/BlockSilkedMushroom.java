@@ -23,7 +23,7 @@ public class BlockSilkedMushroom extends Block {
 		setHardness(0.2F);
 		setStepSound(soundTypeWood);
 		setBlockName(Utils.getUnlocalisedName(str + "_mushroom"));
-		setCreativeTab(EtFuturum.enableSilkTouchingMushrooms ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableSilkTouchingMushrooms ? EtFuturum.creativeTab : null);
 	}
 
 	@Override

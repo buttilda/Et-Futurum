@@ -28,8 +28,8 @@ public class PrismarineBlocks extends Block implements ISubBlocksBlock {
 		setHardness(1.5F);
 		setResistance(10.0F);
 		setBlockTextureName("prismarine");
-		setBlockName(Utils.getUnlocalisedName("prismarine"));
-		setCreativeTab(EtFuturum.enablePrismarineStuff ? EtFuturum.surfaceTab : null);
+		setBlockName(Utils.getUnlocalisedName("prismarine_block"));
+		setCreativeTab(EtFuturum.enablePrismarineStuff ? EtFuturum.creativeTab : null);
 	}
 
 	@Override

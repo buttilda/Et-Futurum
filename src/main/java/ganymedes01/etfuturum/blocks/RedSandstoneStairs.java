@@ -12,6 +12,6 @@ public class RedSandstoneStairs extends BlockStairs {
 		setHardness(0.8F);
 		setLightOpacity(0);
 		setBlockName(Utils.getUnlocalisedName("red_sandstone_stairs"));
-		setCreativeTab(EtFuturum.enableRedSandstone ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableRedSandstone ? EtFuturum.creativeTab : null);
 	}
 }

@@ -23,7 +23,7 @@ public class PrismarineItems extends Item {
 		setHasSubtypes(true);
 		setTextureName("prismarine");
 		setUnlocalizedName(Utils.getUnlocalisedName("prismarine"));
-		setCreativeTab(EtFuturum.enablePrismarineStuff ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enablePrismarineStuff ? EtFuturum.creativeTab : null);
 	}
 
 	@Override

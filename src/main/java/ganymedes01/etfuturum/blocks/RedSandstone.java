@@ -13,7 +13,7 @@ public class RedSandstone extends BlockSandStone implements ISubBlocksBlock {
 		setHardness(0.8F);
 		setBlockTextureName("red_sandstone");
 		setBlockName(Utils.getUnlocalisedName("red_sandstone"));
-		setCreativeTab(EtFuturum.enableRedSandstone ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableRedSandstone ? EtFuturum.creativeTab : null);
 	}
 
 	@Override

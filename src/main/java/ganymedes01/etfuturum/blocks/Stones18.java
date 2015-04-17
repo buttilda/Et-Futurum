@@ -39,7 +39,7 @@ public class Stones18 extends Block implements ISubBlocksBlock {
 		setBlockTextureName("stone");
 		setStepSound(soundTypePiston);
 		setBlockName(Utils.getUnlocalisedName("stone"));
-		setCreativeTab(EtFuturum.enable18Stones ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enable18Stones ? EtFuturum.creativeTab : null);
 	}
 
 	@Override

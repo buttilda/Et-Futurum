@@ -22,7 +22,7 @@ public class SlimeBlock extends Block {
 		setBlockTextureName("slime");
 		setStepSound(ModSounds.soundSlime);
 		setBlockName(Utils.getUnlocalisedName("slime"));
-		setCreativeTab(EtFuturum.enableSlimeBlock ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableSlimeBlock ? EtFuturum.creativeTab : null);
 	}
 
 	@Override

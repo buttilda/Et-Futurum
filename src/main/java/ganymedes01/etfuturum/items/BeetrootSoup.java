@@ -12,6 +12,6 @@ public class BeetrootSoup extends ItemSoup {
 		setContainerItem(Items.bowl);
 		setTextureName(Utils.getItemTexture("beetroot_soup"));
 		setUnlocalizedName(Utils.getUnlocalisedName("beetroot_soup"));
-		setCreativeTab(EtFuturum.enableBeetroots ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableBeetroots ? EtFuturum.creativeTab : null);
 	}
 }

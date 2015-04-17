@@ -14,6 +14,6 @@ public class SeaLantern extends Block {
 		setStepSound(soundTypeGlass);
 		setBlockTextureName("sea_lantern");
 		setBlockName(Utils.getUnlocalisedName("sea_lantern"));
-		setCreativeTab(EtFuturum.enablePrismarineStuff ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enablePrismarineStuff ? EtFuturum.creativeTab : null);
 	}
 }

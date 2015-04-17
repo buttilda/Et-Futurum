@@ -34,7 +34,7 @@ public class BlockBanner extends BlockContainer implements ISubBlocksBlock {
 		setHardness(1.0F);
 		setStepSound(soundTypeWood);
 		setBlockName(Utils.getUnlocalisedName("banner"));
-		setCreativeTab(EtFuturum.enableBanners ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableBanners ? EtFuturum.creativeTab : null);
 
 		float f = 0.25F;
 		float f1 = 1.0F;

@@ -10,6 +10,6 @@ public class MuttonCooked extends ItemFood {
 		super(6, 0.8F, true);
 		setTextureName("mutton_cooked");
 		setUnlocalizedName(Utils.getUnlocalisedName("mutton_cooked"));
-		setCreativeTab(EtFuturum.enableMutton ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableMutton ? EtFuturum.creativeTab : null);
 	}
 }

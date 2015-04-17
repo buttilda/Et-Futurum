@@ -25,7 +25,7 @@ public class InvertedDaylightDetector extends BlockDaylightDetector {
 		setStepSound(soundTypeWood);
 		setBlockTextureName("daylight_detector_inverted_top");
 		setBlockName(Utils.getUnlocalisedName("daylight_detector_inverted"));
-		setCreativeTab(EtFuturum.enableInvertedDaylightSensor ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableInvertedDaylightSensor ? EtFuturum.creativeTab : null);
 	}
 
 	@Override

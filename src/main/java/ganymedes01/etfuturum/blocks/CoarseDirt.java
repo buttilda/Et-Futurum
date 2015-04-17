@@ -13,6 +13,6 @@ public class CoarseDirt extends Block {
 		setStepSound(soundTypeGravel);
 		setBlockTextureName("coarse_dirt");
 		setBlockName(Utils.getUnlocalisedName("coarse_dirt"));
-		setCreativeTab(EtFuturum.enableCoarseDirt ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableCoarseDirt ? EtFuturum.creativeTab : null);
 	}
 }

@@ -29,7 +29,7 @@ public class EtFuturum {
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
 
-	public static CreativeTabs surfaceTab = new CreativeTabSurface();
+	public static CreativeTabs creativeTab = new CreativeTabSurface();
 
 	public static boolean enable18Stones = true;
 	public static boolean enableIronTrapdoor = true;

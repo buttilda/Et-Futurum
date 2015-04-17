@@ -10,6 +10,6 @@ public class Beetroot extends ItemFood {
 		super(1, 0.3F, false);
 		setTextureName(Utils.getItemTexture("beetroot"));
 		setUnlocalizedName(Utils.getUnlocalisedName("beetroot"));
-		setCreativeTab(EtFuturum.enableBeetroots ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableBeetroots ? EtFuturum.creativeTab : null);
 	}
 }

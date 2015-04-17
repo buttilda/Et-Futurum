@@ -23,7 +23,7 @@ public class ItemNewDoor extends Item {
 		setMaxStackSize(64);
 		setTextureName("door_" + name);
 		setUnlocalizedName(Utils.getUnlocalisedName("door_" + name));
-		setCreativeTab(EtFuturum.enableDoors ? EtFuturum.surfaceTab : null);
+		setCreativeTab(EtFuturum.enableDoors ? EtFuturum.creativeTab : null);
 	}
 
 	@Override
