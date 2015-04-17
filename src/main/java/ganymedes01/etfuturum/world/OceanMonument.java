@@ -84,6 +84,7 @@ public class OceanMonument {
 					break;
 				case 5:
 					block = ModBlocks.sponge;
+					meta = 1;
 					break;
 				case 6:
 					block = Blocks.water;

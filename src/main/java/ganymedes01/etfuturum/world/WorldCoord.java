@@ -1,6 +1,7 @@
 package ganymedes01.etfuturum.world;
 
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -20,6 +21,10 @@ public class WorldCoord implements Comparable<WorldCoord> {
 		x = tile.xCoord;
 		y = tile.yCoord;
 		z = tile.zCoord;
+	}
+
+	public WorldCoord add(ForgeDirection dir) {
+		return new WorldCoord(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
 	}
 
 	@Override
