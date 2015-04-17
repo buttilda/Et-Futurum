@@ -117,9 +117,9 @@ public class MiscEventHandler {
 				World world = event.entityPlayer.worldObj;
 				if (event.action == Action.RIGHT_CLICK_BLOCK)
 					if (world.getBlock(event.x, event.y, event.z) == Blocks.daylight_detector) {
-						world.setBlock(event.x, event.y, event.z, ModBlocks.invertedDaylightDetector);
+						world.setBlock(event.x, event.y, event.z, ModBlocks.inverted_daylight_detector);
 						event.entityPlayer.swingItem();
-					} else if (world.getBlock(event.x, event.y, event.z) == ModBlocks.invertedDaylightDetector) {
+					} else if (world.getBlock(event.x, event.y, event.z) == ModBlocks.inverted_daylight_detector) {
 						world.setBlock(event.x, event.y, event.z, Blocks.daylight_detector);
 						event.entityPlayer.swingItem();
 					}
@@ -130,7 +130,7 @@ public class MiscEventHandler {
 	public void onHoeUseEvent(UseHoeEvent event) {
 		if (EtFuturum.enableCoarseDirt) {
 			World world = event.world;
-			if (world.getBlock(event.x, event.y, event.z) == ModBlocks.coarseDirt) {
+			if (world.getBlock(event.x, event.y, event.z) == ModBlocks.coarse_dirt) {
 				world.setBlock(event.x, event.y, event.z, Blocks.dirt);
 				world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F, Block.soundTypeGravel.getStepResourcePath(), 1.0F, 0.8F);
 				event.setResult(Result.ALLOW);

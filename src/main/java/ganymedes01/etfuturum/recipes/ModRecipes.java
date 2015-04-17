@@ -66,25 +66,25 @@ public class ModRecipes {
 		OreDictionary.registerOre("trapdoorWood", Blocks.trapdoor);
 
 		if (EtFuturum.enablePrismarineStuff) {
-			OreDictionary.registerOre("shardPrismarine", new ItemStack(ModItems.prismarineItems, 1, 0));
-			OreDictionary.registerOre("crystalPrismarine", new ItemStack(ModItems.prismarineItems, 1, 1));
-			OreDictionary.registerOre("blockPrismarine", new ItemStack(ModBlocks.prismarineBlocks, 1, OreDictionary.WILDCARD_VALUE));
+			OreDictionary.registerOre("shardPrismarine", new ItemStack(ModItems.prismarine, 1, 0));
+			OreDictionary.registerOre("crystalPrismarine", new ItemStack(ModItems.prismarine, 1, 1));
+			OreDictionary.registerOre("blockPrismarine", new ItemStack(ModBlocks.prismarine, 1, OreDictionary.WILDCARD_VALUE));
 		}
 
 		if (EtFuturum.enable18Stones) {
-			OreDictionary.registerOre("stoneGranite", new ItemStack(ModBlocks.newStones, 1, Stone.GRANITE));
-			OreDictionary.registerOre("stoneDiorite", new ItemStack(ModBlocks.newStones, 1, Stone.DIORITE));
-			OreDictionary.registerOre("stoneAndesite", new ItemStack(ModBlocks.newStones, 1, Stone.ANDESITE));
-			OreDictionary.registerOre("stoneGranitePolished", new ItemStack(ModBlocks.newStones, 1, Stone.POLISHED_GRANITE));
-			OreDictionary.registerOre("stoneDioritePolished", new ItemStack(ModBlocks.newStones, 1, Stone.POLISHED_DIORITE));
-			OreDictionary.registerOre("stoneAndesitePolished", new ItemStack(ModBlocks.newStones, 1, Stone.POLISHED_ANDESITE));
+			OreDictionary.registerOre("stoneGranite", new ItemStack(ModBlocks.stone, 1, Stone.GRANITE));
+			OreDictionary.registerOre("stoneDiorite", new ItemStack(ModBlocks.stone, 1, Stone.DIORITE));
+			OreDictionary.registerOre("stoneAndesite", new ItemStack(ModBlocks.stone, 1, Stone.ANDESITE));
+			OreDictionary.registerOre("stoneGranitePolished", new ItemStack(ModBlocks.stone, 1, Stone.POLISHED_GRANITE));
+			OreDictionary.registerOre("stoneDioritePolished", new ItemStack(ModBlocks.stone, 1, Stone.POLISHED_DIORITE));
+			OreDictionary.registerOre("stoneAndesitePolished", new ItemStack(ModBlocks.stone, 1, Stone.POLISHED_ANDESITE));
 		}
 
 		if (EtFuturum.enableSlimeBlock)
-			OreDictionary.registerOre("blockSlime", new ItemStack(ModBlocks.slimeBlock));
+			OreDictionary.registerOre("blockSlime", new ItemStack(ModBlocks.slime));
 
 		if (EtFuturum.enableIronTrapdoor)
-			OreDictionary.registerOre("trapdoorIron", ModBlocks.ironTrapdoor);
+			OreDictionary.registerOre("trapdoorIron", ModBlocks.iron_trapdoor);
 	}
 
 	private static void registerItemRecipes() {
@@ -100,29 +100,29 @@ public class ModRecipes {
 		GameRegistry.addSmelting(new ItemStack(Blocks.stonebrick), new ItemStack(Blocks.stonebrick, 1, 2), 0.0F);
 
 		if (EtFuturum.enableSlimeBlock) {
-			addShapedRecipe(new ItemStack(ModBlocks.slimeBlock), "xxx", "xxx", "xxx", 'x', "slimeball");
-			addShapelessRecipe(new ItemStack(Items.slime_ball, 9), ModBlocks.slimeBlock);
+			addShapedRecipe(new ItemStack(ModBlocks.slime), "xxx", "xxx", "xxx", 'x', "slimeball");
+			addShapelessRecipe(new ItemStack(Items.slime_ball, 9), ModBlocks.slime);
 		}
 
 		if (EtFuturum.enableCoarseDirt)
-			addShapedRecipe(new ItemStack(ModBlocks.coarseDirt, 4), "xy", "yx", 'x', new ItemStack(Blocks.dirt), 'y', new ItemStack(Blocks.gravel));
+			addShapedRecipe(new ItemStack(ModBlocks.coarse_dirt, 4), "xy", "yx", 'x', new ItemStack(Blocks.dirt), 'y', new ItemStack(Blocks.gravel));
 
 		if (EtFuturum.enableMutton)
-			GameRegistry.addSmelting(ModItems.rawMutton, new ItemStack(ModItems.cookedMutton), 1.0F);
+			GameRegistry.addSmelting(ModItems.raw_mutton, new ItemStack(ModItems.cooked_mutton), 1.0F);
 
 		if (EtFuturum.enableIronTrapdoor)
-			addShapedRecipe(new ItemStack(ModBlocks.ironTrapdoor), "xx", "xx", 'x', "ingotIron");
+			addShapedRecipe(new ItemStack(ModBlocks.iron_trapdoor), "xx", "xx", 'x', "ingotIron");
 
 		if (EtFuturum.enable18Stones) {
 			// Diorite
-			addShapedRecipe(new ItemStack(ModBlocks.newStones, 2, Stone.DIORITE), "xy", "yx", 'x', new ItemStack(Blocks.cobblestone), 'y', "gemQuartz");
-			addShapedRecipe(new ItemStack(ModBlocks.newStones, 4, Stone.POLISHED_DIORITE), "xx", "xx", 'x', "stoneDiorite");
+			addShapedRecipe(new ItemStack(ModBlocks.stone, 2, Stone.DIORITE), "xy", "yx", 'x', new ItemStack(Blocks.cobblestone), 'y', "gemQuartz");
+			addShapedRecipe(new ItemStack(ModBlocks.stone, 4, Stone.POLISHED_DIORITE), "xx", "xx", 'x', "stoneDiorite");
 			// Andesite
-			addShapelessRecipe(new ItemStack(ModBlocks.newStones, 2, Stone.ANDESITE), new ItemStack(Blocks.cobblestone), "stoneDiorite");
-			addShapedRecipe(new ItemStack(ModBlocks.newStones, 4, Stone.POLISHED_ANDESITE), "xx", "xx", 'x', "stoneAndesite");
+			addShapelessRecipe(new ItemStack(ModBlocks.stone, 2, Stone.ANDESITE), new ItemStack(Blocks.cobblestone), "stoneDiorite");
+			addShapedRecipe(new ItemStack(ModBlocks.stone, 4, Stone.POLISHED_ANDESITE), "xx", "xx", 'x', "stoneAndesite");
 			// Granite
-			addShapelessRecipe(new ItemStack(ModBlocks.newStones, 2, Stone.GRANITE), "gemQuartz", "stoneDiorite");
-			addShapedRecipe(new ItemStack(ModBlocks.newStones, 4, Stone.POLISHED_GRANITE), "xx", "xx", 'x', "stoneGranite");
+			addShapelessRecipe(new ItemStack(ModBlocks.stone, 2, Stone.GRANITE), "gemQuartz", "stoneDiorite");
+			addShapedRecipe(new ItemStack(ModBlocks.stone, 4, Stone.POLISHED_GRANITE), "xx", "xx", 'x', "stoneGranite");
 		}
 
 		if (EtFuturum.enablePrismarineStuff) {
@@ -130,10 +130,10 @@ public class ModRecipes {
 			int BRICKS = 1;
 			int DARK = 2;
 
-			addShapedRecipe(new ItemStack(ModBlocks.prismarineBlocks, 1, DARK), "xxx", "xyx", "xxx", 'x', "shardPrismarine", 'y', "dyeBlack");
-			addShapedRecipe(new ItemStack(ModBlocks.prismarineBlocks, 1, PLAIN), "xx", "xx", 'x', "shardPrismarine");
-			addShapedRecipe(new ItemStack(ModBlocks.prismarineBlocks, 1, BRICKS), "xxx", "xxx", "xxx", 'x', "shardPrismarine");
-			addShapedRecipe(new ItemStack(ModBlocks.seaLantern), "xyx", "yyy", "xyx", 'x', "shardPrismarine", 'y', "crystalPrismarine");
+			addShapedRecipe(new ItemStack(ModBlocks.prismarine, 1, DARK), "xxx", "xyx", "xxx", 'x', "shardPrismarine", 'y', "dyeBlack");
+			addShapedRecipe(new ItemStack(ModBlocks.prismarine, 1, PLAIN), "xx", "xx", 'x', "shardPrismarine");
+			addShapedRecipe(new ItemStack(ModBlocks.prismarine, 1, BRICKS), "xxx", "xxx", "xxx", 'x', "shardPrismarine");
+			addShapedRecipe(new ItemStack(ModBlocks.sea_lantern), "xyx", "yyy", "xyx", 'x', "shardPrismarine", 'y', "crystalPrismarine");
 		}
 
 		if (EtFuturum.enableDoors) {
@@ -144,11 +144,11 @@ public class ModRecipes {
 		}
 
 		if (EtFuturum.enableRedSandstone) {
-			addShapedRecipe(new ItemStack(ModBlocks.redSandstone), "xx", "xx", 'x', new ItemStack(Blocks.sand, 1, 1));
-			addShapedRecipe(new ItemStack(ModBlocks.redSandstone, 1, 1), "x", "x", 'x', new ItemStack(ModBlocks.redSandstoneSlab));
-			addShapedRecipe(new ItemStack(ModBlocks.redSandstone, 1, 2), "xx", "xx", 'x', new ItemStack(ModBlocks.redSandstone));
-			addShapedRecipe(new ItemStack(ModBlocks.redSandstoneSlab, 6), "xxx", 'x', ModBlocks.redSandstone);
-			addShapedRecipe(new ItemStack(ModBlocks.redSandstoneStairs, 4), "x  ", "xx ", "xxx", 'x', ModBlocks.redSandstone);
+			addShapedRecipe(new ItemStack(ModBlocks.red_sandstone), "xx", "xx", 'x', new ItemStack(Blocks.sand, 1, 1));
+			addShapedRecipe(new ItemStack(ModBlocks.red_sandstone, 1, 1), "x", "x", 'x', new ItemStack(ModBlocks.red_sandstone_slab));
+			addShapedRecipe(new ItemStack(ModBlocks.red_sandstone, 1, 2), "xx", "xx", 'x', new ItemStack(ModBlocks.red_sandstone));
+			addShapedRecipe(new ItemStack(ModBlocks.red_sandstone_slab, 6), "xxx", 'x', ModBlocks.red_sandstone);
+			addShapedRecipe(new ItemStack(ModBlocks.red_sandstone_stairs, 4), "x  ", "xx ", "xxx", 'x', ModBlocks.red_sandstone);
 		}
 
 		if (EtFuturum.enableFences) {

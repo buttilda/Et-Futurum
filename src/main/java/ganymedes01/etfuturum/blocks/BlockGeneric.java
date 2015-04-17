@@ -57,7 +57,10 @@ public class BlockGeneric extends Block implements ISubBlocksBlock {
 	public void registerBlockIcons(IIconRegister reg) {
 		icons = new IIcon[types.length];
 		for (int i = 0; i < types.length; i++)
-			icons[i] = reg.registerIcon(getTextureName() + "_" + types[i]);
+			if ("".equals(types[i]))
+				icons[i] = reg.registerIcon(getTextureName());
+			else
+				icons[i] = reg.registerIcon(getTextureName() + "_" + types[i]);
 	}
 
 	@Override

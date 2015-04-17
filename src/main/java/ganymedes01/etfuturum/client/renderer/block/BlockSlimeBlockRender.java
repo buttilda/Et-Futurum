@@ -63,11 +63,11 @@ public class BlockSlimeBlockRender implements ISimpleBlockRenderingHandler {
 
 	@Override
 	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
-		renderer.renderStandardBlock(ModBlocks.slimeBlock, x, y, z);
+		renderer.renderStandardBlock(ModBlocks.slime, x, y, z);
 		float f = 0.0625F;
 		renderer.setRenderBounds(f * 3, f * 3, f * 3, f * 13, f * 13, f * 13);
 		renderer.renderAllFaces = true;
-		return renderer.renderStandardBlock(ModBlocks.slimeBlock, x, y, z);
+		return renderer.renderStandardBlock(ModBlocks.slime, x, y, z);
 	}
 
 	@Override

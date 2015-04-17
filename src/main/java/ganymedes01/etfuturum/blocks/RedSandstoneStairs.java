@@ -8,7 +8,7 @@ import net.minecraft.block.BlockStairs;
 public class RedSandstoneStairs extends BlockStairs {
 
 	public RedSandstoneStairs() {
-		super(ModBlocks.redSandstone, 0);
+		super(ModBlocks.red_sandstone, 0);
 		setHardness(0.8F);
 		setLightOpacity(0);
 		setBlockName(Utils.getUnlocalisedName("red_sandstone_stairs"));

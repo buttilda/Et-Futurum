@@ -27,24 +27,24 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModBlocks {
 
-	// 1.8 stuff
-	public static final Block newStones = new Stone();
-	public static final Block ironTrapdoor = new IronTrapdoor();
-	public static final Block prismarineBlocks = new PrismarineBlocks();
-	public static final Block seaLantern = new SeaLantern();
-	public static final Block[] doors = new Block[BlockWood.field_150096_a.length - 1];
-	public static final Block invertedDaylightDetector = new InvertedDaylightDetector();
-	public static final Block redSandstone = new RedSandstone();
-	public static final Block redSandstoneSlab = new RedSandstoneSlab();
-	public static final Block redSandstoneStairs = new RedSandstoneStairs();
-	public static final Block[] fences = new Block[BlockWood.field_150096_a.length];
-	public static final Block[] gates = new Block[BlockWood.field_150096_a.length - 1];
+	public static final Block stone = new Stone();
+	public static final Block iron_trapdoor = new IronTrapdoor();
+	public static final Block prismarine = new PrismarineBlocks();
+	public static final Block sea_lantern = new SeaLantern();
+	public static final Block inverted_daylight_detector = new InvertedDaylightDetector();
+	public static final Block red_sandstone = new RedSandstone();
+	public static final Block red_sandstone_slab = new RedSandstoneSlab();
+	public static final Block red_sandstone_stairs = new RedSandstoneStairs();
 	public static final Block brown_mushroom_block = new BlockSilkedMushroom(Blocks.brown_mushroom_block, "brown");
 	public static final Block red_mushroom_block = new BlockSilkedMushroom(Blocks.red_mushroom_block, "red");
-	public static final Block coarseDirt = new CoarseDirt();
+	public static final Block coarse_dirt = new CoarseDirt();
 	public static final Block banner = new BlockBanner();
-	public static final Block slimeBlock = new SlimeBlock();
+	public static final Block slime = new SlimeBlock();
 	public static final Block sponge = new Sponge();
+
+	public static final Block[] doors = new Block[BlockWood.field_150096_a.length - 1];
+	public static final Block[] fences = new Block[BlockWood.field_150096_a.length];
+	public static final Block[] gates = new Block[BlockWood.field_150096_a.length - 1];
 
 	static {
 		for (int i = 0; i < doors.length; i++)

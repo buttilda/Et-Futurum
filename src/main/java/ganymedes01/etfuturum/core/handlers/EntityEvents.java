@@ -25,9 +25,9 @@ public class EntityEvents {
 			int amount = rand.nextInt(3) + 1 + rand.nextInt(1 + event.lootingLevel);
 			for (int i = 0; i < amount; i++)
 				if (event.entityLiving.isBurning())
-					addDrop(new ItemStack(ModItems.cookedMutton), event.entityLiving, event.drops);
+					addDrop(new ItemStack(ModItems.cooked_mutton), event.entityLiving, event.drops);
 				else
-					addDrop(new ItemStack(ModItems.rawMutton), event.entityLiving, event.drops);
+					addDrop(new ItemStack(ModItems.raw_mutton), event.entityLiving, event.drops);
 		}
 	}
 

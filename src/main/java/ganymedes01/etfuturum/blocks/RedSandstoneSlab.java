@@ -92,7 +92,7 @@ public class RedSandstoneSlab extends Block implements ISubBlocksBlock {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
-		return ModBlocks.redSandstone.getIcon(side, 0);
+		return ModBlocks.red_sandstone.getIcon(side, 0);
 	}
 
 	@Override

@@ -19,9 +19,9 @@ public class SurfaceWorldGen implements IWorldGenerator {
 	private final List<WorldGenMinable> generators = new LinkedList<WorldGenMinable>();
 
 	public SurfaceWorldGen() {
-		generators.add(new WorldGenMinable(ModBlocks.newStones, 1, EtFuturum.max18StonesPerCluster, Blocks.stone));
-		generators.add(new WorldGenMinable(ModBlocks.newStones, 3, EtFuturum.max18StonesPerCluster, Blocks.stone));
-		generators.add(new WorldGenMinable(ModBlocks.newStones, 5, EtFuturum.max18StonesPerCluster, Blocks.stone));
+		generators.add(new WorldGenMinable(ModBlocks.stone, 1, EtFuturum.max18StonesPerCluster, Blocks.stone));
+		generators.add(new WorldGenMinable(ModBlocks.stone, 3, EtFuturum.max18StonesPerCluster, Blocks.stone));
+		generators.add(new WorldGenMinable(ModBlocks.stone, 5, EtFuturum.max18StonesPerCluster, Blocks.stone));
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class SurfaceWorldGen implements IWorldGenerator {
 				for (int z = chunkZ * 16; z < chunkZ * 16 + 16; z++)
 					for (int y = 0; y < world.getActualHeight(); y++)
 						if (world.getBlock(x, y, z) == Blocks.dirt && world.getBlockMetadata(x, y, z) == 1)
-							world.setBlock(x, y, z, ModBlocks.coarseDirt);
+							world.setBlock(x, y, z, ModBlocks.coarse_dirt);
 
 		if (world.provider.dimensionId != 0)
 			return;

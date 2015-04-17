@@ -11,10 +11,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModItems {
 
-	// 1.8 Stuff
-	public static final Item rawMutton = new MuttonRaw();
-	public static final Item cookedMutton = new MuttonCooked();
-	public static final Item prismarineItems = new PrismarineItems();
+	public static final Item raw_mutton = new MuttonRaw();
+	public static final Item cooked_mutton = new MuttonCooked();
+	public static final Item prismarine = new PrismarineItems();
 
 	public static void init() {
 		try {

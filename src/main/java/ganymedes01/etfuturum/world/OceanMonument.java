@@ -73,11 +73,11 @@ public class OceanMonument {
 				case 0:
 				case 1:
 				case 2:
-					block = ModBlocks.prismarineBlocks;
+					block = ModBlocks.prismarine;
 					meta = value;
 					break;
 				case 3:
-					block = ModBlocks.seaLantern;
+					block = ModBlocks.sea_lantern;
 					break;
 				case 4:
 					block = Blocks.gold_block;
@@ -95,11 +95,11 @@ public class OceanMonument {
 		}
 
 		for (int i = 0; i < 7; i++) {
-			generatePillar(world, x + 5 * i + 4 * i, y, z, ModBlocks.prismarineBlocks, 1);
-			generatePillar(world, x, y, z + 5 * i + 4 * i, ModBlocks.prismarineBlocks, 1);
-			generatePillar(world, x + 54, y, z + 5 * i + 4 * i, ModBlocks.prismarineBlocks, 1);
+			generatePillar(world, x + 5 * i + 4 * i, y, z, ModBlocks.prismarine, 1);
+			generatePillar(world, x, y, z + 5 * i + 4 * i, ModBlocks.prismarine, 1);
+			generatePillar(world, x + 54, y, z + 5 * i + 4 * i, ModBlocks.prismarine, 1);
 			if (i != 3)
-				generatePillar(world, x + 5 * i + 4 * i, y, z + 54, ModBlocks.prismarineBlocks, 1);
+				generatePillar(world, x + 5 * i + 4 * i, y, z + 54, ModBlocks.prismarine, 1);
 		}
 	}
 
@@ -138,9 +138,9 @@ public class OceanMonument {
 						int meta = world.getBlockMetadata(x + i, y + j, z + k);
 
 						String s = "(" + i + ", " + j + ", " + k + ") - ";
-						if (b == ModBlocks.prismarineBlocks)
+						if (b == ModBlocks.prismarine)
 							s += meta;
-						else if (b == ModBlocks.seaLantern)
+						else if (b == ModBlocks.sea_lantern)
 							s += 3;
 						else if (b == Blocks.gold_block)
 							s += 4;

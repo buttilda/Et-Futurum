@@ -1,6 +1,9 @@
 package ganymedes01.etfuturum.blocks;
 
+import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.ModBlocks.ISubBlocksBlock;
 import ganymedes01.etfuturum.core.utils.Utils;
+import ganymedes01.etfuturum.items.block.ItemWoodDoor;
 import ganymedes01.etfuturum.lib.RenderIDs;
 
 import java.util.Random;
@@ -8,8 +11,12 @@ import java.util.Random;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockWoodDoor extends BlockDoor {
+public class BlockWoodDoor extends BlockDoor implements ISubBlocksBlock {
 
 	public static final String[] names = new String[] { "oak", "spruce", "birch", "jungle", "acacia", "dark_oak" };
 
@@ -22,15 +29,33 @@ public class BlockWoodDoor extends BlockDoor {
 		setStepSound(soundTypeWood);
 		setBlockTextureName("door_" + name);
 		setBlockName(Utils.getUnlocalisedName("door_" + name));
+		setCreativeTab(EtFuturum.enableDoors ? EtFuturum.creativeTab : null);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Item getItem(World world, int x, int y, int z) {
+		return Item.getItemFromBlock(this);
 	}
 
 	@Override
 	public Item getItemDropped(int meta, Random rand, int fortune) {
-		return (meta & 8) != 0 ? null : super.getItemDropped(meta, rand, fortune);
+		return (meta & 8) != 0 ? null : Item.getItemFromBlock(this);
 	}
 
 	@Override
 	public int getRenderType() {
 		return RenderIDs.DOOR;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public String getItemIconName() {
+		return getTextureName();
+	}
+
+	@Override
+	public Class<? extends ItemBlock> getItemBlockClass() {
+		return ItemWoodDoor.class;
 	}
 }

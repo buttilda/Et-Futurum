@@ -24,7 +24,7 @@ public class BlockWoodFence extends BlockFence implements IBurnableBlock {
 		setHardness(2.0F);
 		setResistance(5.0F);
 		setStepSound(soundTypeWood);
-		setBlockName(Utils.getUnlocalisedName("fence_" + meta));
+		setBlockName(Utils.getUnlocalisedName("fence_" + BlockWoodDoor.names[meta]));
 		setCreativeTab(EtFuturum.enableFences ? EtFuturum.creativeTab : null);
 	}
 
