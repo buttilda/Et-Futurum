@@ -1,5 +1,6 @@
 package ganymedes01.etfuturum;
 
+import ganymedes01.etfuturum.items.ItemArmourStand;
 import ganymedes01.etfuturum.items.MuttonCooked;
 import ganymedes01.etfuturum.items.MuttonRaw;
 import ganymedes01.etfuturum.items.PrismarineItems;
@@ -14,6 +15,7 @@ public class ModItems {
 	public static final Item raw_mutton = new MuttonRaw();
 	public static final Item cooked_mutton = new MuttonCooked();
 	public static final Item prismarine = new PrismarineItems();
+	public static final Item armour_stand = new ItemArmourStand();
 
 	public static void init() {
 		try {

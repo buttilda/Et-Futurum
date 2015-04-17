@@ -24,10 +24,9 @@ public class ItemBanner extends ItemBlock {
 
 	public ItemBanner(Block block) {
 		super(block);
-		setMaxStackSize(16);
-		setCreativeTab(CreativeTabs.tabDecorations);
-		setHasSubtypes(true);
 		setMaxDamage(0);
+		setMaxStackSize(16);
+		setHasSubtypes(true);
 	}
 
 	@Override
