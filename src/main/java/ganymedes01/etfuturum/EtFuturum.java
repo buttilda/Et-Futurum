@@ -50,7 +50,9 @@ public class EtFuturum {
 	public static boolean enableSilkTouchingMushrooms = true;
 	public static boolean enableBanners = true;
 	public static boolean enableSlimeBlock = true;
+
 	public static boolean enableBurnableBlocks = true;
+	public static boolean enableFancySkulls = true;
 
 	public static int maxStonesPerCluster = 33;
 

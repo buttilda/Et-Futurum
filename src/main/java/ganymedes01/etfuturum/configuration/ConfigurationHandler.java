@@ -54,7 +54,9 @@ public class ConfigurationHandler {
 		EtFuturum.enableBanners = configBoolean("Banners", true, true);
 		EtFuturum.enableSlimeBlock = configBoolean("Slime Block", true, true);
 
+		EtFuturum.enableFancySkulls = configBoolean("Fancy Skulls", true, true);
 		EtFuturum.enableBurnableBlocks = configBoolean("Fences, gates and dead bushes burn", true, true);
+
 		EtFuturum.maxStonesPerCluster = configInteger("Max number of 1.8 stones in a cluster", true, EtFuturum.maxStonesPerCluster);
 
 		if (configFile.hasChanged())

@@ -6,20 +6,18 @@ import ganymedes01.etfuturum.client.renderer.block.BlockChestRenderer;
 import ganymedes01.etfuturum.client.renderer.block.BlockDoorRenderer;
 import ganymedes01.etfuturum.client.renderer.block.BlockSlimeBlockRender;
 import ganymedes01.etfuturum.client.renderer.item.ItemBannerRenderer;
+import ganymedes01.etfuturum.client.renderer.item.ItemSkullRenderer;
 import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityBannerRenderer;
+import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityFancySkullRenderer;
 import ganymedes01.etfuturum.tileentities.TileEntityBanner;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
-
-	@Override
-	public void registerTileEntities() {
-		super.registerTileEntities();
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBanner.class, new TileEntityBannerRenderer());
-	}
 
 	@Override
 	public void registerRenderers() {
@@ -28,7 +26,10 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	private void registerItemRenderers() {
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.banner), new ItemBannerRenderer());
+		if (EtFuturum.enableBanners)
+			MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.banner), new ItemBannerRenderer());
+		if (EtFuturum.enableFancySkulls)
+			MinecraftForgeClient.registerItemRenderer(Items.skull, new ItemSkullRenderer());
 	}
 
 	private void registerBlockRenderers() {
@@ -37,6 +38,12 @@ public class ClientProxy extends CommonProxy {
 
 		if (EtFuturum.enableDoors)
 			RenderingRegistry.registerBlockHandler(new BlockDoorRenderer());
+
+		if (EtFuturum.enableBanners)
+			ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBanner.class, new TileEntityBannerRenderer());
+
+		if (EtFuturum.enableFancySkulls)
+			ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySkull.class, new TileEntityFancySkullRenderer());
 
 		RenderingRegistry.registerBlockHandler(new BlockChestRenderer());
 	}
