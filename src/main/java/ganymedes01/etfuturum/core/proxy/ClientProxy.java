@@ -16,11 +16,6 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 public class ClientProxy extends CommonProxy {
 
 	@Override
-	public void registerEvents() {
-		super.registerEvents();
-	}
-
-	@Override
 	public void registerTileEntities() {
 		super.registerTileEntities();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBanner.class, new TileEntityBannerRenderer());
@@ -29,15 +24,11 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerRenderers() {
 		registerItemRenderers();
-		registerEntityRenderers();
 		registerBlockRenderers();
 	}
 
 	private void registerItemRenderers() {
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.banner), new ItemBannerRenderer());
-	}
-
-	private void registerEntityRenderers() {
 	}
 
 	private void registerBlockRenderers() {

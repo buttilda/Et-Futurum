@@ -2,7 +2,6 @@ package ganymedes01.etfuturum;
 
 import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.proxy.CommonProxy;
-import ganymedes01.etfuturum.creativetab.CreativeTabSurface;
 import ganymedes01.etfuturum.lib.Reference;
 import ganymedes01.etfuturum.recipes.ModRecipes;
 import ganymedes01.etfuturum.world.OceanMonument;
@@ -11,6 +10,7 @@ import ganymedes01.etfuturum.world.SurfaceWorldGen;
 import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -29,25 +29,30 @@ public class EtFuturum {
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
 
-	public static CreativeTabs creativeTab = new CreativeTabSurface();
+	public static CreativeTabs creativeTab = new CreativeTabs(Reference.MOD_ID) {
+		@Override
+		public Item getTabIconItem() {
+			return ModItems.prismarine;
+		}
+	};
 
-	public static boolean enable18Stones = true;
+	public static boolean enableStones = true;
 	public static boolean enableIronTrapdoor = true;
 	public static boolean enableMutton = true;
 	public static boolean enableSponge = true;
-	public static boolean enablePrismarineStuff = true;
+	public static boolean enablePrismarine = true;
 	public static boolean enableDoors = true;
 	public static boolean enableInvertedDaylightSensor = true;
 	public static boolean enableCoarseDirt = true;
 	public static boolean enableRedSandstone = true;
-	public static boolean enable18Enchants = true;
+	public static boolean enableEnchants = true;
 	public static boolean enableFences = true;
 	public static boolean enableSilkTouchingMushrooms = true;
 	public static boolean enableBanners = true;
 	public static boolean enableSlimeBlock = true;
 	public static boolean enableBurnableBlocks = true;
 
-	public static int max18StonesPerCluster = 33;
+	public static int maxStonesPerCluster = 33;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -70,6 +75,5 @@ public class EtFuturum {
 		proxy.registerEvents();
 		proxy.registerTileEntities();
 		proxy.registerRenderers();
-		proxy.registerEntities();
 	}
 }

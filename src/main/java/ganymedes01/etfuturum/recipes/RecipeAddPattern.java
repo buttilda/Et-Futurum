@@ -1,11 +1,14 @@
 package ganymedes01.etfuturum.recipes;
 
 import ganymedes01.etfuturum.ModBlocks;
-import ganymedes01.etfuturum.core.utils.InventoryUtils;
 import ganymedes01.etfuturum.items.block.ItemBanner;
 import ganymedes01.etfuturum.lib.EnumColour;
 import ganymedes01.etfuturum.tileentities.TileEntityBanner;
 import ganymedes01.etfuturum.tileentities.TileEntityBanner.EnumBannerPattern;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,6 +16,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class RecipeAddPattern implements IRecipe {
 
@@ -94,7 +98,7 @@ public class RecipeAddPattern implements IRecipe {
 	}
 
 	private boolean isDye(ItemStack stack) {
-		for (String ore : InventoryUtils.getOreNames(stack))
+		for (String ore : getOreNames(stack))
 			for (EnumColour colour : EnumColour.values())
 				if (ore.equals(colour.getOreName()))
 					return true;
@@ -103,7 +107,7 @@ public class RecipeAddPattern implements IRecipe {
 	}
 
 	private int getDyeIndex(ItemStack stack) {
-		for (String ore : InventoryUtils.getOreNames(stack))
+		for (String ore : getOreNames(stack))
 			for (EnumColour colour : EnumColour.values())
 				if (ore.equals(colour.getOreName()))
 					return colour.getDamage();
@@ -180,5 +184,13 @@ public class RecipeAddPattern implements IRecipe {
 			}
 
 		return null;
+	}
+
+	private List<String> getOreNames(ItemStack stack) {
+		List<String> list = new ArrayList<String>();
+		for (int id : OreDictionary.getOreIDs(stack))
+			list.add(OreDictionary.getOreName(id));
+
+		return list;
 	}
 }

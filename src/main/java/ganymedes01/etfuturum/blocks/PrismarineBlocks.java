@@ -12,6 +12,6 @@ public class PrismarineBlocks extends BlockGeneric {
 		setResistance(10.0F);
 		setBlockTextureName("prismarine");
 		setBlockName(Utils.getUnlocalisedName("prismarine_block"));
-		setCreativeTab(EtFuturum.enablePrismarineStuff ? EtFuturum.creativeTab : null);
+		setCreativeTab(EtFuturum.enablePrismarine ? EtFuturum.creativeTab : null);
 	}
 }

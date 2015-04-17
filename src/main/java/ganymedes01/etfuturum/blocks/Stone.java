@@ -24,7 +24,7 @@ public class Stone extends BlockGeneric {
 		setBlockTextureName("stone");
 		setStepSound(soundTypePiston);
 		setBlockName(Utils.getUnlocalisedName("stone"));
-		setCreativeTab(EtFuturum.enable18Stones ? EtFuturum.creativeTab : null);
+		setCreativeTab(EtFuturum.enableStones ? EtFuturum.creativeTab : null);
 	}
 
 	@Override

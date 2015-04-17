@@ -9,6 +9,6 @@ public class PrismarineItems extends ItemGeneric {
 		super("shard", "crystals");
 		setTextureName("prismarine");
 		setUnlocalizedName(Utils.getUnlocalisedName("prismarine"));
-		setCreativeTab(EtFuturum.enablePrismarineStuff ? EtFuturum.creativeTab : null);
+		setCreativeTab(EtFuturum.enablePrismarine ? EtFuturum.creativeTab : null);
 	}
 }

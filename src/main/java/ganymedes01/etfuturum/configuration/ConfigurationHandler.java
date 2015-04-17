@@ -39,21 +39,23 @@ public class ConfigurationHandler {
 	}
 
 	private void syncConfigs() {
-		// 1.8 Stuff
-		EtFuturum.enable18Stones = configBoolean("Enable 1.8 Stones", true, true);
-		EtFuturum.enableIronTrapdoor = configBoolean("Enable Iron Trapdoor", true, true);
-		EtFuturum.enableMutton = configBoolean("Enable Mutton", true, true);
-		EtFuturum.enableSponge = configBoolean("Enable new sponge texture", true, true);
-		EtFuturum.enablePrismarineStuff = configBoolean("Enable Prismarine stuff", true, true);
-		EtFuturum.enableDoors = configBoolean("Enable 1.8 style doors", true, true);
-		EtFuturum.enableInvertedDaylightSensor = configBoolean("Enable inverted daylight sensor", true, true);
-		EtFuturum.enableCoarseDirt = configBoolean("Enable coarse dirt", true, true);
-		EtFuturum.enable18Enchants = configBoolean("Enable 1.8 Enchanting Table", true, true);
-		EtFuturum.enableFences = configBoolean("Enable 1.8 wood fences", true, true);
-		EtFuturum.enableSilkTouchingMushrooms = configBoolean("Enable Silk Touching of mushroom blocks", true, true);
-		EtFuturum.max18StonesPerCluster = configInteger("Max number of 1.8 stones in a cluster", true, EtFuturum.max18StonesPerCluster);
-		EtFuturum.enableBanners = configBoolean("Enable 1.8 banners", true, true);
-		EtFuturum.enableRedSandstone = configBoolean("Enable 1.8 red sandstone", true, true);
+		EtFuturum.enableStones = configBoolean("Stones", true, true);
+		EtFuturum.enableIronTrapdoor = configBoolean("Iron Trapdoor", true, true);
+		EtFuturum.enableMutton = configBoolean("Mutton", true, true);
+		EtFuturum.enableSponge = configBoolean("Sponge", true, true);
+		EtFuturum.enablePrismarine = configBoolean("Prismarine", true, true);
+		EtFuturum.enableDoors = configBoolean("Doors", true, true);
+		EtFuturum.enableInvertedDaylightSensor = configBoolean("Inverted Daylight Sensor", true, true);
+		EtFuturum.enableCoarseDirt = configBoolean("Coarse Dirt", true, true);
+		EtFuturum.enableRedSandstone = configBoolean("Red Sandstone", true, true);
+		EtFuturum.enableEnchants = configBoolean("Enchanting Table", true, true);
+		EtFuturum.enableFences = configBoolean("Fences and Gates", true, true);
+		EtFuturum.enableSilkTouchingMushrooms = configBoolean("Mushroom Blocks", true, true);
+		EtFuturum.enableBanners = configBoolean("Banners", true, true);
+		EtFuturum.enableSlimeBlock = configBoolean("Slime Block", true, true);
+
+		EtFuturum.enableBurnableBlocks = configBoolean("Fences, gates and dead bushes burn", true, true);
+		EtFuturum.maxStonesPerCluster = configInteger("Max number of 1.8 stones in a cluster", true, EtFuturum.maxStonesPerCluster);
 
 		if (configFile.hasChanged())
 			configFile.save();

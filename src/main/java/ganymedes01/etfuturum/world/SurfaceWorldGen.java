@@ -19,9 +19,9 @@ public class SurfaceWorldGen implements IWorldGenerator {
 	private final List<WorldGenMinable> generators = new LinkedList<WorldGenMinable>();
 
 	public SurfaceWorldGen() {
-		generators.add(new WorldGenMinable(ModBlocks.stone, 1, EtFuturum.max18StonesPerCluster, Blocks.stone));
-		generators.add(new WorldGenMinable(ModBlocks.stone, 3, EtFuturum.max18StonesPerCluster, Blocks.stone));
-		generators.add(new WorldGenMinable(ModBlocks.stone, 5, EtFuturum.max18StonesPerCluster, Blocks.stone));
+		generators.add(new WorldGenMinable(ModBlocks.stone, 1, EtFuturum.maxStonesPerCluster, Blocks.stone));
+		generators.add(new WorldGenMinable(ModBlocks.stone, 3, EtFuturum.maxStonesPerCluster, Blocks.stone));
+		generators.add(new WorldGenMinable(ModBlocks.stone, 5, EtFuturum.maxStonesPerCluster, Blocks.stone));
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class SurfaceWorldGen implements IWorldGenerator {
 		if (world.provider.dimensionId != 0)
 			return;
 
-		if (EtFuturum.enable18Stones)
+		if (EtFuturum.enableStones)
 			for (Iterator<WorldGenMinable> iterator = generators.iterator(); iterator.hasNext();) {
 				WorldGenMinable generator = iterator.next();
 				for (int i = 0; i < 10; i++) {
@@ -48,7 +48,7 @@ public class SurfaceWorldGen implements IWorldGenerator {
 				}
 			}
 
-		if (EtFuturum.enablePrismarineStuff)
+		if (EtFuturum.enablePrismarine)
 			if (OceanMonument.canSpawnAt(world, chunkX, chunkZ)) {
 				int x = chunkX * 16 + rand.nextInt(16);
 				int y = 256;

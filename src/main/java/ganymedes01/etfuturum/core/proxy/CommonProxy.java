@@ -3,8 +3,7 @@ package ganymedes01.etfuturum.core.proxy;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.client.gui.inventory.GuiEnchantment;
 import ganymedes01.etfuturum.configuration.ConfigurationHandler;
-import ganymedes01.etfuturum.core.handlers.EntityEvents;
-import ganymedes01.etfuturum.core.handlers.MiscEventHandler;
+import ganymedes01.etfuturum.core.handlers.ModEventHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.inventory.ContainerEnchantment;
 import ganymedes01.etfuturum.lib.GUIsID;
@@ -20,17 +19,12 @@ public class CommonProxy implements IGuiHandler {
 
 	public void registerEvents() {
 		FMLCommonHandler.instance().bus().register(ConfigurationHandler.INSTANCE);
-		if (EtFuturum.enableMutton)
-			MinecraftForge.EVENT_BUS.register(new EntityEvents());
-
-		MinecraftForge.EVENT_BUS.register(new MiscEventHandler());
+		MinecraftForge.EVENT_BUS.register(new ModEventHandler());
 	}
 
 	public void registerTileEntities() {
-		GameRegistry.registerTileEntity(TileEntityBanner.class, Utils.getUnlocalisedName("banner"));
-	}
-
-	public void registerEntities() {
+		if (EtFuturum.enableBanners)
+			GameRegistry.registerTileEntity(TileEntityBanner.class, Utils.getUnlocalisedName("banner"));
 	}
 
 	public void registerRenderers() {

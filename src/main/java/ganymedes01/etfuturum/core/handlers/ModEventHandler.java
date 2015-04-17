@@ -2,6 +2,7 @@ package ganymedes01.etfuturum.core.handlers;
 
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
+import ganymedes01.etfuturum.ModItems;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.inventory.ContainerEnchantment;
 import ganymedes01.etfuturum.lib.GUIsID;
@@ -13,26 +14,33 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
+import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityEnchantmentTable;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.common.eventhandler.Event.Result;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class MiscEventHandler {
+public class ModEventHandler {
 
 	@SubscribeEvent
 	public void interactEvent(PlayerInteractEvent event) {
-		if (!EtFuturum.enable18Enchants)
+		if (!EtFuturum.enableEnchants)
 			return;
 		if (event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
 			World world = event.world;
@@ -57,7 +65,7 @@ public class MiscEventHandler {
 
 	@SubscribeEvent
 	public void onPlayerLoadFromFileEvent(PlayerEvent.LoadFromFile event) {
-		if (!EtFuturum.enable18Enchants)
+		if (!EtFuturum.enableEnchants)
 			return;
 		try {
 			File file = event.getPlayerFile(Reference.MOD_ID);
@@ -79,7 +87,7 @@ public class MiscEventHandler {
 
 	@SubscribeEvent
 	public void onPlayerSaveFromFileEvent(PlayerEvent.SaveToFile event) {
-		if (!EtFuturum.enable18Enchants)
+		if (!EtFuturum.enableEnchants)
 			return;
 		try {
 			File file = event.getPlayerFile(Reference.MOD_ID);
@@ -136,5 +144,29 @@ public class MiscEventHandler {
 				event.setResult(Result.ALLOW);
 			}
 		}
+	}
+
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	public void dropEvent(LivingDropsEvent event) {
+		if (event.entityLiving.worldObj.isRemote)
+			return;
+		Random rand = event.entityLiving.worldObj.rand;
+		if (EtFuturum.enableMutton && event.entityLiving instanceof EntitySheep) {
+			int amount = rand.nextInt(3) + 1 + rand.nextInt(1 + event.lootingLevel);
+			for (int i = 0; i < amount; i++)
+				if (event.entityLiving.isBurning())
+					addDrop(new ItemStack(ModItems.cooked_mutton), event.entityLiving, event.drops);
+				else
+					addDrop(new ItemStack(ModItems.raw_mutton), event.entityLiving, event.drops);
+		}
+	}
+
+	private void addDrop(ItemStack stack, EntityLivingBase entity, List<EntityItem> list) {
+		if (stack.stackSize <= 0)
+			return;
+
+		EntityItem entityItem = new EntityItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack);
+		entityItem.delayBeforeCanPickup = 10;
+		list.add(entityItem);
 	}
 }

@@ -65,13 +65,13 @@ public class ModRecipes {
 		OreDictionary.registerOre("chestWood", new ItemStack(Blocks.chest));
 		OreDictionary.registerOre("trapdoorWood", Blocks.trapdoor);
 
-		if (EtFuturum.enablePrismarineStuff) {
+		if (EtFuturum.enablePrismarine) {
 			OreDictionary.registerOre("shardPrismarine", new ItemStack(ModItems.prismarine, 1, 0));
 			OreDictionary.registerOre("crystalPrismarine", new ItemStack(ModItems.prismarine, 1, 1));
 			OreDictionary.registerOre("blockPrismarine", new ItemStack(ModBlocks.prismarine, 1, OreDictionary.WILDCARD_VALUE));
 		}
 
-		if (EtFuturum.enable18Stones) {
+		if (EtFuturum.enableStones) {
 			OreDictionary.registerOre("stoneGranite", new ItemStack(ModBlocks.stone, 1, Stone.GRANITE));
 			OreDictionary.registerOre("stoneDiorite", new ItemStack(ModBlocks.stone, 1, Stone.DIORITE));
 			OreDictionary.registerOre("stoneAndesite", new ItemStack(ModBlocks.stone, 1, Stone.ANDESITE));
@@ -113,7 +113,7 @@ public class ModRecipes {
 		if (EtFuturum.enableIronTrapdoor)
 			addShapedRecipe(new ItemStack(ModBlocks.iron_trapdoor), "xx", "xx", 'x', "ingotIron");
 
-		if (EtFuturum.enable18Stones) {
+		if (EtFuturum.enableStones) {
 			// Diorite
 			addShapedRecipe(new ItemStack(ModBlocks.stone, 2, Stone.DIORITE), "xy", "yx", 'x', new ItemStack(Blocks.cobblestone), 'y', "gemQuartz");
 			addShapedRecipe(new ItemStack(ModBlocks.stone, 4, Stone.POLISHED_DIORITE), "xx", "xx", 'x', "stoneDiorite");
@@ -125,7 +125,7 @@ public class ModRecipes {
 			addShapedRecipe(new ItemStack(ModBlocks.stone, 4, Stone.POLISHED_GRANITE), "xx", "xx", 'x', "stoneGranite");
 		}
 
-		if (EtFuturum.enablePrismarineStuff) {
+		if (EtFuturum.enablePrismarine) {
 			int PLAIN = 0;
 			int BRICKS = 1;
 			int DARK = 2;
