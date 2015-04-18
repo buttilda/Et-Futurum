@@ -201,7 +201,7 @@ public class EntityArmourStand extends EntityLiving {
 			for (int i = 0; i < list.size(); i++) {
 				Entity entity = list.get(i);
 
-				if (entity instanceof EntityMinecart && ((EntityMinecart) entity).getMinecartType() == 0 && getDistanceSqToEntity(entity) <= 0.2D)
+				if (entity instanceof EntityMinecart && ((EntityMinecart) entity).getMinecartType() == 0)
 					entity.applyEntityCollision(this);
 			}
 
