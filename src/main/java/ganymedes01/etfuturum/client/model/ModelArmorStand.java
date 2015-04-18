@@ -57,11 +57,11 @@ public class ModelArmorStand extends ModelArmorStandArmor {
 	}
 
 	@Override
-	public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_, float p_78087_5_, float p_78087_6_, Entity p_78087_7_) {
-		super.setRotationAngles(p_78087_1_, p_78087_2_, p_78087_3_, p_78087_4_, p_78087_5_, p_78087_6_, p_78087_7_);
+	public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_, float p_78087_5_, float p_78087_6_, Entity entity) {
+		super.setRotationAngles(p_78087_1_, p_78087_2_, p_78087_3_, p_78087_4_, p_78087_5_, p_78087_6_, entity);
 
-		if (p_78087_7_ instanceof EntityArmourStand) {
-			EntityArmourStand stand = (EntityArmourStand) p_78087_7_;
+		if (entity instanceof EntityArmourStand) {
+			EntityArmourStand stand = (EntityArmourStand) entity;
 			bipedLeftArm.showModel = stand.getShowArms();
 			bipedRightArm.showModel = stand.getShowArms();
 			standBase.showModel = !stand.hasNoBasePlate();
@@ -77,7 +77,7 @@ public class ModelArmorStand extends ModelArmorStandArmor {
 			standWaist.rotateAngleY = 0.017453292F * stand.getBodyRotation().getY();
 			standWaist.rotateAngleZ = 0.017453292F * stand.getBodyRotation().getZ();
 			standBase.rotateAngleX = 0.0F;
-			standBase.rotateAngleY = 0.017453292F * -p_78087_7_.rotationYaw;
+			standBase.rotateAngleY = 0.017453292F * -entity.rotationYaw;
 			standBase.rotateAngleZ = 0.0F;
 		}
 	}
@@ -106,12 +106,5 @@ public class ModelArmorStand extends ModelArmorStandArmor {
 		}
 
 		OpenGLHelper.popMatrix();
-	}
-
-	public void postRenderArm(float p_178718_1_) {
-		boolean flag = bipedRightArm.showModel;
-		bipedRightArm.showModel = true;
-		super.postRenderArm(p_178718_1_);
-		bipedRightArm.showModel = flag;
 	}
 }

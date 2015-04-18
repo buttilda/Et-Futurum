@@ -201,7 +201,6 @@ public class ModEventHandler {
 	}
 
 	private int getHeadMetadata(EntityLivingBase entity) {
-		System.out.println(entity);
 		if (entity.getClass() == EntityZombie.class)
 			return 2;
 		else if (entity.getClass() == EntitySkeleton.class && ((EntitySkeleton) entity).getSkeletonType() == 0)

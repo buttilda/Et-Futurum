@@ -4,6 +4,7 @@ import ganymedes01.etfuturum.ModItems;
 
 import java.util.List;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityMinecart;
@@ -17,6 +18,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -66,12 +69,22 @@ public class EntityArmourStand extends EntityLiving {
 		addRotationsToDataWatcher(24, DEFAULT_LEFTLEG_ROTATION);
 		addRotationsToDataWatcher(27, DEFAULT_RIGHTLEG_ROTATION);
 		dataWatcher.addObject(30, (byte) 0);
+		func_110163_bv();
 	}
 
 	private void addRotationsToDataWatcher(int index, Rotations rotations) {
 		dataWatcher.addObject(index, rotations.getX());
 		dataWatcher.addObject(index + 1, rotations.getY());
 		dataWatcher.addObject(index + 2, rotations.getZ());
+	}
+
+	@Override
+	protected void updateEntityActionState() {
+	}
+
+	@Override
+	public ItemStack getPickedResult(MovingObjectPosition target) {
+		return new ItemStack(ModItems.armour_stand);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -219,7 +232,9 @@ public class EntityArmourStand extends EntityLiving {
 
 			byte b1 = 0;
 			boolean flag1 = isSmall();
-			double d3 = flag1 ? player.getLookVec().yCoord * 2.0D : player.getLookVec().yCoord;
+			MovingObjectPosition hit = Minecraft.getMinecraft().objectMouseOver;
+			Vec3 hitPos = Vec3.createVectorHelper(hit.hitVec.xCoord - player.posX, hit.hitVec.yCoord - player.posY, hit.hitVec.zCoord - player.posZ);
+			double d3 = flag1 ? hitPos.yCoord * 2.0D : hitPos.yCoord;
 
 			if (d3 >= 0.1D && d3 < 0.1D + (flag1 ? 0.8D : 0.45D) && getEquipmentInSlot(1) != null)
 				b1 = 1;
@@ -258,6 +273,7 @@ public class EntityArmourStand extends EntityLiving {
 	}
 
 	private void func_175422_a(EntityPlayer player, int slot) {
+		System.out.println("interact");
 		ItemStack itemstack = getEquipmentInSlot(slot);
 
 		if (itemstack == null || (disabledSlots & 1 << slot + 8) == 0)
