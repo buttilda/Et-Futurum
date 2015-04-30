@@ -4,6 +4,11 @@ import ganymedes01.etfuturum.items.ItemArmourStand;
 import ganymedes01.etfuturum.items.MuttonCooked;
 import ganymedes01.etfuturum.items.MuttonRaw;
 import ganymedes01.etfuturum.items.PrismarineItems;
+import ganymedes01.etfuturum.items.RabbitCooked;
+import ganymedes01.etfuturum.items.RabbitFoot;
+import ganymedes01.etfuturum.items.RabbitHide;
+import ganymedes01.etfuturum.items.RabbitRaw;
+import ganymedes01.etfuturum.items.RabbitStew;
 
 import java.lang.reflect.Field;
 
@@ -16,6 +21,11 @@ public class ModItems {
 	public static final Item cooked_mutton = new MuttonCooked();
 	public static final Item prismarine = new PrismarineItems();
 	public static final Item armour_stand = new ItemArmourStand();
+	public static final Item raw_rabbit = new RabbitRaw();
+	public static final Item cooked_rabbit = new RabbitCooked();
+	public static final Item rabbit_foot = new RabbitFoot();
+	public static final Item rabbit_hide = new RabbitHide();
+	public static final Item rabbit_stew = new RabbitStew();
 
 	public static void init() {
 		try {

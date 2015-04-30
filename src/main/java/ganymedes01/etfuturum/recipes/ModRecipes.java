@@ -98,7 +98,7 @@ public class ModRecipes {
 			addShapedRecipe(new ItemStack(ModBlocks.coarse_dirt, 4), "xy", "yx", 'x', new ItemStack(Blocks.dirt), 'y', new ItemStack(Blocks.gravel));
 
 		if (EtFuturum.enableMutton)
-			GameRegistry.addSmelting(ModItems.raw_mutton, new ItemStack(ModItems.cooked_mutton), 1.0F);
+			GameRegistry.addSmelting(ModItems.raw_mutton, new ItemStack(ModItems.cooked_mutton), 0.35F);
 
 		if (EtFuturum.enableIronTrapdoor)
 			addShapedRecipe(new ItemStack(ModBlocks.iron_trapdoor), "xx", "xx", 'x', "ingotIron");
@@ -163,6 +163,13 @@ public class ModRecipes {
 
 		if (EtFuturum.enableArmourStand)
 			addShapedRecipe(new ItemStack(ModItems.armour_stand), "xxx", " x ", "xyx", 'x', "stickWood", 'y', new ItemStack(Blocks.stone_slab));
+
+		if (EtFuturum.enableRabbit) {
+			addShapedRecipe(new ItemStack(ModItems.rabbit_stew), new Object[] { " R ", "CPM", " B ", 'R', new ItemStack(ModItems.cooked_rabbit), 'C', Items.carrot, 'P', Items.baked_potato, 'M', Blocks.brown_mushroom, 'B', Items.bowl });
+			addShapedRecipe(new ItemStack(ModItems.rabbit_stew), new Object[] { " R ", "CPD", " B ", 'R', new ItemStack(ModItems.cooked_rabbit), 'C', Items.carrot, 'P', Items.baked_potato, 'D', Blocks.red_mushroom, 'B', Items.bowl });
+			GameRegistry.addSmelting(ModItems.raw_rabbit, new ItemStack(ModItems.cooked_rabbit), 0.35F);
+			addShapedRecipe(new ItemStack(Items.leather), "xx", "xx", 'x', ModItems.rabbit_hide);
+		}
 	}
 
 	private static void addShapedRecipe(ItemStack output, Object... objects) {
