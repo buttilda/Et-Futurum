@@ -1,3 +1,59 @@
+# Creative Tab
+itemGroup.etfuturum=Et Futurum
+
+# Items
+item.etfuturum.mutton_raw.name=Raw Mutton
+item.etfuturum.mutton_cooked.name=Cooked Mutton
+item.etfuturum.prismarine_shard.name=Prismarine Shard
+item.etfuturum.prismarine_crystal.name=Prismarine Crystal
+item.etfuturum.wooden_armorstand.name=Armour Stand
+item.etfuturum.rabbit_raw.name=Raw Rabbit
+item.etfuturum.rabbit_cooked.name=Cooked Rabbit
+item.etfuturum.rabbit_stew.name=Rabbit Stew
+item.etfuturum.rabbit_foot.name=Rabbit's Foot
+item.etfuturum.rabbit_hide.name=Rabbit Hide
+
+# Blocks
+tile.etfuturum.stone_granite.name=Granite
+tile.etfuturum.stone_granite_smooth.name=Polished Granite
+tile.etfuturum.stone_diorite.name=Polished Diorite
+tile.etfuturum.stone_diorite_smooth.name=Polished Diorite
+tile.etfuturum.stone_andesite.name=Andesite
+tile.etfuturum.stone_andesite_smooth.name=Polished Andesite
+tile.etfuturum.iron_trapdoor.name=Iron Trapdoor
+tile.etfuturum.prismarine_block_rough.name=Prismarine
+tile.etfuturum.prismarine_block_bricks.name=Prismarine Bricks
+tile.etfuturum.prismarine_block_dark.name=Dark Prismarine
+tile.etfuturum.sea_lantern.name=Sea Lantern
+tile.etfuturum.daylight_detector_inverted.name=Inverted Daylight Sensor
+tile.etfuturum.red_sandstone_default.name=Red Sandstone
+tile.etfuturum.red_sandstone_chiseled.name=Chiseled Red Sandstone
+tile.etfuturum.red_sandstone_smooth.name=Smooth Red Sandstone
+tile.etfuturum.red_sandstone_slab.name=Red Sandstone Slab
+tile.etfuturum.red_sandstone_stairs.name=Red Sandstone Stairs
+tile.etfuturum.red_mushroom.name=Mushroom
+tile.etfuturum.brown_mushroom.name=Mushroom
+tile.etfuturum.coarse_dirt.name=Coarse Dirt
+tile.etfuturum.slime.name=Slime Block
+tile.etfuturum.sponge.name=Sponge
+tile.etfuturum.sponge_wet.name=Wet Sponge
+tile.etfuturum.door_spruce.name=Spruce Door
+tile.etfuturum.door_birch.name=Birch Door
+tile.etfuturum.door_jungle.name=Jungle Door
+tile.etfuturum.door_acacia.name=Acacia Door
+tile.etfuturum.door_dark_oak.name=Dark Oak Door
+tile.etfuturum.fence_oak.name=Oak Fence
+tile.etfuturum.fence_spruce.name=Spruce Fence
+tile.etfuturum.fence_birch.name=Birch Fence
+tile.etfuturum.fence_jungle.name=Jungle Fence
+tile.etfuturum.fence_acacia.name=Acacia Fence
+tile.etfuturum.fence_dark_oak.name=Dark Oak Fence
+tile.etfuturum.fence_gate_spruce.name=Spruce Fence Gate
+tile.etfuturum.fence_gate_birch.name=Birch Fence Gate
+tile.etfuturum.fence_gate_jungle.name=Jungle Fence Gate
+tile.etfuturum.fence_gate_acacia.name=Acacia Fence Gate
+tile.etfuturum.fence_gate_dark_oak.name=Dark Oak Fence Gate
+
 # Banners
 item.banner.black.name=Black Banner
 item.banner.red.name=Red Banner
