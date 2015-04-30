@@ -74,16 +74,18 @@ public class ModBlocks {
 	}
 
 	private static void registerBlock(Block block) {
-		String name = block.getUnlocalizedName();
-		String[] strings = name.split("\\.");
+		if (!(block instanceof IConfigurable) || ((IConfigurable) block).isEnabled()) {
+			String name = block.getUnlocalizedName();
+			String[] strings = name.split("\\.");
 
-		if (block instanceof ISubBlocksBlock)
-			GameRegistry.registerBlock(block, ((ISubBlocksBlock) block).getItemBlockClass(), strings[strings.length - 1]);
-		else
-			GameRegistry.registerBlock(block, strings[strings.length - 1]);
+			if (block instanceof ISubBlocksBlock)
+				GameRegistry.registerBlock(block, ((ISubBlocksBlock) block).getItemBlockClass(), strings[strings.length - 1]);
+			else
+				GameRegistry.registerBlock(block, strings[strings.length - 1]);
 
-		if (block instanceof IBurnableBlock)
-			Blocks.fire.setFireInfo(block, 5, 20);
+			if (block instanceof IBurnableBlock)
+				Blocks.fire.setFireInfo(block, 5, 20);
+		}
 	}
 
 	public static interface ISubBlocksBlock {

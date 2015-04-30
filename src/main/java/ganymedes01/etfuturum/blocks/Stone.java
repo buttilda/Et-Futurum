@@ -1,13 +1,14 @@
 package ganymedes01.etfuturum.blocks;
 
 import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.core.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
-public class Stone extends BlockGeneric {
+public class Stone extends BlockGeneric implements IConfigurable {
 
 	public static final int GRANITE = 1;
 	public static final int POLISHED_GRANITE = 2;
@@ -30,5 +31,10 @@ public class Stone extends BlockGeneric {
 	@Override
 	public boolean isReplaceableOreGen(World world, int x, int y, int z, Block target) {
 		return this == target || target == Blocks.stone;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return EtFuturum.enableStones;
 	}
 }

@@ -43,8 +43,10 @@ public class ModItems {
 	}
 
 	private static void registerItem(Item item) {
-		String name = item.getUnlocalizedName();
-		String[] strings = name.split("\\.");
-		GameRegistry.registerItem(item, strings[strings.length - 1]);
+		if (!(item instanceof IConfigurable) || ((IConfigurable) item).isEnabled()) {
+			String name = item.getUnlocalizedName();
+			String[] strings = name.split("\\.");
+			GameRegistry.registerItem(item, strings[strings.length - 1]);
+		}
 	}
 }

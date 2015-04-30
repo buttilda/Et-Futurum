@@ -1,6 +1,7 @@
 package ganymedes01.etfuturum.items;
 
 import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.core.utils.Utils;
 
 import java.lang.reflect.Field;
@@ -12,7 +13,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionHelper;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 
-public class RabbitFoot extends Item {
+public class RabbitFoot extends Item implements IConfigurable {
 
 	@SuppressWarnings("unchecked")
 	public RabbitFoot() {
@@ -47,5 +48,10 @@ public class RabbitFoot extends Item {
 	@Override
 	public boolean isPotionIngredient(ItemStack stack) {
 		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return EtFuturum.enableRabbit;
 	}
 }

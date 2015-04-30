@@ -1,6 +1,7 @@
 package ganymedes01.etfuturum.blocks;
 
 import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.ModBlocks.ISubBlocksBlock;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.items.block.ItemWoodDoor;
@@ -16,7 +17,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockWoodDoor extends BlockDoor implements ISubBlocksBlock {
+public class BlockWoodDoor extends BlockDoor implements ISubBlocksBlock, IConfigurable {
 
 	public static final String[] names = new String[] { "oak", "spruce", "birch", "jungle", "acacia", "dark_oak" };
 
@@ -57,5 +58,10 @@ public class BlockWoodDoor extends BlockDoor implements ISubBlocksBlock {
 	@Override
 	public Class<? extends ItemBlock> getItemBlockClass() {
 		return ItemWoodDoor.class;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return EtFuturum.enableDoors;
 	}
 }

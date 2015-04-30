@@ -1,6 +1,7 @@
 package ganymedes01.etfuturum.blocks;
 
 import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.lib.ModSounds;
 import ganymedes01.etfuturum.lib.RenderIDs;
@@ -12,7 +13,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class SlimeBlock extends Block {
+public class SlimeBlock extends Block implements IConfigurable {
 
 	public SlimeBlock() {
 		super(Material.cloth);
@@ -62,5 +63,10 @@ public class SlimeBlock extends Block {
 	@Override
 	public int getRenderType() {
 		return RenderIDs.SLIME_BLOCK;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return EtFuturum.enableSlimeBlock;
 	}
 }

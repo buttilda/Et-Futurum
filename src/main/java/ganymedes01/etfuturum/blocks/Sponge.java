@@ -1,6 +1,7 @@
 package ganymedes01.etfuturum.blocks;
 
 import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.world.WorldCoord;
 
@@ -21,7 +22,7 @@ import com.google.common.collect.Lists;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class Sponge extends BlockGeneric {
+public class Sponge extends BlockGeneric implements IConfigurable {
 
 	public Sponge() {
 		super(Material.sponge, "", "wet");
@@ -130,5 +131,10 @@ public class Sponge extends BlockGeneric {
 
 	private ForgeDirection getRandomDirection(Random rand) {
 		return ForgeDirection.VALID_DIRECTIONS[rand.nextInt(ForgeDirection.VALID_DIRECTIONS.length)];
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return EtFuturum.enableSponge;
 	}
 }

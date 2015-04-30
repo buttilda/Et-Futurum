@@ -1,6 +1,7 @@
 package ganymedes01.etfuturum.blocks;
 
 import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.ModBlocks.IBurnableBlock;
 import ganymedes01.etfuturum.core.utils.Utils;
 import net.minecraft.block.Block;
@@ -14,7 +15,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockWoodFence extends BlockFence implements IBurnableBlock {
+public class BlockWoodFence extends BlockFence implements IBurnableBlock, IConfigurable {
 
 	private final int meta;
 
@@ -48,5 +49,10 @@ public class BlockWoodFence extends BlockFence implements IBurnableBlock {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
 		return Blocks.planks.getIcon(side, this.meta);
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return EtFuturum.enableFences;
 	}
 }

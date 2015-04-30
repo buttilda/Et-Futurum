@@ -10,6 +10,7 @@ import ganymedes01.etfuturum.world.SurfaceWorldGen;
 import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -32,7 +33,7 @@ public class EtFuturum {
 	public static CreativeTabs creativeTab = new CreativeTabs(Reference.MOD_ID) {
 		@Override
 		public Item getTabIconItem() {
-			return ModItems.prismarine;
+			return enablePrismarine ? ModItems.prismarine : Items.skull;
 		}
 	};
 

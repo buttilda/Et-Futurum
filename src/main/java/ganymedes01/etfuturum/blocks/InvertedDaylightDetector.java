@@ -1,6 +1,7 @@
 package ganymedes01.etfuturum.blocks;
 
 import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.core.utils.Utils;
 
 import java.util.Random;
@@ -16,7 +17,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class InvertedDaylightDetector extends BlockDaylightDetector {
+public class InvertedDaylightDetector extends BlockDaylightDetector implements IConfigurable {
 
 	private static final int[] invertedValues = { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
 
@@ -74,5 +75,10 @@ public class InvertedDaylightDetector extends BlockDaylightDetector {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister reg) {
 		blockIcon = reg.registerIcon(getTextureName());
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return EtFuturum.enableInvertedDaylightSensor;
 	}
 }

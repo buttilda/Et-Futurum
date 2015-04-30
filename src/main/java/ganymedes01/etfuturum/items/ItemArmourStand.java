@@ -1,6 +1,7 @@
 package ganymedes01.etfuturum.items;
 
 import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.entities.EntityArmourStand;
 import ganymedes01.etfuturum.entities.Rotations;
@@ -19,7 +20,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class ItemArmourStand extends Item {
+public class ItemArmourStand extends Item implements IConfigurable {
 
 	public ItemArmourStand() {
 		setMaxStackSize(16);
@@ -118,5 +119,10 @@ public class ItemArmourStand extends Item {
 			} else
 				nbt.setTag(s, nbtbase.copy());
 		}
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return EtFuturum.enableArmourStand;
 	}
 }

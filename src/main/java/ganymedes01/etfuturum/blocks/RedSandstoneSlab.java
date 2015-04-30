@@ -1,6 +1,7 @@
 package ganymedes01.etfuturum.blocks;
 
 import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.ModBlocks.ISubBlocksBlock;
 import ganymedes01.etfuturum.core.utils.Utils;
@@ -22,7 +23,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class RedSandstoneSlab extends Block implements ISubBlocksBlock {
+public class RedSandstoneSlab extends Block implements ISubBlocksBlock, IConfigurable {
 
 	public RedSandstoneSlab() {
 		super(Material.rock);
@@ -109,5 +110,10 @@ public class RedSandstoneSlab extends Block implements ISubBlocksBlock {
 	@Override
 	public Class<? extends ItemBlock> getItemBlockClass() {
 		return ItemRedSandstoneSlab.class;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return EtFuturum.enableRedSandstone;
 	}
 }
