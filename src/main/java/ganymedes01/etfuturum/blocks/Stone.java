@@ -17,7 +17,7 @@ public class Stone extends BlockGeneric {
 	public static final int POLISHED_ANDESITE = 6;
 
 	public Stone() {
-		super(Material.rock, "granite", "granite_smooth", "diorite", "diorite_smooth", "andesite", "andesite_smooth");
+		super(Material.rock, "", "granite", "granite_smooth", "diorite", "diorite_smooth", "andesite", "andesite_smooth");
 		startMeta = 1;
 		setHardness(1.5F);
 		setResistance(10.0F);
