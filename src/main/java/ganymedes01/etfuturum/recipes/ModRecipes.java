@@ -142,10 +142,9 @@ public class ModRecipes {
 		}
 
 		if (EtFuturum.enableFences) {
-			for (int i = 0; i < ModBlocks.fences.length; i++) {
-				Object wood = i == 0 ? "plankWood" : new ItemStack(Blocks.planks, 1, i);
-				addShapedRecipe(new ItemStack(ModBlocks.fences[i], 3), "xyx", "xyx", 'x', wood, 'y', "stickWood");
-			}
+			for (int i = 0; i < ModBlocks.fences.length; i++)
+				addShapedRecipe(new ItemStack(ModBlocks.fences[i], 3), "xyx", "xyx", 'x', new ItemStack(Blocks.planks, 1, i), 'y', "stickWood");
+			addShapedRecipe(new ItemStack(ModBlocks.fences[0], 3), "xyx", "xyx", 'x', "plankWood", 'y', "stickWood");
 			addShapelessRecipe(new ItemStack(Blocks.fence), ModBlocks.fences[0]);
 			addShapelessRecipe(new ItemStack(ModBlocks.fences[0]), Blocks.fence);
 
