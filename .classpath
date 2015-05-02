@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry kind="lib" path="gradle/wrapper/gradle-wrapper.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/forge17"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
