@@ -53,6 +53,7 @@ public class EtFuturum {
 	public static boolean enableSlimeBlock = true;
 	public static boolean enableArmourStand = true;
 	public static boolean enableRabbit = true;
+	public static boolean enableOldGravel = true;
 
 	public static boolean enableBurnableBlocks = true;
 	public static boolean enableFancySkulls = true;

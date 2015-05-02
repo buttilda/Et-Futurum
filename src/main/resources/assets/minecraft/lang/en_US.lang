@@ -53,6 +53,7 @@ tile.etfuturum.fence_gate_birch.name=Birch Fence Gate
 tile.etfuturum.fence_gate_jungle.name=Jungle Fence Gate
 tile.etfuturum.fence_gate_acacia.name=Acacia Fence Gate
 tile.etfuturum.fence_gate_dark_oak.name=Dark Oak Fence Gate
+tile.etfuturum.old_gravel.name=Old Gravel
 
 # Banners
 item.banner.black.name=Black Banner

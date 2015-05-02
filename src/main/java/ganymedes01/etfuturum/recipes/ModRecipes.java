@@ -170,6 +170,9 @@ public class ModRecipes {
 			GameRegistry.addSmelting(ModItems.raw_rabbit, new ItemStack(ModItems.cooked_rabbit), 0.35F);
 			addShapedRecipe(new ItemStack(Items.leather), "xx", "xx", 'x', ModItems.rabbit_hide);
 		}
+
+		if (EtFuturum.enableOldGravel)
+			addShapedRecipe(new ItemStack(ModBlocks.old_gravel, 4), "xy", "yx", 'x', ModBlocks.coarse_dirt, 'y', Blocks.gravel);
 	}
 
 	private static void addShapedRecipe(ItemStack output, Object... objects) {

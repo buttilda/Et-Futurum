@@ -8,6 +8,7 @@ import ganymedes01.etfuturum.blocks.BlockWoodFenceGate;
 import ganymedes01.etfuturum.blocks.CoarseDirt;
 import ganymedes01.etfuturum.blocks.InvertedDaylightDetector;
 import ganymedes01.etfuturum.blocks.IronTrapdoor;
+import ganymedes01.etfuturum.blocks.OldGravel;
 import ganymedes01.etfuturum.blocks.PrismarineBlocks;
 import ganymedes01.etfuturum.blocks.RedSandstone;
 import ganymedes01.etfuturum.blocks.RedSandstoneSlab;
@@ -41,6 +42,7 @@ public class ModBlocks {
 	public static final Block banner = new BlockBanner();
 	public static final Block slime = new SlimeBlock();
 	public static final Block sponge = new Sponge();
+	public static final Block old_gravel = new OldGravel();
 
 	public static final Block[] doors = new Block[BlockWood.field_150096_a.length - 1];
 	public static final Block[] fences = new Block[BlockWood.field_150096_a.length];

@@ -55,6 +55,7 @@ public class ConfigurationHandler {
 		EtFuturum.enableSlimeBlock = configBoolean("Slime Block", true, true);
 		EtFuturum.enableArmourStand = configBoolean("Armour Stand", true, true);
 		EtFuturum.enableRabbit = configBoolean("Rabbit", true, true);
+		EtFuturum.enableOldGravel = configBoolean("Old Gravel", true, true);
 
 		EtFuturum.enableFancySkulls = configBoolean("Fancy Skulls", true, true);
 		EtFuturum.enableSkullDrop = configBoolean("Skulls drop from charged creeper kills", true, true);
