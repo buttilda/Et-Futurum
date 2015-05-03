@@ -61,7 +61,7 @@ public class Sponge extends BlockGeneric implements IConfigurable {
 		while (!linkedlist.isEmpty()) {
 			Tuple tuple = linkedlist.poll();
 			blockpos1 = (WorldCoord) tuple.getFirst();
-			int j = (int) tuple.getSecond();
+			int j = (Integer) tuple.getSecond();
 
 			for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
 				WorldCoord blockpos2 = blockpos1.add(dir);
