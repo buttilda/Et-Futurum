@@ -3,7 +3,8 @@ package ganymedes01.etfuturum;
 import ganymedes01.etfuturum.items.ItemArmourStand;
 import ganymedes01.etfuturum.items.MuttonCooked;
 import ganymedes01.etfuturum.items.MuttonRaw;
-import ganymedes01.etfuturum.items.PrismarineItems;
+import ganymedes01.etfuturum.items.PrismarineCrystals;
+import ganymedes01.etfuturum.items.PrismarineShard;
 import ganymedes01.etfuturum.items.RabbitCooked;
 import ganymedes01.etfuturum.items.RabbitFoot;
 import ganymedes01.etfuturum.items.RabbitHide;
@@ -19,7 +20,8 @@ public class ModItems {
 
 	public static final Item raw_mutton = new MuttonRaw();
 	public static final Item cooked_mutton = new MuttonCooked();
-	public static final Item prismarine = new PrismarineItems();
+	public static final Item prismarine_shard = new PrismarineShard();
+	public static final Item prismarine_crystals = new PrismarineCrystals();
 	public static final Item armour_stand = new ItemArmourStand();
 	public static final Item raw_rabbit = new RabbitRaw();
 	public static final Item cooked_rabbit = new RabbitCooked();

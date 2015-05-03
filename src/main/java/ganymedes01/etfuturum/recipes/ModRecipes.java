@@ -62,8 +62,8 @@ public class ModRecipes {
 		OreDictionary.registerOre("trapdoorWood", Blocks.trapdoor);
 
 		if (EtFuturum.enablePrismarine) {
-			OreDictionary.registerOre("shardPrismarine", new ItemStack(ModItems.prismarine, 1, 0));
-			OreDictionary.registerOre("crystalPrismarine", new ItemStack(ModItems.prismarine, 1, 1));
+			OreDictionary.registerOre("shardPrismarine", new ItemStack(ModItems.prismarine_shard));
+			OreDictionary.registerOre("crystalPrismarine", new ItemStack(ModItems.prismarine_crystals));
 			OreDictionary.registerOre("blockPrismarine", new ItemStack(ModBlocks.prismarine, 1, OreDictionary.WILDCARD_VALUE));
 		}
 
@@ -124,6 +124,11 @@ public class ModRecipes {
 			addShapedRecipe(new ItemStack(ModBlocks.prismarine, 1, PLAIN), "xx", "xx", 'x', "shardPrismarine");
 			addShapedRecipe(new ItemStack(ModBlocks.prismarine, 1, BRICKS), "xxx", "xxx", "xxx", 'x', "shardPrismarine");
 			addShapedRecipe(new ItemStack(ModBlocks.sea_lantern), "xyx", "yyy", "xyx", 'x', "shardPrismarine", 'y', "crystalPrismarine");
+
+			if (EtFuturum.enableRecipeForPrismarine) {
+				addShapedRecipe(new ItemStack(ModItems.prismarine_shard, 1, 0), "xy", "zx", 'x', "gemQuartz", 'y', "dyeBlue", 'z', "dyeGreen");
+				addShapedRecipe(new ItemStack(ModItems.prismarine_crystals, 1, 0), "xy", "yx", 'x', "gemQuartz", 'y', "dustGlowstone");
+			}
 		}
 
 		if (EtFuturum.enableDoors) {

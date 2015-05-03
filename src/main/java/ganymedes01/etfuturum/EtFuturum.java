@@ -33,7 +33,7 @@ public class EtFuturum {
 	public static CreativeTabs creativeTab = new CreativeTabs(Reference.MOD_ID) {
 		@Override
 		public Item getTabIconItem() {
-			return enablePrismarine ? ModItems.prismarine : Items.skull;
+			return enablePrismarine ? ModItems.prismarine_shard : Items.skull;
 		}
 	};
 
@@ -54,6 +54,7 @@ public class EtFuturum {
 	public static boolean enableArmourStand = true;
 	public static boolean enableRabbit = false;
 	public static boolean enableOldGravel = true;
+	public static boolean enableRecipeForPrismarine = true;
 
 	public static boolean enableBurnableBlocks = true;
 	public static boolean enableFancySkulls = true;
