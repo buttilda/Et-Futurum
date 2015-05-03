@@ -16,10 +16,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class SlimeBlock extends Block implements IConfigurable {
 
 	public SlimeBlock() {
-		super(Material.cloth);
-		setHardness(2.0F);
-		setTickRandomly(true);
-		setHarvestLevel("shovel", 0);
+		super(Material.clay);
+		setHardness(0.0F);
+		slipperiness = 0.0F;
 		setBlockTextureName("slime");
 		setStepSound(ModSounds.soundSlime);
 		setBlockName(Utils.getUnlocalisedName("slime"));
