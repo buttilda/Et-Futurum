@@ -58,6 +58,8 @@ public class ModEventHandler {
 			TextureAtlasSprite icon = new PrismarineIcon("prismarine_rough");
 			if (event.map.setTextureEntry("prismarine_rough", icon))
 				((PrismarineBlocks) ModBlocks.prismarine).setIcon(0, icon);
+			else
+				((PrismarineBlocks) ModBlocks.prismarine).setIcon(0, event.map.registerIcon("prismarine_rough"));
 		}
 	}
 
