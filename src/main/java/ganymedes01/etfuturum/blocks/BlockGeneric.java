@@ -19,8 +19,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockGeneric extends Block implements ISubBlocksBlock {
 
 	@SideOnly(Side.CLIENT)
-	private IIcon[] icons;
-	private final String[] types;
+	protected IIcon[] icons;
+	protected final String[] types;
 
 	protected int startMeta = 0;
 

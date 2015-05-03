@@ -3,6 +3,8 @@ package ganymedes01.etfuturum.core.handlers;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.ModItems;
+import ganymedes01.etfuturum.blocks.PrismarineBlocks;
+import ganymedes01.etfuturum.client.PrismarineIcon;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.inventory.ContainerEnchantment;
 import ganymedes01.etfuturum.lib.GUIsID;
@@ -18,6 +20,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -33,6 +36,7 @@ import net.minecraft.tileentity.TileEntityEnchantmentTable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -42,8 +46,20 @@ import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ModEventHandler {
+
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void loadTextures(TextureStitchEvent.Pre event) throws Exception {
+		if (event.map.getTextureType() == 0) {
+			TextureAtlasSprite icon = new PrismarineIcon("prismarine_rough");
+			event.map.setTextureEntry("prismarine_rough", icon);
+			((PrismarineBlocks) ModBlocks.prismarine).setIcon(0, icon);
+		}
+	}
 
 	@SubscribeEvent
 	public void interactEvent(PlayerInteractEvent event) {
