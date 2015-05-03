@@ -53,11 +53,11 @@ public class ModEventHandler {
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
-	public void loadTextures(TextureStitchEvent.Pre event) throws Exception {
+	public void loadTextures(TextureStitchEvent.Pre event) {
 		if (event.map.getTextureType() == 0) {
 			TextureAtlasSprite icon = new PrismarineIcon("prismarine_rough");
-			event.map.setTextureEntry("prismarine_rough", icon);
-			((PrismarineBlocks) ModBlocks.prismarine).setIcon(0, icon);
+			if (event.map.setTextureEntry("prismarine_rough", icon))
+				((PrismarineBlocks) ModBlocks.prismarine).setIcon(0, icon);
 		}
 	}
 
