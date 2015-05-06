@@ -109,7 +109,7 @@ public class EntityEndermite extends EntityMob {
 	}
 
 	public boolean isSpawnedByPlayer() {
-		return true;// playerSpawned;
+		return playerSpawned;
 	}
 
 	public void setSpawnedByPlayer(boolean spawnedByPlayer) {
