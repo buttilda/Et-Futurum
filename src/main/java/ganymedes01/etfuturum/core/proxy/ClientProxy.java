@@ -6,11 +6,13 @@ import ganymedes01.etfuturum.client.renderer.block.BlockChestRenderer;
 import ganymedes01.etfuturum.client.renderer.block.BlockDoorRenderer;
 import ganymedes01.etfuturum.client.renderer.block.BlockSlimeBlockRender;
 import ganymedes01.etfuturum.client.renderer.entity.ArmourStandRenderer;
+import ganymedes01.etfuturum.client.renderer.entity.EndermiteRenderer;
 import ganymedes01.etfuturum.client.renderer.item.ItemBannerRenderer;
 import ganymedes01.etfuturum.client.renderer.item.ItemSkullRenderer;
 import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityBannerRenderer;
 import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityFancySkullRenderer;
 import ganymedes01.etfuturum.entities.EntityArmourStand;
+import ganymedes01.etfuturum.entities.EntityEndermite;
 import ganymedes01.etfuturum.tileentities.TileEntityBanner;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -54,5 +56,7 @@ public class ClientProxy extends CommonProxy {
 	private void registerEntityRenderers() {
 		if (EtFuturum.enableArmourStand)
 			RenderingRegistry.registerEntityRenderingHandler(EntityArmourStand.class, new ArmourStandRenderer());
+		if (EtFuturum.enableEndermite)
+			RenderingRegistry.registerEntityRenderingHandler(EntityEndermite.class, new EndermiteRenderer());
 	}
 }

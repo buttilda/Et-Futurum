@@ -2,6 +2,8 @@ package ganymedes01.etfuturum;
 
 import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.proxy.CommonProxy;
+import ganymedes01.etfuturum.entities.ModEntityList;
+import ganymedes01.etfuturum.items.ItemEntityEgg;
 import ganymedes01.etfuturum.lib.Reference;
 import ganymedes01.etfuturum.recipes.ModRecipes;
 import ganymedes01.etfuturum.world.OceanMonument;
@@ -12,6 +14,7 @@ import java.io.File;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -55,6 +58,7 @@ public class EtFuturum {
 	public static boolean enableRabbit = false;
 	public static boolean enableOldGravel = true;
 	public static boolean enableRecipeForPrismarine = true;
+	public static boolean enableEndermite = true;
 
 	public static boolean enableBurnableBlocks = true;
 	public static boolean enableFancySkulls = true;
@@ -83,5 +87,11 @@ public class EtFuturum {
 		proxy.registerEvents();
 		proxy.registerEntities();
 		proxy.registerRenderers();
+
+		if (ModEntityList.hasEntitiesWithEggs()) {
+			Item entity_egg = new ItemEntityEgg();
+			GameRegistry.registerItem(entity_egg, "entity_egg");
+			OreDictionary.registerOre("mobEgg", entity_egg);
+		}
 	}
 }

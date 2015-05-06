@@ -6,6 +6,7 @@ import ganymedes01.etfuturum.ModItems;
 import ganymedes01.etfuturum.blocks.PrismarineBlocks;
 import ganymedes01.etfuturum.client.PrismarineIcon;
 import ganymedes01.etfuturum.core.utils.Utils;
+import ganymedes01.etfuturum.entities.EntityEndermite;
 import ganymedes01.etfuturum.inventory.ContainerEnchantment;
 import ganymedes01.etfuturum.lib.GUIsID;
 import ganymedes01.etfuturum.lib.Reference;
@@ -29,6 +30,7 @@ import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -37,6 +39,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -227,5 +230,19 @@ public class ModEventHandler {
 			return 4;
 
 		return -1;
+	}
+
+	@SubscribeEvent
+	public void teleportEvent(EnderTeleportEvent event) {
+		if (EtFuturum.enableEndermite) {
+			EntityLivingBase entity = event.entityLiving;
+			if (entity instanceof EntityPlayerMP)
+				if (entity.getRNG().nextFloat() < 0.05F && entity.worldObj.getGameRules().getGameRuleBooleanValue("doMobSpawning")) {
+					EntityEndermite entityendermite = new EntityEndermite(entity.worldObj);
+					entityendermite.setSpawnedByPlayer(true);
+					entityendermite.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.rotationYaw, entity.rotationPitch);
+					entity.worldObj.spawnEntityInWorld(entityendermite);
+				}
+		}
 	}
 }

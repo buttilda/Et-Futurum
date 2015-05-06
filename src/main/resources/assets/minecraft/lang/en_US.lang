@@ -1,6 +1,10 @@
 # Creative Tab
 itemGroup.etfuturum=Et Futurum
 
+# Entities
+entity.etfuturum.endermite.name=Endermite
+entity.etfuturum.wooden_armorstand.name=Armour Stand
+
 # Items
 item.etfuturum.mutton_raw.name=Raw Mutton
 item.etfuturum.mutton_cooked.name=Cooked Mutton
