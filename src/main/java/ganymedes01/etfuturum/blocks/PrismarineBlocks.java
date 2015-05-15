@@ -22,13 +22,18 @@ public class PrismarineBlocks extends BlockGeneric implements IConfigurable {
 
 	@SideOnly(Side.CLIENT)
 	public void setIcon(int index, IIcon icon) {
+		if (icons == null)
+			icons = new IIcon[types.length];
+
 		icons[index] = icon;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister reg) {
-		icons = new IIcon[types.length];
+		if (icons == null)
+			icons = new IIcon[types.length];
+
 		for (int i = 1; i < types.length; i++)
 			if ("".equals(types[i]))
 				icons[i] = reg.registerIcon(getTextureName());
