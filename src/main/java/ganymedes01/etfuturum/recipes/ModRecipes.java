@@ -177,6 +177,11 @@ public class ModRecipes {
 
 		if (EtFuturum.enableOldGravel)
 			addShapedRecipe(new ItemStack(ModBlocks.old_gravel, 4), "xy", "yx", 'x', ModBlocks.coarse_dirt, 'y', Blocks.gravel);
+
+		if (EtFuturum.enableSponge) {
+			addShapelessRecipe(new ItemStack(ModBlocks.sponge), Blocks.sponge);
+			addShapelessRecipe(new ItemStack(Blocks.sponge), ModBlocks.sponge);
+		}
 	}
 
 	private static void addShapedRecipe(ItemStack output, Object... objects) {
