@@ -84,7 +84,7 @@ public class ModEventHandler {
 				return;
 			else {
 				TileEntityEnchantmentTable tile = Utils.getTileEntity(world, x, y, z, TileEntityEnchantmentTable.class);
-				if (tile != null) {
+				if (tile != null && world.getBlock(x, y, z) == Blocks.enchanting_table) {
 					player.openGui(EtFuturum.instance, GUIsID.ENCHANTING_TABLE, world, x, y, z);
 					event.setCanceled(true);
 				}
