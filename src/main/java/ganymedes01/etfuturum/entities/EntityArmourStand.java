@@ -1,10 +1,11 @@
 package ganymedes01.etfuturum.entities;
 
+import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModItems;
+import ganymedes01.etfuturum.network.ArmourStandInteractMessage;
 
 import java.util.List;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityMinecart;
@@ -34,7 +35,6 @@ public class EntityArmourStand extends EntityLiving {
 	private static final Rotations DEFAULT_RIGHTLEG_ROTATION = new Rotations(1.0F, 0.0F, 1.0F);
 	private boolean canInteract;
 	private long punchCooldown;
-	private int disabledSlots;
 	private Rotations headRotation;
 	private Rotations bodyRotation;
 	private Rotations leftArmRotation;
@@ -99,7 +99,6 @@ public class EntityArmourStand extends EntityLiving {
 		nbt.setBoolean("Invisible", isInvisible());
 		nbt.setBoolean("Small", isSmall());
 		nbt.setBoolean("ShowArms", getShowArms());
-		nbt.setInteger("DisabledSlots", disabledSlots);
 		nbt.setBoolean("NoGravity", hasNoGravity());
 		nbt.setBoolean("NoBasePlate", hasNoBasePlate());
 		nbt.setTag("Pose", readPoseFromNBT());
@@ -112,7 +111,6 @@ public class EntityArmourStand extends EntityLiving {
 		setInvisible(nbt.getBoolean("Invisible"));
 		setSmall(nbt.getBoolean("Small"));
 		setShowArms(nbt.getBoolean("ShowArms"));
-		disabledSlots = nbt.getInteger("DisabledSlots");
 		setNoGravity(nbt.getBoolean("NoGravity"));
 		setNoBasePlate(nbt.getBoolean("NoBasePlate"));
 		noClip = hasNoGravity();
@@ -209,6 +207,14 @@ public class EntityArmourStand extends EntityLiving {
 
 	@Override
 	public boolean interact(EntityPlayer player) {
+		if (worldObj.isRemote) {
+			EtFuturum.networkWrapper.sendToServer(new ArmourStandInteractMessage(worldObj.provider.dimensionId, this, player));
+			return true;
+		}
+		return false;
+	}
+
+	public boolean interact(EntityPlayer player, Vec3 hitPos) {
 		if (!worldObj.isRemote) {
 			byte b0 = 0;
 			ItemStack itemstack = player.getCurrentEquippedItem();
@@ -231,32 +237,19 @@ public class EntityArmourStand extends EntityLiving {
 				b0 = 4;
 
 			byte b1 = 0;
-			boolean flag1 = isSmall();
-			MovingObjectPosition hit = Minecraft.getMinecraft().objectMouseOver;
-			Vec3 hitPos = Vec3.createVectorHelper(hit.hitVec.xCoord - player.posX, hit.hitVec.yCoord - player.posY, hit.hitVec.zCoord - player.posZ);
-			double d3 = flag1 ? hitPos.yCoord * 2.0D : hitPos.yCoord;
+			boolean isSmall = isSmall();
+			double d3 = isSmall ? hitPos.yCoord * 2.0D : hitPos.yCoord;
 
-			if (d3 >= 0.1D && d3 < 0.1D + (flag1 ? 0.8D : 0.45D) && getEquipmentInSlot(1) != null)
+			if (d3 >= 0.1D && d3 < 0.1D + (isSmall ? 0.8D : 0.45D) && getEquipmentInSlot(1) != null)
 				b1 = 1;
-			else if (d3 >= 0.9D + (flag1 ? 0.3D : 0.0D) && d3 < 0.9D + (flag1 ? 1.0D : 0.7D) && getEquipmentInSlot(3) != null)
+			else if (d3 >= 0.9D + (isSmall ? 0.3D : 0.0D) && d3 < 0.9D + (isSmall ? 1.0D : 0.7D) && getEquipmentInSlot(3) != null)
 				b1 = 3;
-			else if (d3 >= 0.4D && d3 < 0.4D + (flag1 ? 1.0D : 0.8D) && getEquipmentInSlot(2) != null)
+			else if (d3 >= 0.4D && d3 < 0.4D + (isSmall ? 1.0D : 0.8D) && getEquipmentInSlot(2) != null)
 				b1 = 2;
 			else if (d3 >= 1.6D && getEquipmentInSlot(4) != null)
 				b1 = 4;
 
 			boolean flag2 = getEquipmentInSlot(b1) != null;
-
-			if ((disabledSlots & 1 << b1) != 0 || (disabledSlots & 1 << b0) != 0) {
-				b1 = b0;
-
-				if ((disabledSlots & 1 << b0) != 0) {
-					if ((disabledSlots & 1) != 0)
-						return true;
-
-					b1 = 0;
-				}
-			}
 
 			if (flag && b0 == 0 && !getShowArms())
 				return true;
@@ -273,31 +266,27 @@ public class EntityArmourStand extends EntityLiving {
 	}
 
 	private void func_175422_a(EntityPlayer player, int slot) {
-		System.out.println("interact");
 		ItemStack itemstack = getEquipmentInSlot(slot);
 
-		if (itemstack == null || (disabledSlots & 1 << slot + 8) == 0)
-			if (itemstack != null || (disabledSlots & 1 << slot + 16) == 0) {
-				int j = player.inventory.currentItem;
-				ItemStack itemstack1 = player.inventory.getStackInSlot(j);
-				ItemStack itemstack2;
+		int j = player.inventory.currentItem;
+		ItemStack itemstack1 = player.inventory.getStackInSlot(j);
+		ItemStack itemstack2;
 
-				if (player.capabilities.isCreativeMode && (itemstack == null || itemstack.getItem() == Item.getItemFromBlock(Blocks.air)) && itemstack1 != null) {
-					itemstack2 = itemstack1.copy();
-					itemstack2.stackSize = 1;
-					setCurrentItemOrArmor(slot, itemstack2);
-				} else if (itemstack1 != null && itemstack1.stackSize > 1) {
-					if (itemstack == null) {
-						itemstack2 = itemstack1.copy();
-						itemstack2.stackSize = 1;
-						setCurrentItemOrArmor(slot, itemstack2);
-						itemstack1.stackSize--;
-					}
-				} else {
-					setCurrentItemOrArmor(slot, itemstack1);
-					player.inventory.setInventorySlotContents(j, itemstack);
-				}
+		if (player.capabilities.isCreativeMode && (itemstack == null || itemstack.getItem() == Item.getItemFromBlock(Blocks.air)) && itemstack1 != null) {
+			itemstack2 = itemstack1.copy();
+			itemstack2.stackSize = 1;
+			setCurrentItemOrArmor(slot, itemstack2);
+		} else if (itemstack1 != null && itemstack1.stackSize > 1) {
+			if (itemstack == null) {
+				itemstack2 = itemstack1.copy();
+				itemstack2.stackSize = 1;
+				setCurrentItemOrArmor(slot, itemstack2);
+				itemstack1.stackSize--;
 			}
+		} else {
+			setCurrentItemOrArmor(slot, itemstack1);
+			player.inventory.setInventorySlotContents(j, itemstack);
+		}
 	}
 
 	@Override

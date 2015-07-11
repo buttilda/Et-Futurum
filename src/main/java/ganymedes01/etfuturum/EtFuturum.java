@@ -5,6 +5,8 @@ import ganymedes01.etfuturum.core.proxy.CommonProxy;
 import ganymedes01.etfuturum.entities.ModEntityList;
 import ganymedes01.etfuturum.items.ItemEntityEgg;
 import ganymedes01.etfuturum.lib.Reference;
+import ganymedes01.etfuturum.network.ArmourStandInteractHandler;
+import ganymedes01.etfuturum.network.ArmourStandInteractMessage;
 import ganymedes01.etfuturum.recipes.ModRecipes;
 import ganymedes01.etfuturum.world.OceanMonument;
 import ganymedes01.etfuturum.world.SurfaceWorldGen;
@@ -22,7 +24,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class EtFuturum {
@@ -32,6 +36,8 @@ public class EtFuturum {
 
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
+
+	public static SimpleNetworkWrapper networkWrapper;
 
 	public static CreativeTabs creativeTab = new CreativeTabs(Reference.MOD_ID) {
 		@Override
@@ -76,6 +82,10 @@ public class EtFuturum {
 		ModItems.init();
 
 		OceanMonument.makeMap();
+
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
+		networkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD_ID);
+		networkWrapper.registerMessage(ArmourStandInteractHandler.class, ArmourStandInteractMessage.class, 0, Side.SERVER);
 	}
 
 	@EventHandler
