@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList.EntityEggInfo;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
@@ -42,13 +41,6 @@ public class ModEntityList {
 		}
 	}
 
-	public static EntityEggInfo getEggInfo(int id) {
-		EntityData data = getData(id);
-		if (data == null)
-			return null;
-		return data.hasEgg ? data.eggInfo : null;
-	}
-
 	public static String getName(int id) {
 		EntityData data = getData(id);
 		if (data == null)
@@ -56,7 +48,7 @@ public class ModEntityList {
 		return Reference.MOD_ID + "." + data.name;
 	}
 
-	private static EntityData getData(int id) {
+	public static EntityData getData(int id) {
 		if (id >= array.length)
 			return null;
 		return array[id];
@@ -85,25 +77,27 @@ public class ModEntityList {
 		return null;
 	}
 
-	public static EntityEggInfo[] getEggInfos() {
-		List<EntityEggInfo> list = new LinkedList<EntityEggInfo>();
+	public static EntityData[] getDatasWithEggs() {
+		List<EntityData> list = new LinkedList<EntityData>();
 		for (Integer id : map.keySet()) {
-			EntityEggInfo info = getEggInfo(id);
-			if (info != null)
-				list.add(info);
+			EntityData data = getData(id);
+			if (data != null && data.hasEgg)
+				list.add(data);
 		}
-		return list.toArray(new EntityEggInfo[list.size()]);
+		return list.toArray(new EntityData[list.size()]);
 	}
 
-	private static class EntityData {
+	public static class EntityData {
 
-		final String name;
-		final EntityEggInfo eggInfo;
-		final boolean hasEgg;
+		public final String name;
+		public final int id, eggColour1, eggColour2;
+		public final boolean hasEgg;
 
 		private EntityData(String name, int id, int eggColour1, int eggColour2, boolean hasEgg) {
 			this.name = name;
-			eggInfo = new EntityEggInfo(id, eggColour1, eggColour2);
+			this.id = id;
+			this.eggColour1 = eggColour1;
+			this.eggColour2 = eggColour2;
 			this.hasEgg = hasEgg;
 		}
 	}

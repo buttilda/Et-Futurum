@@ -2,6 +2,7 @@ package ganymedes01.etfuturum.items;
 
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.entities.ModEntityList;
+import ganymedes01.etfuturum.entities.ModEntityList.EntityData;
 
 import java.util.List;
 
@@ -10,7 +11,6 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList.EntityEggInfo;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -49,8 +49,8 @@ public class ItemEntityEgg extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int pass) {
-		EntityEggInfo info = ModEntityList.getEggInfo(stack.getItemDamage());
-		return pass == 0 ? info.primaryColor : info.secondaryColor;
+		EntityData data = ModEntityList.getData(stack.getItemDamage());
+		return pass == 0 ? data.eggColour1 : data.eggColour2;
 	}
 
 	@Override
@@ -152,8 +152,8 @@ public class ItemEntityEgg extends Item {
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
-		for (EntityEggInfo info : ModEntityList.getEggInfos())
-			list.add(new ItemStack(item, 1, info.spawnedID));
+		for (EntityData data : ModEntityList.getDatasWithEggs())
+			list.add(new ItemStack(item, 1, data.id));
 	}
 
 	@Override
