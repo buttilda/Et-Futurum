@@ -39,11 +39,6 @@ public class SlimeBlock extends Block implements IConfigurable {
 	}
 
 	@Override
-	protected boolean canSilkHarvest() {
-		return true;
-	}
-
-	@Override
 	public boolean isOpaqueCube() {
 		return false;
 	}
