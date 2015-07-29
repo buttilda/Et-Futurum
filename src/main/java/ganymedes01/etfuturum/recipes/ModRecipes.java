@@ -81,6 +81,9 @@ public class ModRecipes {
 
 		if (EtFuturum.enableIronTrapdoor)
 			OreDictionary.registerOre("trapdoorIron", ModBlocks.iron_trapdoor);
+
+		if (EtFuturum.enableBeetroot)
+			OreDictionary.registerOre("cropBeetroot", ModItems.beetroot);
 	}
 
 	private static void registerRecipes() {
@@ -185,7 +188,7 @@ public class ModRecipes {
 		}
 
 		if (EtFuturum.enableBeetroot)
-			addShapedRecipe(new ItemStack(ModItems.beetroot_soup), "xxx", "xxx", " y ", 'x', ModItems.beetroot, 'y', Items.bowl);
+			addShapedRecipe(new ItemStack(ModItems.beetroot_soup), "xxx", "xxx", " y ", 'x', "cropBeetroot", 'y', Items.bowl);
 
 		if (EtFuturum.enableChorusFruit) {
 			addShapedRecipe(new ItemStack(ModBlocks.purpur_block, 4), "xx", "xx", 'x', ModItems.popped_chorus_fruit);
@@ -194,9 +197,6 @@ public class ModRecipes {
 			addShapedRecipe(new ItemStack(ModBlocks.purpur_pillar), "x", "x", 'x', ModBlocks.purpur_slab);
 			addShapedRecipe(new ItemStack(ModBlocks.end_bricks), "xx", "xx", 'x', Blocks.end_stone);
 		}
-
-		if (EtFuturum.enableGrassPath)
-			addShapelessRecipe(new ItemStack(ModBlocks.grass_path), Blocks.grass);
 	}
 
 	private static void addShapedRecipe(ItemStack output, Object... objects) {
