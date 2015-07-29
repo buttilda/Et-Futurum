@@ -26,6 +26,8 @@ item.etfuturum.rabbit_hide.name=Rabbit Hide
 item.etfuturum.beetroot.name=Beetroot
 item.etfuturum.beetroot_seeds.name=Beetroot Seeds
 item.etfuturum.beetroot_soup.name=Beetroot Soup
+item.etfuturum.chorus_fruit.name=Chorus Fruit
+item.etfuturum.chorus_fruit_popped.name=Popped Chorus Fruit
 
 # Blocks
 tile.etfuturum.stone_granite.name=Granite
