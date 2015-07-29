@@ -1,8 +1,13 @@
 package ganymedes01.etfuturum;
 
+import ganymedes01.etfuturum.items.Beetroot;
+import ganymedes01.etfuturum.items.BeetrootSeeds;
+import ganymedes01.etfuturum.items.BeetrootSoup;
+import ganymedes01.etfuturum.items.ChorusFruit;
 import ganymedes01.etfuturum.items.ItemArmourStand;
 import ganymedes01.etfuturum.items.MuttonCooked;
 import ganymedes01.etfuturum.items.MuttonRaw;
+import ganymedes01.etfuturum.items.PoppedChorusFruit;
 import ganymedes01.etfuturum.items.PrismarineCrystals;
 import ganymedes01.etfuturum.items.PrismarineShard;
 import ganymedes01.etfuturum.items.RabbitCooked;
@@ -28,6 +33,11 @@ public class ModItems {
 	public static final Item rabbit_foot = new RabbitFoot();
 	public static final Item rabbit_hide = new RabbitHide();
 	public static final Item rabbit_stew = new RabbitStew();
+	public static final Item beetroot = new Beetroot();
+	public static final Item beetroot_seeds = new BeetrootSeeds();
+	public static final Item beetroot_soup = new BeetrootSoup();
+	public static final Item chorus_fruit = new ChorusFruit();
+	public static final Item popped_chorus_fruit = new PoppedChorusFruit();
 
 	public static void init() {
 		try {

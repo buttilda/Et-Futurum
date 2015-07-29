@@ -1,11 +1,8 @@
 package ganymedes01.etfuturum.blocks;
 
-import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
-import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.ModBlocks.ISubBlocksBlock;
-import ganymedes01.etfuturum.core.utils.Utils;
-import ganymedes01.etfuturum.items.block.ItemRedSandstoneSlab;
+import ganymedes01.etfuturum.items.block.ItemGenericSlab;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,16 +20,15 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class RedSandstoneSlab extends Block implements ISubBlocksBlock, IConfigurable {
+public abstract class GenericSlab extends Block implements ISubBlocksBlock, IConfigurable {
 
-	public RedSandstoneSlab() {
-		super(Material.rock);
-		setResistance(30);
-		setHardness(2.0F);
+	private final Block base;
+
+	public GenericSlab(Material material, Block base) {
+		super(material);
+		this.base = base;
 		setLightOpacity(0);
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
-		setBlockName(Utils.getUnlocalisedName("red_sandstone_slab"));
-		setCreativeTab(EtFuturum.enableRedSandstone ? EtFuturum.creativeTab : null);
 	}
 
 	@Override
@@ -93,7 +89,7 @@ public class RedSandstoneSlab extends Block implements ISubBlocksBlock, IConfigu
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
-		return ModBlocks.red_sandstone.getIcon(side, 0);
+		return base.getIcon(side, 0);
 	}
 
 	@Override
@@ -109,11 +105,6 @@ public class RedSandstoneSlab extends Block implements ISubBlocksBlock, IConfigu
 
 	@Override
 	public Class<? extends ItemBlock> getItemBlockClass() {
-		return ItemRedSandstoneSlab.class;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return EtFuturum.enableRedSandstone;
+		return ItemGenericSlab.class;
 	}
 }

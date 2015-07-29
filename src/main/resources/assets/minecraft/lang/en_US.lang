@@ -23,6 +23,9 @@ item.etfuturum.rabbit_cooked.name=Cooked Rabbit
 item.etfuturum.rabbit_stew.name=Rabbit Stew
 item.etfuturum.rabbit_foot.name=Rabbit's Foot
 item.etfuturum.rabbit_hide.name=Rabbit Hide
+item.etfuturum.beetroot.name=Beetroot
+item.etfuturum.beetroot_seeds.name=Beetroot Seeds
+item.etfuturum.beetroot_soup.name=Beetroot Soup
 
 # Blocks
 tile.etfuturum.stone_granite.name=Granite
@@ -65,6 +68,13 @@ tile.etfuturum.fence_gate_jungle.name=Jungle Fence Gate
 tile.etfuturum.fence_gate_acacia.name=Acacia Fence Gate
 tile.etfuturum.fence_gate_dark_oak.name=Dark Oak Fence Gate
 tile.etfuturum.old_gravel.name=Old Gravel
+tile.etfuturum.beetroots.name=Beetroots
+tile.etfuturum.purpur_block.name=Purpur Block
+tile.etfuturum.purpur_slab.name=Purpur Slab
+tile.etfuturum.purpur_pillar.name=Purpur Pillar
+tile.etfuturum.purpur_stairs.name=Purpur Stairs
+tile.etfuturum.end_bricks.name=End Stone Bricks
+tile.etfuturum.grass_path.name=Grass Path
 
 # Banners
 item.banner.black.name=Black Banner

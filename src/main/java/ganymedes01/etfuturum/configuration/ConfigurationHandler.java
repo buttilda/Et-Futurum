@@ -57,6 +57,10 @@ public class ConfigurationHandler {
 		EtFuturum.enableRabbit = configBoolean("Rabbit", true, EtFuturum.enableRabbit);
 		EtFuturum.enableOldGravel = configBoolean("Old Gravel", true, EtFuturum.enableOldGravel);
 		EtFuturum.enableRecipeForPrismarine = configBoolean("Recipes for prismarine", true, EtFuturum.enableRecipeForPrismarine);
+		EtFuturum.enableEndermite = configBoolean("Endermite", true, EtFuturum.enableEndermite);
+		EtFuturum.enableBeetroot = configBoolean("Beetroot", true, EtFuturum.enableBeetroot);
+		EtFuturum.enableChorusFruit = configBoolean("Chorus Fruit (and related blocks)", true, EtFuturum.enableChorusFruit);
+		EtFuturum.enableGrassPath = configBoolean("Grass Path", true, EtFuturum.enableGrassPath);
 
 		EtFuturum.enableFancySkulls = configBoolean("Fancy Skulls", true, EtFuturum.enableFancySkulls);
 		EtFuturum.enableSkullDrop = configBoolean("Skulls drop from charged creeper kills", true, EtFuturum.enableSkullDrop);

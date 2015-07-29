@@ -8,9 +8,9 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemRedSandstoneSlab extends ItemBlock {
+public class ItemGenericSlab extends ItemBlock {
 
-	public ItemRedSandstoneSlab(Block block) {
+	public ItemGenericSlab(Block block) {
 		super(block);
 	}
 

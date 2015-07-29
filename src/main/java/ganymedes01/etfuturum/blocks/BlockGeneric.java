@@ -25,7 +25,7 @@ public class BlockGeneric extends Block implements ISubBlocksBlock {
 	protected int startMeta = 0;
 
 	public BlockGeneric(Material material, String... types) {
-		super(Material.rock);
+		super(material);
 		this.types = types;
 	}
 
