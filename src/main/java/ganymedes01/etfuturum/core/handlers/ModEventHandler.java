@@ -33,6 +33,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityEnchantmentTable;
 import net.minecraft.util.DamageSource;
@@ -65,31 +66,6 @@ public class ModEventHandler {
 				else
 					((PrismarineBlocks) ModBlocks.prismarine).setIcon(0, event.map.registerIcon("prismarine_rough"));
 			}
-	}
-
-	@SubscribeEvent
-	public void interactEvent(PlayerInteractEvent event) {
-		if (!EtFuturum.enableEnchants)
-			return;
-		if (event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
-			World world = event.world;
-			EntityPlayer player = event.entityPlayer;
-			int x = event.x;
-			int y = event.y;
-			int z = event.z;
-
-			if (world == null || world.isRemote)
-				return;
-			if (player.isSneaking())
-				return;
-			else {
-				TileEntityEnchantmentTable tile = Utils.getTileEntity(world, x, y, z, TileEntityEnchantmentTable.class);
-				if (tile != null && world.getBlock(x, y, z) == Blocks.enchanting_table) {
-					player.openGui(EtFuturum.instance, GUIsID.ENCHANTING_TABLE, world, x, y, z);
-					event.setCanceled(true);
-				}
-			}
-		}
 	}
 
 	@SubscribeEvent
@@ -148,7 +124,32 @@ public class ModEventHandler {
 	}
 
 	@SubscribeEvent
-	public void onPlayerInteract(PlayerInteractEvent event) {
+	public void onPlayerInteract0(PlayerInteractEvent event) {
+		if (!EtFuturum.enableEnchants)
+			return;
+		if (event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
+			World world = event.world;
+			EntityPlayer player = event.entityPlayer;
+			int x = event.x;
+			int y = event.y;
+			int z = event.z;
+
+			if (world == null || world.isRemote)
+				return;
+			if (player.isSneaking())
+				return;
+			else {
+				TileEntityEnchantmentTable tile = Utils.getTileEntity(world, x, y, z, TileEntityEnchantmentTable.class);
+				if (tile != null && world.getBlock(x, y, z) == Blocks.enchanting_table) {
+					player.openGui(EtFuturum.instance, GUIsID.ENCHANTING_TABLE, world, x, y, z);
+					event.setCanceled(true);
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void onPlayerInteract1(PlayerInteractEvent event) {
 		if (EtFuturum.enableInvertedDaylightSensor)
 			if (event.entityPlayer != null) {
 				World world = event.entityPlayer.worldObj;
@@ -159,6 +160,24 @@ public class ModEventHandler {
 					} else if (world.getBlock(event.x, event.y, event.z) == ModBlocks.inverted_daylight_detector) {
 						world.setBlock(event.x, event.y, event.z, Blocks.daylight_detector);
 						event.entityPlayer.swingItem();
+					}
+			}
+	}
+
+	@SubscribeEvent
+	public void onPlayerInteract2(PlayerInteractEvent event) {
+		if (EtFuturum.enableGrassPath)
+			if (event.entityPlayer != null) {
+				World world = event.entityPlayer.worldObj;
+				if (event.action == Action.RIGHT_CLICK_BLOCK)
+					if (world.getBlock(event.x, event.y, event.z) == Blocks.grass) {
+						ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
+						if (stack != null && stack.getItem() instanceof ItemSpade) {
+							world.setBlock(event.x, event.y, event.z, ModBlocks.grass_path);
+							event.entityPlayer.swingItem();
+							stack.damageItem(1, event.entityPlayer);
+							world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F, Block.soundTypeGravel.getStepResourcePath(), 1.0F, 0.8F);
+						}
 					}
 			}
 	}
