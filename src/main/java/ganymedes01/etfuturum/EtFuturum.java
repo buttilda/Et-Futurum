@@ -68,6 +68,7 @@ public class EtFuturum {
 	public static boolean enableBeetroot = true;
 	public static boolean enableChorusFruit = true;
 	public static boolean enableGrassPath = true;
+	public static boolean enableSticksFromDeadBushes = true;
 
 	public static boolean enableBurnableBlocks = true;
 	public static boolean enableFancySkulls = true;

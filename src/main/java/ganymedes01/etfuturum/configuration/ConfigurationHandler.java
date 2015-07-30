@@ -61,6 +61,7 @@ public class ConfigurationHandler {
 		EtFuturum.enableBeetroot = configBoolean("Beetroot", true, EtFuturum.enableBeetroot);
 		EtFuturum.enableChorusFruit = configBoolean("Chorus Fruit (and related blocks)", true, EtFuturum.enableChorusFruit);
 		EtFuturum.enableGrassPath = configBoolean("Grass Path", true, EtFuturum.enableGrassPath);
+		EtFuturum.enableSticksFromDeadBushes = configBoolean("Dead Bushes drop sticks", true, EtFuturum.enableSticksFromDeadBushes);
 
 		EtFuturum.enableFancySkulls = configBoolean("Fancy Skulls", true, EtFuturum.enableFancySkulls);
 		EtFuturum.enableSkullDrop = configBoolean("Skulls drop from charged creeper kills", true, EtFuturum.enableSkullDrop);

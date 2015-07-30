@@ -121,6 +121,11 @@ public class ModEventHandler {
 				event.drops.clear();
 				event.drops.add(new ItemStack(ModBlocks.red_mushroom_block));
 			}
+
+		if (EtFuturum.enableSticksFromDeadBushes)
+			if (event.block == Blocks.deadbush)
+				for (int i = 0; i < event.world.rand.nextInt(3); i++)
+					event.drops.add(new ItemStack(Items.stick));
 	}
 
 	@SubscribeEvent
