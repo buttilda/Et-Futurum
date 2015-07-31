@@ -3,7 +3,10 @@ package ganymedes01.etfuturum.core.proxy;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.client.renderer.block.BlockChestRenderer;
+import ganymedes01.etfuturum.client.renderer.block.BlockChorusFlowerRender;
+import ganymedes01.etfuturum.client.renderer.block.BlockChorusPlantRender;
 import ganymedes01.etfuturum.client.renderer.block.BlockDoorRenderer;
+import ganymedes01.etfuturum.client.renderer.block.BlockEndRodRender;
 import ganymedes01.etfuturum.client.renderer.block.BlockSlimeBlockRender;
 import ganymedes01.etfuturum.client.renderer.entity.ArmourStandRenderer;
 import ganymedes01.etfuturum.client.renderer.entity.EndermiteRenderer;
@@ -49,6 +52,12 @@ public class ClientProxy extends CommonProxy {
 
 		if (EtFuturum.enableFancySkulls)
 			ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySkull.class, new TileEntityFancySkullRenderer());
+
+		if (EtFuturum.enableChorusFruit) {
+			RenderingRegistry.registerBlockHandler(new BlockEndRodRender());
+			RenderingRegistry.registerBlockHandler(new BlockChorusFlowerRender());
+			RenderingRegistry.registerBlockHandler(new BlockChorusPlantRender());
+		}
 
 		RenderingRegistry.registerBlockHandler(new BlockChestRenderer());
 	}

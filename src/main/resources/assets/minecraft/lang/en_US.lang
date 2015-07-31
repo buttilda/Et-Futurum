@@ -77,6 +77,9 @@ tile.etfuturum.purpur_pillar.name=Purpur Pillar
 tile.etfuturum.purpur_stairs.name=Purpur Stairs
 tile.etfuturum.end_bricks.name=End Stone Bricks
 tile.etfuturum.grass_path.name=Grass Path
+tile.etfuturum.end_rod.name=End Rod
+tile.etfuturum.chorus_flower.name=Chorus Flower
+tile.etfuturum.chorus_plant.name=Chorus Plant
 
 # Banners
 item.banner.black.name=Black Banner

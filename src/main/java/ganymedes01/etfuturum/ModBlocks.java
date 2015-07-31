@@ -6,8 +6,11 @@ import ganymedes01.etfuturum.blocks.BlockSilkedMushroom;
 import ganymedes01.etfuturum.blocks.BlockWoodDoor;
 import ganymedes01.etfuturum.blocks.BlockWoodFence;
 import ganymedes01.etfuturum.blocks.BlockWoodFenceGate;
+import ganymedes01.etfuturum.blocks.ChorusFlower;
+import ganymedes01.etfuturum.blocks.ChorusPlant;
 import ganymedes01.etfuturum.blocks.CoarseDirt;
 import ganymedes01.etfuturum.blocks.EndBricks;
+import ganymedes01.etfuturum.blocks.EndRod;
 import ganymedes01.etfuturum.blocks.GrassPath;
 import ganymedes01.etfuturum.blocks.InvertedDaylightDetector;
 import ganymedes01.etfuturum.blocks.IronTrapdoor;
@@ -57,6 +60,9 @@ public class ModBlocks {
 	public static final Block purpur_slab = new PurpurSlab();
 	public static final Block end_bricks = new EndBricks();
 	public static final Block grass_path = new GrassPath();
+	public static final Block end_rod = new EndRod();
+	public static final Block chorus_plant = new ChorusPlant();
+	public static final Block chorus_flower = new ChorusFlower();
 
 	public static final Block[] doors = new Block[BlockWood.field_150096_a.length - 1];
 	public static final Block[] fences = new Block[BlockWood.field_150096_a.length];
