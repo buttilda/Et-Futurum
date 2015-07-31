@@ -4,13 +4,15 @@ import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.lib.RenderIDs;
-import net.minecraft.block.Block;
+import ganymedes01.etfuturum.tileentities.TileEntityEndRod;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class EndRod extends Block implements IConfigurable {
+public class EndRod extends BlockContainer implements IConfigurable {
 
 	public EndRod() {
 		super(Material.rock);
@@ -41,7 +43,10 @@ public class EndRod extends Block implements IConfigurable {
 
 	@Override
 	public int onBlockPlaced(World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int meta) {
-		return side;
+		ForgeDirection dir = ForgeDirection.getOrientation(side).getOpposite();
+		if (world.getBlock(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ) != this)
+			dir = dir.getOpposite();
+		return dir.ordinal();
 	}
 
 	@Override
@@ -52,6 +57,11 @@ public class EndRod extends Block implements IConfigurable {
 	@Override
 	public boolean isOpaqueCube() {
 		return false;
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(World world, int meta) {
+		return new TileEntityEndRod();
 	}
 
 	@Override
