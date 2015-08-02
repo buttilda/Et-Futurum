@@ -126,11 +126,9 @@ public class ModEventHandler {
 		if (EtFuturum.enableSticksFromDeadBushes)
 			if (event.block == Blocks.deadbush) {
 				boolean isShears = event.harvester != null && event.harvester.getCurrentEquippedItem() != null && event.harvester.getCurrentEquippedItem().getItem() instanceof ItemShears;
-				if (event.harvester == null || event.harvester.getCurrentEquippedItem() == null || !isShears) {
-					System.out.println("harvest");
+				if (event.harvester == null || event.harvester.getCurrentEquippedItem() == null || !isShears)
 					for (int i = 0; i < event.world.rand.nextInt(3); i++)
 						event.drops.add(new ItemStack(Items.stick));
-				}
 			}
 	}
 
