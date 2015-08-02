@@ -6,7 +6,10 @@ import ganymedes01.etfuturum.core.utils.Utils;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -20,6 +23,11 @@ public class PurpurPillar extends BlockRotatedPillar implements IConfigurable {
 		setBlockTextureName("purpur_pillar");
 		setBlockName(Utils.getUnlocalisedName("purpur_pillar"));
 		setCreativeTab(EtFuturum.enableChorusFruit ? EtFuturum.creativeTab : null);
+	}
+
+	@Override
+	public boolean canEntityDestroy(IBlockAccess world, int x, int y, int z, Entity entity) {
+		return !(entity instanceof EntityDragon);
 	}
 
 	@Override

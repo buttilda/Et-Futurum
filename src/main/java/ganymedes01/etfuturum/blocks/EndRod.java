@@ -7,6 +7,8 @@ import ganymedes01.etfuturum.lib.RenderIDs;
 import ganymedes01.etfuturum.tileentities.TileEntityEndRod;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -22,6 +24,11 @@ public class EndRod extends BlockContainer implements IConfigurable {
 		setBlockName(Utils.getUnlocalisedName("end_rod"));
 		setBlockBounds(0.375F, 0.0F, 0.375F, 0.625F, 1.0F, 0.625F);
 		setCreativeTab(EtFuturum.enableChorusFruit ? EtFuturum.creativeTab : null);
+	}
+
+	@Override
+	public boolean canEntityDestroy(IBlockAccess world, int x, int y, int z, Entity entity) {
+		return !(entity instanceof EntityDragon);
 	}
 
 	@Override
