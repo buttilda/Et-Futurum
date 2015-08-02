@@ -13,9 +13,12 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
@@ -34,6 +37,11 @@ public class ChorusFlower extends Block implements IConfigurable {
 		setBlockTextureName("chorus_flower");
 		setBlockName(Utils.getUnlocalisedName("chorus_flower"));
 		setCreativeTab(EtFuturum.enableChorusFruit ? EtFuturum.creativeTab : null);
+	}
+
+	@Override
+	public boolean canEntityDestroy(IBlockAccess world, int x, int y, int z, Entity entity) {
+		return !(entity instanceof EntityDragon);
 	}
 
 	@Override
@@ -133,6 +141,10 @@ public class ChorusFlower extends Block implements IConfigurable {
 
 	@Override
 	public boolean canBlockStay(World world, int x, int y, int z) {
+		return canPlantStay(world, x, y, z);
+	}
+
+	public static boolean canPlantStay(World world, int x, int y, int z) {
 		Block block = world.getBlock(x, y - 1, z);
 		if (block != ModBlocks.chorus_plant && block != Blocks.end_stone) {
 			if (block.isAir(world, x, y - 1, z)) {
@@ -151,7 +163,7 @@ public class ChorusFlower extends Block implements IConfigurable {
 			return true;
 	}
 
-	private static boolean isSpaceAroundFree(World world, int x, int y, int z, ForgeDirection skip) {
+	public static boolean isSpaceAroundFree(World world, int x, int y, int z, ForgeDirection skip) {
 		Iterator<ForgeDirection> iterator = Arrays.asList(ForgeDirection.VALID_DIRECTIONS).iterator();
 
 		ForgeDirection dir;

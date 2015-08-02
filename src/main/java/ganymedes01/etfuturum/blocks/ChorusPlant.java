@@ -10,7 +10,10 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.item.Item;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class ChorusPlant extends Block implements IConfigurable {
@@ -22,6 +25,11 @@ public class ChorusPlant extends Block implements IConfigurable {
 		setBlockTextureName("chorus_plant");
 		setBlockName(Utils.getUnlocalisedName("chorus_plant"));
 		setCreativeTab(EtFuturum.enableChorusFruit ? EtFuturum.creativeTab : null);
+	}
+
+	@Override
+	public boolean canEntityDestroy(IBlockAccess world, int x, int y, int z, Entity entity) {
+		return !(entity instanceof EntityDragon);
 	}
 
 	@Override
