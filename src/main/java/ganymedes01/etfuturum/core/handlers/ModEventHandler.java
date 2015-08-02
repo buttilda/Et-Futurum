@@ -33,6 +33,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityEnchantmentTable;
@@ -123,9 +124,14 @@ public class ModEventHandler {
 			}
 
 		if (EtFuturum.enableSticksFromDeadBushes)
-			if (event.block == Blocks.deadbush)
-				for (int i = 0; i < event.world.rand.nextInt(3); i++)
-					event.drops.add(new ItemStack(Items.stick));
+			if (event.block == Blocks.deadbush) {
+				boolean isShears = event.harvester != null && event.harvester.getCurrentEquippedItem() != null && event.harvester.getCurrentEquippedItem().getItem() instanceof ItemShears;
+				if (event.harvester == null || event.harvester.getCurrentEquippedItem() == null || !isShears) {
+					System.out.println("harvest");
+					for (int i = 0; i < event.world.rand.nextInt(3); i++)
+						event.drops.add(new ItemStack(Items.stick));
+				}
+			}
 	}
 
 	@SubscribeEvent
