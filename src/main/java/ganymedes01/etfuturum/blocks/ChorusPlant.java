@@ -11,6 +11,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
+import net.minecraft.world.World;
 
 public class ChorusPlant extends Block implements IConfigurable {
 
@@ -21,6 +22,12 @@ public class ChorusPlant extends Block implements IConfigurable {
 		setBlockTextureName("chorus_plant");
 		setBlockName(Utils.getUnlocalisedName("chorus_plant"));
 		setCreativeTab(EtFuturum.enableChorusFruit ? EtFuturum.creativeTab : null);
+	}
+
+	@Override
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbour) {
+		if (neighbour == this)
+			world.func_147480_a(x, y, z, true);
 	}
 
 	@Override

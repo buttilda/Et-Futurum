@@ -126,6 +126,12 @@ public class ChorusFlower extends Block implements IConfigurable {
 	}
 
 	@Override
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbour) {
+		if (!canBlockStay(world, x, y, z))
+			world.func_147480_a(x, y, z, false);
+	}
+
+	@Override
 	public boolean canBlockStay(World world, int x, int y, int z) {
 		Block block = world.getBlock(x, y - 1, z);
 		if (block != ModBlocks.chorus_plant && block != Blocks.end_stone) {
