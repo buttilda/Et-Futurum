@@ -14,11 +14,11 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
 
-public class SurfaceWorldGen implements IWorldGenerator {
+public class EtFuturumWorldGenerator implements IWorldGenerator {
 
 	private final List<WorldGenMinable> generators = new LinkedList<WorldGenMinable>();
 
-	public SurfaceWorldGen() {
+	public EtFuturumWorldGenerator() {
 		generators.add(new WorldGenMinable(ModBlocks.stone, 1, EtFuturum.maxStonesPerCluster, Blocks.stone));
 		generators.add(new WorldGenMinable(ModBlocks.stone, 3, EtFuturum.maxStonesPerCluster, Blocks.stone));
 		generators.add(new WorldGenMinable(ModBlocks.stone, 5, EtFuturum.maxStonesPerCluster, Blocks.stone));

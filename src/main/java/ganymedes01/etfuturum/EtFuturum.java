@@ -9,7 +9,7 @@ import ganymedes01.etfuturum.network.ArmourStandInteractHandler;
 import ganymedes01.etfuturum.network.ArmourStandInteractMessage;
 import ganymedes01.etfuturum.recipes.ModRecipes;
 import ganymedes01.etfuturum.world.OceanMonument;
-import ganymedes01.etfuturum.world.SurfaceWorldGen;
+import ganymedes01.etfuturum.world.EtFuturumWorldGenerator;
 
 import java.io.File;
 
@@ -80,7 +80,7 @@ public class EtFuturum {
 	public void preInit(FMLPreInitializationEvent event) {
 		ConfigurationHandler.INSTANCE.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MOD_ID + ".cfg"));
 
-		GameRegistry.registerWorldGenerator(new SurfaceWorldGen(), 0);
+		GameRegistry.registerWorldGenerator(new EtFuturumWorldGenerator(), 0);
 
 		ModBlocks.init();
 		ModItems.init();
