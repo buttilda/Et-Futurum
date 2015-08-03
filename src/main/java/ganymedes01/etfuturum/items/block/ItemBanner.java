@@ -9,6 +9,7 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -31,6 +32,15 @@ public class ItemBanner extends ItemBlock {
 
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+		if (world.getBlock(x, y, z) == Blocks.cauldron) {
+			int meta = world.getBlockMetadata(x, y, z);
+			if (meta > 0) {
+				stack.setTagCompound(null);
+				world.setBlockMetadataWithNotify(x, y, z, meta - 1, 3);
+				return true;
+			}
+		}
+
 		if (side == 0)
 			return false;
 		else if (!world.getBlock(x, y, z).getMaterial().isSolid())
