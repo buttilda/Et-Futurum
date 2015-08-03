@@ -15,7 +15,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -60,12 +59,6 @@ public class ChorusFlower extends Block implements IConfigurable {
 	public void registerBlockIcons(IIconRegister reg) {
 		super.registerBlockIcons(reg);
 		deadIcon = reg.registerIcon("chorus_flower_dead");
-	}
-
-	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-		updateTick(world, x, y, z, world.rand);
-		return false;
 	}
 
 	@Override
