@@ -29,7 +29,7 @@ public class TippedArrow extends Item implements IConfigurable {
 		setCreativeTab(EtFuturum.enableTippedArrows ? EtFuturum.creativeTab : null);
 	}
 
-	private PotionEffect getEffect(ItemStack stack) {
+	public static PotionEffect getEffect(ItemStack stack) {
 		if (stack.hasTagCompound() && stack.getTagCompound().hasKey("Potion", Constants.NBT.TAG_COMPOUND)) {
 			NBTTagCompound nbt = stack.getTagCompound().getCompoundTag("Potion");
 			return PotionEffect.readCustomPotionEffectFromNBT(nbt);
@@ -37,12 +37,12 @@ public class TippedArrow extends Item implements IConfigurable {
 		return null;
 	}
 
-	private ItemStack setEffect(ItemStack stack, Potion potion) {
+	public static ItemStack setEffect(ItemStack stack, Potion potion, int duration) {
 		stack.setTagCompound(new NBTTagCompound());
 		NBTTagCompound nbt = new NBTTagCompound();
 		stack.getTagCompound().setTag("Potion", nbt);
 
-		PotionEffect effect = new PotionEffect(potion.getId(), 0);
+		PotionEffect effect = new PotionEffect(potion.getId(), potion.isInstant() ? 1 : duration);
 		effect.writeCustomPotionEffectToNBT(nbt);
 
 		return stack;
@@ -52,19 +52,19 @@ public class TippedArrow extends Item implements IConfigurable {
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
-		list.add(setEffect(new ItemStack(this), Potion.nightVision));
-		list.add(setEffect(new ItemStack(this), Potion.invisibility));
-		list.add(setEffect(new ItemStack(this), Potion.jump));
-		list.add(setEffect(new ItemStack(this), Potion.fireResistance));
-		list.add(setEffect(new ItemStack(this), Potion.moveSpeed));
-		list.add(setEffect(new ItemStack(this), Potion.moveSlowdown));
-		list.add(setEffect(new ItemStack(this), Potion.waterBreathing));
-		list.add(setEffect(new ItemStack(this), Potion.heal));
-		list.add(setEffect(new ItemStack(this), Potion.harm));
-		list.add(setEffect(new ItemStack(this), Potion.poison));
-		list.add(setEffect(new ItemStack(this), Potion.regeneration));
-		list.add(setEffect(new ItemStack(this), Potion.damageBoost));
-		list.add(setEffect(new ItemStack(this), Potion.weakness));
+		list.add(setEffect(new ItemStack(this), Potion.nightVision, 3600));
+		list.add(setEffect(new ItemStack(this), Potion.invisibility, 3600));
+		list.add(setEffect(new ItemStack(this), Potion.jump, 3600));
+		list.add(setEffect(new ItemStack(this), Potion.fireResistance, 3600));
+		list.add(setEffect(new ItemStack(this), Potion.moveSpeed, 3600));
+		list.add(setEffect(new ItemStack(this), Potion.moveSlowdown, 1800));
+		list.add(setEffect(new ItemStack(this), Potion.waterBreathing, 3600));
+		list.add(setEffect(new ItemStack(this), Potion.heal, 1));
+		list.add(setEffect(new ItemStack(this), Potion.harm, 1));
+		list.add(setEffect(new ItemStack(this), Potion.poison, 900));
+		list.add(setEffect(new ItemStack(this), Potion.regeneration, 900));
+		list.add(setEffect(new ItemStack(this), Potion.damageBoost, 3600));
+		list.add(setEffect(new ItemStack(this), Potion.weakness, 1800));
 	}
 
 	@Override

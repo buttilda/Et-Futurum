@@ -7,7 +7,9 @@ import ganymedes01.etfuturum.blocks.PrismarineBlocks;
 import ganymedes01.etfuturum.client.PrismarineIcon;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.entities.EntityEndermite;
+import ganymedes01.etfuturum.entities.EntityTippedArrow;
 import ganymedes01.etfuturum.inventory.ContainerEnchantment;
+import ganymedes01.etfuturum.items.TippedArrow;
 import ganymedes01.etfuturum.lib.GUIsID;
 import ganymedes01.etfuturum.lib.Reference;
 
@@ -22,6 +24,8 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -33,16 +37,21 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityEnchantmentTable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
@@ -55,6 +64,85 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ModEventHandler {
+
+	@SubscribeEvent
+	public void livingAttack(LivingAttackEvent event) {
+		if (event.source instanceof EntityDamageSourceIndirect) {
+			EntityDamageSourceIndirect dmgSrc = (EntityDamageSourceIndirect) event.source;
+			if (dmgSrc.getSourceOfDamage() instanceof EntityTippedArrow) {
+				EntityTippedArrow tippedArrow = (EntityTippedArrow) dmgSrc.getSourceOfDamage();
+				if (!tippedArrow.worldObj.isRemote)
+					event.entityLiving.addPotionEffect(tippedArrow.getEffect());
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void arrowNock(ArrowNockEvent event) {
+		if (event.result == null)
+			return;
+		IInventory invt = event.entityPlayer.inventory;
+		for (int i = 0; i < invt.getSizeInventory(); i++) {
+			ItemStack stack = invt.getStackInSlot(i);
+			if (stack == null || stack.stackSize <= 0)
+				continue;
+			if (stack.getItem() == Items.arrow)
+				return;
+			if (stack.getItem() == ModItems.tipped_arrow) {
+				event.setCanceled(true);
+				event.entityPlayer.setItemInUse(event.result, event.result.getItem().getMaxItemUseDuration(event.result));
+				return;
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void arrowLoose(ArrowLooseEvent event) {
+		if (event.bow == null)
+			return;
+
+		IInventory invt = event.entityPlayer.inventory;
+		for (int i = 0; i < invt.getSizeInventory(); i++) {
+			ItemStack arrow = invt.getStackInSlot(i);
+			if (arrow != null && arrow.stackSize > 0 && arrow.getItem() == ModItems.tipped_arrow) {
+				float charge = event.charge / 20.0F;
+				charge = (charge * charge + charge * 2.0F) / 3.0F;
+
+				if (charge < 0.1D)
+					return;
+				if (charge > 1.0F)
+					charge = 1.0F;
+
+				EntityTippedArrow arrowEntity = new EntityTippedArrow(event.entityPlayer.worldObj, event.entityPlayer, charge * 2.0F);
+				arrowEntity.setEffect(TippedArrow.getEffect(arrow));
+
+				if (charge == 1.0F)
+					arrowEntity.setIsCritical(true);
+
+				int power = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, event.bow);
+				if (power > 0)
+					arrowEntity.setDamage(arrowEntity.getDamage() + power * 0.5D + 0.5D);
+
+				int punch = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, event.bow);
+				if (punch > 0)
+					arrowEntity.setKnockbackStrength(punch);
+
+				if (EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, event.bow) > 0)
+					arrowEntity.setFire(100);
+
+				event.bow.damageItem(1, event.entityPlayer);
+				event.entityPlayer.worldObj.playSoundAtEntity(event.entityPlayer, "random.bow", 1.0F, 1.0F / (event.entityPlayer.worldObj.rand.nextFloat() * 0.4F + 1.2F) + charge * 0.5F);
+
+				if (!event.entityPlayer.capabilities.isCreativeMode && --arrow.stackSize <= 0)
+					event.entityPlayer.inventory.setInventorySlotContents(i, null);
+
+				if (!event.entityPlayer.worldObj.isRemote)
+					event.entityPlayer.worldObj.spawnEntityInWorld(arrowEntity);
+				event.setCanceled(true);
+				return;
+			}
+		}
+	}
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
