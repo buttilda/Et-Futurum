@@ -8,8 +8,8 @@ import ganymedes01.etfuturum.lib.Reference;
 import ganymedes01.etfuturum.network.ArmourStandInteractHandler;
 import ganymedes01.etfuturum.network.ArmourStandInteractMessage;
 import ganymedes01.etfuturum.recipes.ModRecipes;
-import ganymedes01.etfuturum.world.OceanMonument;
 import ganymedes01.etfuturum.world.EtFuturumWorldGenerator;
+import ganymedes01.etfuturum.world.OceanMonument;
 
 import java.io.File;
 
@@ -69,6 +69,7 @@ public class EtFuturum {
 	public static boolean enableChorusFruit = true;
 	public static boolean enableGrassPath = true;
 	public static boolean enableSticksFromDeadBushes = true;
+	public static boolean enableBowRendering = true;
 
 	public static boolean enableBurnableBlocks = true;
 	public static boolean enableFancySkulls = true;
