@@ -15,6 +15,7 @@ import ganymedes01.etfuturum.items.RabbitFoot;
 import ganymedes01.etfuturum.items.RabbitHide;
 import ganymedes01.etfuturum.items.RabbitRaw;
 import ganymedes01.etfuturum.items.RabbitStew;
+import ganymedes01.etfuturum.items.TippedArrow;
 
 import java.lang.reflect.Field;
 
@@ -38,6 +39,7 @@ public class ModItems {
 	public static final Item beetroot_soup = new BeetrootSoup();
 	public static final Item chorus_fruit = new ChorusFruit();
 	public static final Item popped_chorus_fruit = new PoppedChorusFruit();
+	public static final Item tipped_arrow = new TippedArrow();
 
 	public static void init() {
 		try {

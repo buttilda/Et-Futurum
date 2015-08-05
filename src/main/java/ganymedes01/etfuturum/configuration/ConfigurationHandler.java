@@ -63,6 +63,7 @@ public class ConfigurationHandler {
 		EtFuturum.enableGrassPath = configBoolean("Grass Path", true, EtFuturum.enableGrassPath);
 		EtFuturum.enableSticksFromDeadBushes = configBoolean("Dead Bushes drop sticks", true, EtFuturum.enableSticksFromDeadBushes);
 		EtFuturum.enableBowRendering = configBoolean("Bows render pulling animation on inventory", true, EtFuturum.enableBowRendering);
+		EtFuturum.enableTippedArrows = configBoolean("Tipped Arrows", true, EtFuturum.enableTippedArrows);
 
 		EtFuturum.enableFancySkulls = configBoolean("Fancy Skulls", true, EtFuturum.enableFancySkulls);
 		EtFuturum.enableSkullDrop = configBoolean("Skulls drop from charged creeper kills", true, EtFuturum.enableSkullDrop);

@@ -29,6 +29,21 @@ item.etfuturum.beetroot_soup.name=Beetroot Soup
 item.etfuturum.chorus_fruit.name=Chorus Fruit
 item.etfuturum.chorus_fruit_popped.name=Popped Chorus Fruit
 
+# Arrows
+tipped_arrow.potion.nightVision=Arrow of Night Vision
+tipped_arrow.potion.invisibility=Arrow of Invisibility
+tipped_arrow.potion.jump=Arrow of Leaping
+tipped_arrow.potion.fireResistance=Arrow of Fire Resistance
+tipped_arrow.potion.moveSpeed=Arrow of Swiftness
+tipped_arrow.potion.moveSlowdown=Arrow of Slowness
+tipped_arrow.potion.waterBreathing=Arrow of Water Breathing
+tipped_arrow.potion.heal=Arrow of Healing
+tipped_arrow.potion.harm=Arrow of Harming
+tipped_arrow.potion.poison=Arrow of Poison
+tipped_arrow.potion.regeneration=Arrow of Regeneration
+tipped_arrow.potion.damageBoost=Arrow of Strength
+tipped_arrow.potion.weakness=Arrow of Weakness
+
 # Blocks
 tile.etfuturum.stone_granite.name=Granite
 tile.etfuturum.stone_granite_smooth.name=Polished Granite
