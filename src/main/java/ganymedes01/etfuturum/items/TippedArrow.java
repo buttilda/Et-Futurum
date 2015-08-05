@@ -54,7 +54,8 @@ public class TippedArrow extends Item implements IConfigurable {
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
 		list.add(setEffect(new ItemStack(this), Potion.nightVision, 3600));
 		list.add(setEffect(new ItemStack(this), Potion.invisibility, 3600));
-		list.add(setEffect(new ItemStack(this), Potion.jump, 3600));
+		if (EtFuturum.enableRabbit)
+			list.add(setEffect(new ItemStack(this), Potion.jump, 3600));
 		list.add(setEffect(new ItemStack(this), Potion.fireResistance, 3600));
 		list.add(setEffect(new ItemStack(this), Potion.moveSpeed, 3600));
 		list.add(setEffect(new ItemStack(this), Potion.moveSlowdown, 1800));
