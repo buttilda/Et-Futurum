@@ -8,14 +8,14 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ModelEnderMite extends ModelBase {
+public class ModelEndermite extends ModelBase {
 
 	private static final int[][] field_178716_a = new int[][] { { 4, 3, 2 }, { 6, 4, 5 }, { 3, 3, 1 }, { 1, 2, 1 } };
 	private static final int[][] field_178714_b = new int[][] { { 0, 0 }, { 0, 5 }, { 0, 14 }, { 0, 18 } };
 	private static final int field_178715_c = field_178716_a.length;
 	private final ModelRenderer[] field_178713_d;
 
-	public ModelEnderMite() {
+	public ModelEndermite() {
 		field_178713_d = new ModelRenderer[field_178715_c];
 		float f = -3.5F;
 

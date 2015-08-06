@@ -1,6 +1,6 @@
 package ganymedes01.etfuturum.client.renderer.entity;
 
-import ganymedes01.etfuturum.client.model.ModelEnderMite;
+import ganymedes01.etfuturum.client.model.ModelEndermite;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,7 +14,7 @@ public class EndermiteRenderer extends RenderLiving {
 	private static final ResourceLocation texture = new ResourceLocation("textures/entity/endermite.png");
 
 	public EndermiteRenderer() {
-		super(new ModelEnderMite(), 0.3F);
+		super(new ModelEndermite(), 0.3F);
 	}
 
 	@Override
