@@ -28,10 +28,14 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -47,11 +51,13 @@ import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
+import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
@@ -360,6 +366,42 @@ public class ModEventHandler {
 					entityendermite.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.rotationYaw, entity.rotationPitch);
 					entity.worldObj.spawnEntityInWorld(entityendermite);
 				}
+		}
+	}
+
+	@SubscribeEvent
+	public void spawnEvent(EntityJoinWorldEvent event) {
+		if (event.entity instanceof EntityPig) {
+			EntityPig pig = (EntityPig) event.entity;
+			if (EtFuturum.enableBeetroot)
+				pig.tasks.addTask(4, new EntityAITempt(pig, 1.2, ModItems.beetroot, false));
+		} else if (event.entity instanceof EntityChicken) {
+			EntityChicken chicken = (EntityChicken) event.entity;
+			if (EtFuturum.enableBeetroot)
+				chicken.tasks.addTask(3, new EntityAITempt(chicken, 1.0D, ModItems.beetroot_seeds, false));
+		}
+	}
+
+	@SubscribeEvent
+	public void interactEntityEvent(EntityInteractEvent event) {
+		ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
+		if (stack == null)
+			return;
+
+		if (event.target instanceof EntityPig) {
+			if (stack.getItem() == ModItems.beetroot && EtFuturum.enableBeetroot)
+				setAnimalInLove((EntityPig) event.target, event.entityPlayer, stack);
+		} else if (event.target instanceof EntityChicken)
+			if (stack.getItem() == ModItems.beetroot_seeds && EtFuturum.enableBeetroot)
+				setAnimalInLove((EntityChicken) event.target, event.entityPlayer, stack);
+	}
+
+	private void setAnimalInLove(EntityAnimal pig, EntityPlayer player, ItemStack stack) {
+		if (!pig.isChild() && !pig.isInLove()) {
+			pig.func_146082_f(player);
+			if (!player.capabilities.isCreativeMode)
+				if (--stack.stackSize <= 0)
+					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 		}
 	}
 }
