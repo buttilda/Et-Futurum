@@ -15,6 +15,7 @@ public class CoarseDirt extends Block implements IConfigurable {
 	public CoarseDirt() {
 		super(Material.ground);
 		setHardness(0.5F);
+		setHarvestLevel("shovel", 0);
 		setStepSound(soundTypeGravel);
 		setBlockTextureName("coarse_dirt");
 		setBlockName(Utils.getUnlocalisedName("coarse_dirt"));
