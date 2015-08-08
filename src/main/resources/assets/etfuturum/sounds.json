@@ -1,0 +1,35 @@
+{
+  "mob.rabbit.hop": {
+    "category": "neutral",
+    "sounds": [
+      "mob/rabbit/hop1",
+      "mob/rabbit/hop2",
+      "mob/rabbit/hop3",
+      "mob/rabbit/hop4"
+    ]
+  },
+  "mob.rabbit.hurt": {
+    "category": "neutral",
+    "sounds": [
+      "mob/rabbit/hurt1",
+      "mob/rabbit/hurt2",
+      "mob/rabbit/hurt3",
+      "mob/rabbit/hurt4"
+    ]
+  },
+  "mob.rabbit.idle": {
+    "category": "neutral",
+    "sounds": [
+      "mob/rabbit/idle1",
+      "mob/rabbit/idle2",
+      "mob/rabbit/idle3",
+      "mob/rabbit/idle4"
+    ]
+  },
+  "mob.rabbit.death": {
+    "category": "neutral",
+    "sounds": [
+      "mob/rabbit/bunnymurder"
+    ]
+  }
+}

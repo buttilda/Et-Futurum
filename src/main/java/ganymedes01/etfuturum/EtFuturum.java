@@ -61,7 +61,7 @@ public class EtFuturum {
 	public static boolean enableBanners = true;
 	public static boolean enableSlimeBlock = true;
 	public static boolean enableArmourStand = true;
-	public static boolean enableRabbit = false;
+	public static boolean enableRabbit = true;
 	public static boolean enableOldGravel = true;
 	public static boolean enableRecipeForPrismarine = true;
 	public static boolean enableEndermite = true;
