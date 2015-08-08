@@ -221,7 +221,7 @@ public class ModRecipes {
 	}
 
 	private static void addTippedArrowRecipe(Potion potionEffect, int duration, ItemStack potionItem) {
-		addShapelessRecipe(TippedArrow.setEffect(new ItemStack(ModItems.tipped_arrow), potionEffect, duration), potionItem, potionItem, Items.arrow);
+		addShapelessRecipe(TippedArrow.setEffect(new ItemStack(ModItems.tipped_arrow), potionEffect, duration), potionItem, Items.arrow);
 	}
 
 	private static void addShapedRecipe(ItemStack output, Object... objects) {
