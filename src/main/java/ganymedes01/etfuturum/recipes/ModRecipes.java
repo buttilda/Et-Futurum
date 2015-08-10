@@ -86,6 +86,9 @@ public class ModRecipes {
 
 		if (EtFuturum.enableBeetroot)
 			OreDictionary.registerOre("cropBeetroot", ModItems.beetroot);
+
+		if (EtFuturum.enableChorusFruit)
+			OreDictionary.registerOre("brickEndStone", ModBlocks.end_bricks);
 	}
 
 	private static void registerRecipes() {
