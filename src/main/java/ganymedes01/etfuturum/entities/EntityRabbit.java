@@ -51,8 +51,8 @@ public class EntityRabbit extends EntityAnimal {
 		moveType = EntityRabbit.EnumMoveType.HOP;
 		carrotTicks = 0;
 		setSize(0.6F, 0.7F);
-		ReflectionHelper.setPrivateValue(EntityLiving.class, this, new EntityRabbit.RabbitJumpHelper(this), "jumpHelper");
-		ReflectionHelper.setPrivateValue(EntityLiving.class, this, new EntityRabbit.RabbitMoveHelper(), "moveHelper");
+		ReflectionHelper.setPrivateValue(EntityLiving.class, this, new EntityRabbit.RabbitJumpHelper(this), "jumpHelper", "field_70767_i");
+		ReflectionHelper.setPrivateValue(EntityLiving.class, this, new EntityRabbit.RabbitMoveHelper(), "moveHelper", "field_70765_h");
 		getNavigator().setAvoidsWater(true);
 		//		navigator.func_179678_a(2.5F);
 		tasks.addTask(1, new EntityAISwimming(this));
