@@ -26,6 +26,8 @@ public class GrassPath extends Block implements IConfigurable {
 
 	public GrassPath() {
 		super(Material.grass);
+		setHardness(0.6F);
+		setHarvestLevel("shovel", 0);
 		setStepSound(soundTypeGrass);
 		setBlockTextureName("grass_path");
 		setBlockName(Utils.getUnlocalisedName("grass_path"));
