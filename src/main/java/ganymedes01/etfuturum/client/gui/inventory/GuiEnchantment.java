@@ -97,7 +97,7 @@ public class GuiEnchantment extends GuiContainer {
 	 */
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-		OpenGLHelper.colour(1, 1, 1, 1);
+		OpenGLHelper.colour(1, 1, 1);
 		mc.getTextureManager().bindTexture(field_147078_C);
 		int k = (width - xSize) / 2;
 		int l = (height - ySize) / 2;
@@ -152,7 +152,7 @@ public class GuiEnchantment extends GuiContainer {
 		OpenGLHelper.matrixMode(5888);
 		OpenGLHelper.popMatrix();
 		RenderHelper.disableStandardItemLighting();
-		OpenGLHelper.colour(1.0F, 1.0F, 1.0F, 1.0F);
+		OpenGLHelper.colour(1.0F, 1.0F, 1.0F);
 		EnchantmentNameParts.instance.reseedRandomGenerator(field_147075_G.enchantmentSeed);
 		int var12 = field_147075_G.func_178147_e();
 
@@ -164,7 +164,7 @@ public class GuiEnchantment extends GuiContainer {
 			zLevel = 0.0F;
 			mc.getTextureManager().bindTexture(field_147078_C);
 			int j1 = field_147075_G.enchantLevels[i1];
-			OpenGLHelper.colour(1.0F, 1.0F, 1.0F, 1.0F);
+			OpenGLHelper.colour(1.0F, 1.0F, 1.0F);
 
 			if (j1 == 0)
 				drawTexturedModalRect(var14, l + 14 + 19 * i1, 0, 185, 108, 19);
@@ -195,7 +195,7 @@ public class GuiEnchantment extends GuiContainer {
 
 				fontrenderer = mc.fontRenderer;
 				fontrenderer.drawStringWithShadow(s1, var15 + 86 - fontrenderer.getStringWidth(s1), l + 16 + 19 * i1 + 7, k1);
-				OpenGLHelper.colour(1, 1, 1, 1);
+				OpenGLHelper.colour(1, 1, 1);
 			}
 		}
 	}

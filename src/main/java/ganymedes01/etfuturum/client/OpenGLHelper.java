@@ -137,27 +137,16 @@ public class OpenGLHelper {
 		GL11.glColorMask(r, g, b, a);
 	}
 
-	public static void colour(float r, float g, float b, float a) {
-		GL11.glColor4f(r, g, b, a);
-	}
-
 	public static void colour(float r, float g, float b) {
-		colour(r, g, b, 1.0F);
-	}
-
-	public static void colourOpaque(int colour) {
-		colour(colour | 0xFF000000);
+		GL11.glColor3f(r, g, b);
 	}
 
 	public static void colour(int colour) {
 		float r = (colour >> 16 & 255) / 255F;
 		float g = (colour >> 8 & 255) / 255F;
 		float b = (colour & 255) / 255F;
-		int a = colour >> 24 & 255;
-		if (a <= 0)
-			a = 255;
 
-		colour(r, g, b, a / 255F);
+		colour(r, g, b);
 	}
 
 	public static void viewport(int x, int y, int width, int height) {

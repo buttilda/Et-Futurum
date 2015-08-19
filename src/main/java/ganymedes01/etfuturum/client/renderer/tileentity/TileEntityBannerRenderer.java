@@ -128,7 +128,7 @@ public class TileEntityBannerRenderer extends TileEntitySpecialRenderer {
 			OpenGLHelper.popMatrix();
 		}
 
-		OpenGLHelper.colour(1.0F, 1.0F, 1.0F, 1.0F);
+		OpenGLHelper.colour(1.0F, 1.0F, 1.0F);
 		OpenGLHelper.popMatrix();
 	}
 }

@@ -58,11 +58,7 @@ public class ItemBowRenderer implements IItemRenderer {
 		OpenGLHelper.pushMatrix();
 		textureManager.bindTexture(resource);
 
-		int colour = bow.getColorFromItemStack(stack, 0);
-		float red = (colour >> 16 & 255) / 255.0F;
-		float green = (colour >> 8 & 255) / 255.0F;
-		float blue = (colour & 255) / 255.0F;
-		OpenGLHelper.colour(red, green, blue, 1.0F);
+		OpenGLHelper.colour(bow.getColorFromItemStack(stack, 0));
 
 		OpenGLHelper.disableLighting();
 		OpenGLHelper.enableAlpha();
