@@ -6,14 +6,7 @@ import com.google.common.base.Objects;
 
 public class Vec3i implements Comparable<Vec3i> {
 
-	/** The Null vector constant (0, 0, 0) */
-	public static final Vec3i NULL_VECTOR = new Vec3i(0, 0, 0);
-	/** X coordinate */
-	private final int x;
-	/** Y coordinate */
-	private final int y;
-	/** Z coordinate */
-	private final int z;
+	private final int x, y, z;
 
 	public Vec3i(int xIn, int yIn, int zIn) {
 		x = xIn;
@@ -47,41 +40,22 @@ public class Vec3i implements Comparable<Vec3i> {
 		return getY() == vec.getY() ? getZ() == vec.getZ() ? getX() - vec.getX() : getZ() - vec.getZ() : getY() - vec.getY();
 	}
 
-	/**
-	 * Get the X coordinate
-	 */
 	public int getX() {
 		return x;
 	}
 
-	/**
-	 * Get the Y coordinate
-	 */
 	public int getY() {
 		return y;
 	}
 
-	/**
-	 * Get the Z coordinate
-	 */
 	public int getZ() {
 		return z;
 	}
 
-	/**
-	 * Calculate the cross product of this and the given Vector
-	 */
 	public Vec3i crossProduct(Vec3i vec) {
 		return new Vec3i(getY() * vec.getZ() - getZ() * vec.getY(), getZ() * vec.getX() - getX() * vec.getZ(), getX() * vec.getY() - getY() * vec.getX());
 	}
 
-	/**
-	 * Calculate squared distance to the given coordinates
-	 *
-	 * @param toX X Coordinate
-	 * @param toY Y Coordinate
-	 * @param toZ Z Coordinate
-	 */
 	public double distanceSq(double toX, double toY, double toZ) {
 		double d3 = getX() - toX;
 		double d4 = getY() - toY;
@@ -89,9 +63,6 @@ public class Vec3i implements Comparable<Vec3i> {
 		return d3 * d3 + d4 * d4 + d5 * d5;
 	}
 
-	/**
-	 * Compute square of distance from point x, y, z to center of this Block
-	 */
 	public double distanceSqToCenter(double xIn, double yIn, double zIn) {
 		double d3 = getX() + 0.5D - xIn;
 		double d4 = getY() + 0.5D - yIn;
@@ -99,9 +70,6 @@ public class Vec3i implements Comparable<Vec3i> {
 		return d3 * d3 + d4 * d4 + d5 * d5;
 	}
 
-	/**
-	 * Calculate squared distance to the given Vector
-	 */
 	public double distanceSq(Vec3i to) {
 		return this.distanceSq(to.getX(), to.getY(), to.getZ());
 	}

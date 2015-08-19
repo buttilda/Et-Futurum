@@ -8,11 +8,9 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase {
 
 	private final EntityCreature theEntity;
 	private final double movementSpeed;
-	/** Controls task execution delay */
 	protected int runDelay;
 	private int timeoutCounter;
 	private int field_179490_f;
-	/** Block to move to */
 	protected BlockPos destinationBlock;
 	private boolean isAboveDestination;
 	private int searchLength;
@@ -25,13 +23,10 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase {
 		setMutexBits(5);
 	}
 
-	/**
-	 * Returns whether the EntityAIBase should begin execution.
-	 */
 	@Override
 	public boolean shouldExecute() {
 		if (runDelay > 0) {
-			--runDelay;
+			runDelay--;
 			return false;
 		} else {
 			runDelay = 200 + theEntity.getRNG().nextInt(200);
@@ -39,17 +34,11 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase {
 		}
 	}
 
-	/**
-	 * Returns whether an in-progress EntityAIBase should continue executing
-	 */
 	@Override
 	public boolean continueExecuting() {
 		return timeoutCounter >= -field_179490_f && timeoutCounter <= 1200 && shouldMoveTo(theEntity.worldObj, destinationBlock);
 	}
 
-	/**
-	 * Execute a one shot task or start executing a continuous task
-	 */
 	@Override
 	public void startExecuting() {
 		theEntity.getNavigator().tryMoveToXYZ(destinationBlock.getX() + 0.5D, destinationBlock.getY() + 1, destinationBlock.getZ() + 0.5D, movementSpeed);
@@ -57,27 +46,21 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase {
 		field_179490_f = theEntity.getRNG().nextInt(theEntity.getRNG().nextInt(1200) + 1200) + 1200;
 	}
 
-	/**
-	 * Resets the task
-	 */
 	@Override
 	public void resetTask() {
 	}
 
-	/**
-	 * Updates the task
-	 */
 	@Override
 	public void updateTask() {
 		if (theEntity.getDistanceSq(destinationBlock.up().getX(), destinationBlock.up().getY(), destinationBlock.up().getZ()) > 1.0D) {
 			isAboveDestination = false;
-			++timeoutCounter;
+			timeoutCounter++;
 
 			if (timeoutCounter % 40 == 0)
 				theEntity.getNavigator().tryMoveToXYZ(destinationBlock.getX() + 0.5D, destinationBlock.getY() + 1, destinationBlock.getZ() + 0.5D, movementSpeed);
 		} else {
 			isAboveDestination = true;
-			--timeoutCounter;
+			timeoutCounter--;
 		}
 	}
 
@@ -85,11 +68,6 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase {
 		return isAboveDestination;
 	}
 
-	/**
-	 * Searches and sets new destination block and returns true if a suitable block (specified in {@link
-	 * net.minecraft.entity.ai.EntityAIMoveToBlock#shouldMoveTo(World, BlockPos) EntityAIMoveToBlock#shouldMoveTo(World,
-	 * BlockPos)}) can be found.
-	 */
 	private boolean searchForDestination() {
 		int i = searchLength;
 		BlockPos blockpos = new BlockPos(theEntity);
@@ -109,8 +87,5 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase {
 		return false;
 	}
 
-	/**
-	 * Return true to set given position as destination
-	 */
 	protected abstract boolean shouldMoveTo(World worldIn, BlockPos pos);
 }
