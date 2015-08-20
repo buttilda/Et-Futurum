@@ -95,7 +95,11 @@ public class ContainerEnchantment extends Container {
 
 	private static int getEnchantSeed(EntityPlayer player) {
 		Integer seed = seeds.get(player.getUniqueID().toString());
-		return seed == null ? player.worldObj.rand.nextInt() : seed;
+		if (seed == null) {
+			seed = player.worldObj.rand.nextInt();
+			setEnchantSeed(player, seed);
+		}
+		return seed;
 	}
 
 	private static void chargeForEnchant(EntityPlayer player, Random rand, int amount) {
