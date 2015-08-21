@@ -11,6 +11,7 @@ container.enchant.clue=%s . . . ?
 # Entities
 entity.etfuturum.endermite.name=Чешуйница Края
 entity.etfuturum.wooden_armorstand.name=Стойка для брони
+entity.etfuturum.rabbit.name=Кролик
 
 # Items
 item.etfuturum.mutton_raw.name=Сырая баранина
@@ -23,6 +24,28 @@ item.etfuturum.rabbit_cooked.name=Приготовленная крольчат�
 item.etfuturum.rabbit_stew.name=Тушёная крольчатина
 item.etfuturum.rabbit_foot.name=Кроличья лапка
 item.etfuturum.rabbit_hide.name=Кроличья шкурка
+item.etfuturum.beetroot.name=Свёкла
+item.etfuturum.beetroot_seeds.name=Семена свёклы
+item.etfuturum.beetroot_soup.name=Борщ
+item.etfuturum.chorus_fruit.name=Плод коруса
+item.etfuturum.chorus_fruit_popped.name=Приготовленный плод коруса
+item.etfuturum.dragon_breath.name=Дыхание дракона
+potion.prefix.lingering=Стелющееся
+
+# Arrows
+tipped_arrow.potion.nightVision.name=Стрела ночного зрения
+tipped_arrow.potion.invisibility.name=Стрела невидимости
+tipped_arrow.potion.jump.name=Стрела прыгучести
+tipped_arrow.potion.fireResistance.name=Стрела огнестойкости
+tipped_arrow.potion.moveSpeed.name=Стрела скорости
+tipped_arrow.potion.moveSlowdown.name=Стрела замедления
+tipped_arrow.potion.waterBreathing.name=Стрела подводного дыхания
+tipped_arrow.potion.heal.name=Стрела лечения
+tipped_arrow.potion.harm.name=Стрела урона
+tipped_arrow.potion.poison.name=Стрела отравления
+tipped_arrow.potion.regeneration.name=Стрела регенерации
+tipped_arrow.potion.damageBoost.name=Стрела силы
+tipped_arrow.potion.weakness.name=Стрела слабости
 
 # Blocks
 tile.etfuturum.stone_granite.name=Гранит
@@ -65,6 +88,16 @@ tile.etfuturum.fence_gate_jungle.name=Калитка из тропическог
 tile.etfuturum.fence_gate_acacia.name=Калитка из акации
 tile.etfuturum.fence_gate_dark_oak.name=Калитка из тёмного дуба
 tile.etfuturum.old_gravel.name=Старый гравий
+tile.etfuturum.beetroots.name=Свёкла
+tile.etfuturum.purpur_block.name=Фиолетовый блок
+tile.etfuturum.purpur_slab.name=Фиолетовая плита
+tile.etfuturum.purpur_pillar.name=Фиолетовая колонна
+tile.etfuturum.purpur_stairs.name=Фиолетовые ступеньки
+tile.etfuturum.end_bricks.name=Кирпичи из камня Края
+tile.etfuturum.grass_path.name=Травяная тропинка
+tile.etfuturum.end_rod.name=Стержень Края
+tile.etfuturum.chorus_flower.name=Цветок коруса
+tile.etfuturum.chorus_plant.name=Растение коруса
 
 # Banners
 item.banner.black.name=Чёрный флаг
