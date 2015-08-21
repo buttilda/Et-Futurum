@@ -9,6 +9,7 @@ import ganymedes01.etfuturum.blocks.BlockWoodFenceGate;
 import ganymedes01.etfuturum.blocks.ChorusFlower;
 import ganymedes01.etfuturum.blocks.ChorusPlant;
 import ganymedes01.etfuturum.blocks.CoarseDirt;
+import ganymedes01.etfuturum.blocks.CryingObsidian;
 import ganymedes01.etfuturum.blocks.EndBricks;
 import ganymedes01.etfuturum.blocks.EndRod;
 import ganymedes01.etfuturum.blocks.GrassPath;
@@ -63,6 +64,7 @@ public class ModBlocks {
 	public static final Block end_rod = new EndRod();
 	public static final Block chorus_plant = new ChorusPlant();
 	public static final Block chorus_flower = new ChorusFlower();
+	public static final Block crying_obsidian = new CryingObsidian();
 
 	public static final Block[] doors = new Block[BlockWood.field_150096_a.length - 1];
 	public static final Block[] fences = new Block[BlockWood.field_150096_a.length];

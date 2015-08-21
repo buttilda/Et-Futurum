@@ -77,6 +77,7 @@ public class EtFuturum {
 	public static boolean enableSkullDrop = true;
 	public static boolean enableDmgIndicator = true;
 	public static boolean enableTransparentAmour = true;
+	public static boolean enableCryingObsidian = true;
 
 	public static int maxStonesPerCluster = 33;
 

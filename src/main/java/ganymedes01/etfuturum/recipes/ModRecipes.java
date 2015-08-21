@@ -221,6 +221,9 @@ public class ModRecipes {
 			addTippedArrowRecipe(Potion.damageBoost, 3600, new ItemStack(Items.potionitem, 1, 16393));
 			addTippedArrowRecipe(Potion.weakness, 1800, new ItemStack(Items.potionitem, 1, 16392));
 		}
+
+		if (EtFuturum.enableCryingObsidian)
+			addShapelessRecipe(new ItemStack(ModBlocks.crying_obsidian), Blocks.obsidian, "gemLapis");
 	}
 
 	private static void addTippedArrowRecipe(Potion potionEffect, int duration, ItemStack potionItem) {
