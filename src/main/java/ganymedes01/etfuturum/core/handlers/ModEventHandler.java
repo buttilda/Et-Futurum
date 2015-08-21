@@ -52,12 +52,15 @@ import net.minecraft.tileentity.TileEntityEnchantmentTable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
@@ -410,5 +413,41 @@ public class ModEventHandler {
 				if (--stack.stackSize <= 0)
 					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 		}
+	}
+
+	@SubscribeEvent
+	public void entityHurtEvent(LivingHurtEvent event) {
+		int amount = MathHelper.floor_float(event.ammount / 2F);
+		if (amount <= 0)
+			return;
+
+		boolean spawnedParticles = false;
+
+		// If the attacker is a player spawn the hearts aligned and facing it
+		if (event.source instanceof EntityDamageSource) {
+			EntityDamageSource src = (EntityDamageSource) event.source;
+			Entity attacker = src.getSourceOfDamage();
+			if (attacker instanceof EntityPlayer) {
+				EntityPlayer player = (EntityPlayer) attacker;
+				Vec3 look = player.getLookVec();
+				look.rotateAroundY((float) Math.PI / 2);
+				for (int i = 0; i < amount; i++) {
+					double x = event.entityLiving.posX - amount * 0.35 * look.xCoord / 2 + i * 0.35 * look.xCoord;
+					double y = event.entityLiving.posY + 1.5 + event.entityLiving.worldObj.rand.nextGaussian() * 0.05;
+					double z = event.entityLiving.posZ - amount * 0.35 * look.zCoord / 2 + i * 0.35 * look.zCoord;
+					EtFuturum.proxy.spawnParticle("damage_hearts", event.entityLiving.worldObj, x, y, z);
+				}
+				spawnedParticles = true;
+			}
+		}
+
+		// If the attacker is not a player then just spawn them randomly
+		if (!spawnedParticles)
+			for (int i = 0; i < amount; i++) {
+				double x = event.entityLiving.posX + event.entityLiving.worldObj.rand.nextGaussian() * 0.3;
+				double y = event.entityLiving.posY + 1.5 + event.entityLiving.worldObj.rand.nextGaussian() * 0.05;
+				double z = event.entityLiving.posZ + event.entityLiving.worldObj.rand.nextGaussian() * 0.3;
+				EtFuturum.proxy.spawnParticle("damage_hearts", event.entityLiving.worldObj, x, y, z);
+			}
 	}
 }
