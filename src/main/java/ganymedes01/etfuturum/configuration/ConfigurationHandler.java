@@ -66,6 +66,7 @@ public class ConfigurationHandler {
 		EtFuturum.enableTippedArrows = configBoolean("Tipped Arrows", true, EtFuturum.enableTippedArrows);
 		EtFuturum.enableLingeringPotions = configBoolean("Lingering Potions", true, EtFuturum.enableLingeringPotions);
 		EtFuturum.enableDmgIndicator = configBoolean("Heart Damage Indicator", true, EtFuturum.enableDmgIndicator);
+		EtFuturum.enableTransparentAmour = configBoolean("Allow non-opaque armour", true, EtFuturum.enableTransparentAmour);
 
 		EtFuturum.enableFancySkulls = configBoolean("Fancy Skulls", true, EtFuturum.enableFancySkulls);
 		EtFuturum.enableSkullDrop = configBoolean("Skulls drop from charged creeper kills", true, EtFuturum.enableSkullDrop);
