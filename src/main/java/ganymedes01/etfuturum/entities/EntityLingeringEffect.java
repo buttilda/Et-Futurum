@@ -40,6 +40,37 @@ public class EntityLingeringEffect extends Entity implements IEntityAdditionalSp
 	}
 
 	@Override
+	public boolean canBePushed() {
+		return true;
+	}
+
+	@Override
+	public void applyEntityCollision(Entity e) {
+		if (!(e instanceof EntityLivingBase))
+			return;
+		EntityLivingBase entity = (EntityLivingBase) e;
+		List<PotionEffect> effects = ((LingeringPotion) ModItems.lingering_potion).getEffects(stack);
+		boolean addedEffect = false;
+
+		for (PotionEffect effect : effects) {
+			int effectID = effect.getPotionID();
+			if (Potion.potionTypes[effectID].isInstant()) {
+				Potion.potionTypes[effectID].affectEntity(thrower, entity, effect.getAmplifier(), 0.25);
+				addedEffect = true;
+			} else if (!entity.isPotionActive(effectID)) {
+				entity.addPotionEffect(effect);
+				addedEffect = true;
+			}
+		}
+
+		if (addedEffect) {
+			int ticks = dataWatcher.getWatchableObjectInt(TICKS_DATA_WATCHER);
+			if (setTickCount(ticks + 5 * 20)) // Add 5 seconds to the expiration time (decreasing radius by 0.5 blocks)
+				return;
+		}
+	}
+
+	@Override
 	protected void entityInit() {
 		dataWatcher.addObject(TICKS_DATA_WATCHER, 0);
 		dataWatcher.addObject(WIDTH_DATA_WATCHER, 6.0F);
@@ -73,41 +104,7 @@ public class EntityLingeringEffect extends Entity implements IEntityAdditionalSp
 		}
 
 		ticks++;
-		if (setTickCount(ticks))
-			return;
-
-		if (ticksExisted % 20 == 0)
-			addPotionEffects(ticks);
-	}
-
-	@SuppressWarnings("unchecked")
-	private void addPotionEffects(int ticks) {
-		List<PotionEffect> effects = ((LingeringPotion) ModItems.lingering_potion).getEffects(stack);
-
-		if (effects != null && !effects.isEmpty()) {
-			List<EntityLivingBase> affectedEntities = worldObj.getEntitiesWithinAABB(EntityLivingBase.class, boundingBox.expand(1, 1, 1));
-
-			for (EntityLivingBase entity : affectedEntities) {
-				boolean addedEffect = false;
-
-				for (PotionEffect effect : effects) {
-					int effectID = effect.getPotionID();
-					if (Potion.potionTypes[effectID].isInstant()) {
-						Potion.potionTypes[effectID].affectEntity(thrower, entity, effect.getAmplifier(), 0.25);
-						addedEffect = true;
-					} else if (!entity.isPotionActive(effectID)) {
-						entity.addPotionEffect(effect);
-						addedEffect = true;
-					}
-				}
-
-				if (addedEffect) {
-					ticks += 5 * 20; // Add 5 seconds to the expiration time (decreasing radius by 0.5 blocks)
-					if (setTickCount(ticks))
-						return;
-				}
-			}
-		}
+		setTickCount(ticks);
 	}
 
 	private boolean setTickCount(int ticks) {
