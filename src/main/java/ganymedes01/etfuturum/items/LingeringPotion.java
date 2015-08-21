@@ -77,18 +77,20 @@ public class LingeringPotion extends ItemPotion implements IConfigurable {
 	@SuppressWarnings("unchecked")
 	public List<PotionEffect> getEffects(int meta) {
 		List<PotionEffect> effects = new ArrayList<PotionEffect>();
+		List<PotionEffect> effects2 = super.getEffects(meta);
 
-		for (PotionEffect effect : (List<PotionEffect>) super.getEffects(meta)) {
-			PotionEffect e;
+		if (effects2 != null && !effects2.isEmpty())
+			for (PotionEffect effect : effects2) {
+				PotionEffect e;
 
-			if (Potion.potionTypes[effect.getPotionID()].isInstant())
-				e = new PotionEffect(effect);
-			else {
-				e = new PotionEffect(effect.getPotionID(), effect.getDuration() / 4, effect.getAmplifier(), effect.getIsAmbient());
-				e.setCurativeItems(effect.getCurativeItems());
+				if (Potion.potionTypes[effect.getPotionID()].isInstant())
+					e = new PotionEffect(effect);
+				else {
+					e = new PotionEffect(effect.getPotionID(), effect.getDuration() / 4, effect.getAmplifier(), effect.getIsAmbient());
+					e.setCurativeItems(effect.getCurativeItems());
+				}
+				effects.add(e);
 			}
-			effects.add(e);
-		}
 
 		return effects;
 	}
