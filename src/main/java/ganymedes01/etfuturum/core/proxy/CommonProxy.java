@@ -7,6 +7,8 @@ import ganymedes01.etfuturum.core.handlers.ModEventHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.entities.EntityArmourStand;
 import ganymedes01.etfuturum.entities.EntityEndermite;
+import ganymedes01.etfuturum.entities.EntityLingeringEffect;
+import ganymedes01.etfuturum.entities.EntityLingeringPotion;
 import ganymedes01.etfuturum.entities.EntityRabbit;
 import ganymedes01.etfuturum.entities.EntityTippedArrow;
 import ganymedes01.etfuturum.entities.ModEntityList;
@@ -67,6 +69,11 @@ public class CommonProxy implements IGuiHandler {
 
 			EntityRegistry.addSpawn(EntityRabbit.class, 10, 3, 3, EnumCreatureType.creature, biomes.toArray(new BiomeGenBase[biomes.size()]));
 		}
+
+		if (EtFuturum.enableLingeringPotions) {
+			ModEntityList.registerEntity(EntityLingeringPotion.class, "lingering_potion", 4, EtFuturum.instance, 64, 10, true);
+			ModEntityList.registerEntity(EntityLingeringEffect.class, "lingering_effect", 5, EtFuturum.instance, 64, 1, true);
+		}
 	}
 
 	public void registerRenderers() {
@@ -90,5 +97,8 @@ public class CommonProxy implements IGuiHandler {
 			default:
 				return null;
 		}
+	}
+
+	public void spawnParticle(String particleName, World world, double x, double y, double z) {
 	}
 }

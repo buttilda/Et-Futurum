@@ -2,6 +2,7 @@ package ganymedes01.etfuturum.core.proxy;
 
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
+import ganymedes01.etfuturum.client.particle.BlackHeartFX;
 import ganymedes01.etfuturum.client.renderer.block.BlockChestRenderer;
 import ganymedes01.etfuturum.client.renderer.block.BlockChorusFlowerRender;
 import ganymedes01.etfuturum.client.renderer.block.BlockChorusPlantRender;
@@ -11,6 +12,8 @@ import ganymedes01.etfuturum.client.renderer.block.BlockGrassPathRender;
 import ganymedes01.etfuturum.client.renderer.block.BlockSlimeBlockRender;
 import ganymedes01.etfuturum.client.renderer.entity.ArmourStandRenderer;
 import ganymedes01.etfuturum.client.renderer.entity.EndermiteRenderer;
+import ganymedes01.etfuturum.client.renderer.entity.LingeringEffectRenderer;
+import ganymedes01.etfuturum.client.renderer.entity.LingeringPotionRenderer;
 import ganymedes01.etfuturum.client.renderer.entity.RabbitRenderer;
 import ganymedes01.etfuturum.client.renderer.item.ItemBannerRenderer;
 import ganymedes01.etfuturum.client.renderer.item.ItemBowRenderer;
@@ -20,12 +23,17 @@ import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityEndRodRenderer
 import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityFancySkullRenderer;
 import ganymedes01.etfuturum.entities.EntityArmourStand;
 import ganymedes01.etfuturum.entities.EntityEndermite;
+import ganymedes01.etfuturum.entities.EntityLingeringEffect;
+import ganymedes01.etfuturum.entities.EntityLingeringPotion;
 import ganymedes01.etfuturum.entities.EntityRabbit;
 import ganymedes01.etfuturum.tileentities.TileEntityBanner;
 import ganymedes01.etfuturum.tileentities.TileEntityEndRod;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntitySkull;
+import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -81,5 +89,20 @@ public class ClientProxy extends CommonProxy {
 			RenderingRegistry.registerEntityRenderingHandler(EntityEndermite.class, new EndermiteRenderer());
 		if (EtFuturum.enableRabbit)
 			RenderingRegistry.registerEntityRenderingHandler(EntityRabbit.class, new RabbitRenderer());
+		if (EtFuturum.enableLingeringPotions) {
+			RenderingRegistry.registerEntityRenderingHandler(EntityLingeringPotion.class, new LingeringPotionRenderer());
+			RenderingRegistry.registerEntityRenderingHandler(EntityLingeringEffect.class, new LingeringEffectRenderer());
+		}
+	}
+
+	@Override
+	public void spawnParticle(String particleName, World world, double x, double y, double z) {
+		EntityFX fx = null;
+
+		if ("damage_hearts".equals(particleName))
+			fx = new BlackHeartFX(world, x, y, z);
+
+		if (fx != null)
+			Minecraft.getMinecraft().effectRenderer.addEffect(fx);
 	}
 }

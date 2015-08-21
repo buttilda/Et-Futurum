@@ -29,6 +29,8 @@ item.etfuturum.beetroot_seeds.name=Beetroot Seeds
 item.etfuturum.beetroot_soup.name=Beetroot Soup
 item.etfuturum.chorus_fruit.name=Chorus Fruit
 item.etfuturum.chorus_fruit_popped.name=Popped Chorus Fruit
+item.etfuturum.dragon_breath.name=Dragon's Breath
+potion.prefix.lingering=Lingering
 
 # Arrows
 tipped_arrow.potion.nightVision.name=Arrow of Night Vision

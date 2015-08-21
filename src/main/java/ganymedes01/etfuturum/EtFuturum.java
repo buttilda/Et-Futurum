@@ -71,6 +71,7 @@ public class EtFuturum {
 	public static boolean enableSticksFromDeadBushes = true;
 	public static boolean enableBowRendering = true;
 	public static boolean enableTippedArrows = true;
+	public static boolean enableLingeringPotions = true;
 
 	public static boolean enableBurnableBlocks = true;
 	public static boolean enableFancySkulls = true;
