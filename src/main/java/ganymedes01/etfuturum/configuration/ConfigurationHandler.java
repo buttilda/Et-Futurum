@@ -68,6 +68,7 @@ public class ConfigurationHandler {
 		EtFuturum.enableDmgIndicator = configBoolean("Heart Damage Indicator", true, EtFuturum.enableDmgIndicator);
 		EtFuturum.enableTransparentAmour = configBoolean("Allow non-opaque armour", true, EtFuturum.enableTransparentAmour);
 		EtFuturum.enableCryingObsidian = configBoolean("Crying Obsidian", true, EtFuturum.enableCryingObsidian);
+		EtFuturum.enableUpdatedFoodValues = configBoolean("Use updated food values", true, EtFuturum.enableUpdatedFoodValues);
 
 		EtFuturum.enableFancySkulls = configBoolean("Fancy Skulls", true, EtFuturum.enableFancySkulls);
 		EtFuturum.enableSkullDrop = configBoolean("Skulls drop from charged creeper kills", true, EtFuturum.enableSkullDrop);

@@ -12,20 +12,25 @@ import ganymedes01.etfuturum.world.EtFuturumWorldGenerator;
 import ganymedes01.etfuturum.world.OceanMonument;
 
 import java.io.File;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUI_FACTORY_CLASS)
@@ -78,6 +83,7 @@ public class EtFuturum {
 	public static boolean enableDmgIndicator = true;
 	public static boolean enableTransparentAmour = true;
 	public static boolean enableCryingObsidian = true;
+	public static boolean enableUpdatedFoodValues = true;
 
 	public static int maxStonesPerCluster = 33;
 
@@ -111,6 +117,31 @@ public class EtFuturum {
 			Item entity_egg = new ItemEntityEgg();
 			GameRegistry.registerItem(entity_egg, "entity_egg");
 			OreDictionary.registerOre("mobEgg", entity_egg);
+		}
+	}
+
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+		Items.blaze_rod.setFull3D();
+
+		if (enableUpdatedFoodValues) {
+			setFinalField(ItemFood.class, Items.carrot, 3, "healAmount", "field_77853_b");
+			setFinalField(ItemFood.class, Items.baked_potato, 5, "healAmount", "field_77853_b");
+		}
+	}
+
+	private void setFinalField(Class<?> cls, Object obj, Object newValue, String... fieldNames) {
+		try {
+			Field field = ReflectionHelper.findField(cls, fieldNames);
+			field.setAccessible(true);
+
+			Field modifiersField = Field.class.getDeclaredField("modifiers");
+			modifiersField.setAccessible(true);
+			modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+
+			field.set(obj, newValue);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
