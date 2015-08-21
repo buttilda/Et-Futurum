@@ -331,7 +331,6 @@ public class ModEventHandler {
 			if (meta >= 0)
 				addDrop(new ItemStack(Items.skull, 1, meta), entity, drops);
 		}
-
 	}
 
 	private void addDrop(ItemStack stack, EntityLivingBase entity, List<EntityItem> list) {
@@ -435,6 +434,8 @@ public class ModEventHandler {
 
 	@SubscribeEvent
 	public void entityHurtEvent(LivingHurtEvent event) {
+		if (!EtFuturum.enableDmgIndicator)
+			return;
 		int amount = MathHelper.floor_float(event.ammount / 2F);
 		if (amount <= 0)
 			return;
