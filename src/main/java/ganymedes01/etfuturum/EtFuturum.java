@@ -16,6 +16,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
@@ -84,6 +85,7 @@ public class EtFuturum {
 	public static boolean enableTransparentAmour = true;
 	public static boolean enableCryingObsidian = true;
 	public static boolean enableUpdatedFoodValues = true;
+	public static boolean enableUpdatedHarvestLevels = true;
 
 	public static int maxStonesPerCluster = 33;
 
@@ -127,6 +129,12 @@ public class EtFuturum {
 		if (enableUpdatedFoodValues) {
 			setFinalField(ItemFood.class, Items.carrot, 3, "healAmount", "field_77853_b");
 			setFinalField(ItemFood.class, Items.baked_potato, 5, "healAmount", "field_77853_b");
+		}
+
+		if (enableUpdatedHarvestLevels) {
+			Blocks.packed_ice.setHarvestLevel("pickaxe", 0);
+			Blocks.ladder.setHarvestLevel("axe", 0);
+			Blocks.melon_block.setHarvestLevel("axe", 0);
 		}
 	}
 
