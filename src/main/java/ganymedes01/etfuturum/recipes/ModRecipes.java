@@ -192,8 +192,10 @@ public class ModRecipes {
 			GameRegistry.addSmelting(new ItemStack(ModBlocks.sponge, 1, 1), new ItemStack(ModBlocks.sponge), 0.0F);
 		}
 
-		if (EtFuturum.enableBeetroot)
+		if (EtFuturum.enableBeetroot) {
 			addShapedRecipe(new ItemStack(ModItems.beetroot_soup), "xxx", "xxx", " y ", 'x', "cropBeetroot", 'y', Items.bowl);
+			addShapelessRecipe(new ItemStack(Items.dye, 1, 1), "cropBeetroot");
+		}
 
 		if (EtFuturum.enableChorusFruit) {
 			addShapedRecipe(new ItemStack(ModBlocks.purpur_block, 4), "xx", "xx", 'x', ModItems.popped_chorus_fruit);
