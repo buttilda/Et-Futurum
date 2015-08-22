@@ -21,6 +21,7 @@ import ganymedes01.etfuturum.client.renderer.item.ItemSkullRenderer;
 import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityBannerRenderer;
 import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityEndRodRenderer;
 import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityFancySkullRenderer;
+import ganymedes01.etfuturum.core.handlers.ClientEventHandler;
 import ganymedes01.etfuturum.entities.EntityArmourStand;
 import ganymedes01.etfuturum.entities.EntityEndermite;
 import ganymedes01.etfuturum.entities.EntityLingeringEffect;
@@ -35,10 +36,17 @@ import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
+
+	@Override
+	public void registerEvents() {
+		super.registerEvents();
+		MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
+	}
 
 	@Override
 	public void registerRenderers() {

@@ -4,7 +4,6 @@ import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.ModItems;
 import ganymedes01.etfuturum.blocks.PrismarineBlocks;
-import ganymedes01.etfuturum.client.OpenGLHelper;
 import ganymedes01.etfuturum.client.PrismarineIcon;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.entities.EntityEndermite;
@@ -58,8 +57,6 @@ import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent.SetArmorModel;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.brewing.PotionBrewEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -81,7 +78,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ModEventHandler {
+public class ServerEventHandler {
 
 	@SubscribeEvent
 	public void livingAttack(LivingAttackEvent event) {
@@ -471,23 +468,5 @@ public class ModEventHandler {
 				double z = event.entityLiving.posZ + event.entityLiving.worldObj.rand.nextGaussian() * 0.3;
 				EtFuturum.proxy.spawnParticle("damage_hearts", event.entityLiving.worldObj, x, y, z);
 			}
-	}
-
-	@SubscribeEvent
-	public void renderPlayerEventPre(RenderPlayerEvent.Pre event) {
-		if (EtFuturum.enableTransparentAmour)
-			OpenGLHelper.enableBlend();
-	}
-
-	@SubscribeEvent
-	public void renderPlayerSetArmour(SetArmorModel event) {
-		if (EtFuturum.enableTransparentAmour)
-			OpenGLHelper.enableBlend();
-	}
-
-	@SubscribeEvent
-	public void renderPlayerEventPost(RenderPlayerEvent.Post event) {
-		if (EtFuturum.enableTransparentAmour)
-			OpenGLHelper.disableBlend();
 	}
 }

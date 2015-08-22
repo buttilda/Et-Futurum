@@ -3,7 +3,7 @@ package ganymedes01.etfuturum.core.proxy;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.client.gui.inventory.GuiEnchantment;
 import ganymedes01.etfuturum.configuration.ConfigurationHandler;
-import ganymedes01.etfuturum.core.handlers.ModEventHandler;
+import ganymedes01.etfuturum.core.handlers.ServerEventHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.entities.EntityArmourStand;
 import ganymedes01.etfuturum.entities.EntityEndermite;
@@ -36,7 +36,7 @@ public class CommonProxy implements IGuiHandler {
 
 	public void registerEvents() {
 		FMLCommonHandler.instance().bus().register(ConfigurationHandler.INSTANCE);
-		MinecraftForge.EVENT_BUS.register(new ModEventHandler());
+		MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
 	}
 
 	public void registerEntities() {
