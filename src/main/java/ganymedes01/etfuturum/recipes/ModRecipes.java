@@ -224,6 +224,9 @@ public class ModRecipes {
 
 		if (EtFuturum.enableCryingObsidian)
 			addShapelessRecipe(new ItemStack(ModBlocks.crying_obsidian), Blocks.obsidian, "gemLapis");
+
+		if (EtFuturum.enableLingeringPotions)
+			addShapelessRecipe(new ItemStack(ModItems.dragon_breath), new ItemStack(Items.potionitem, 1, 8195), ModItems.chorus_fruit, ModItems.chorus_fruit);
 	}
 
 	private static void addTippedArrowRecipe(Potion potionEffect, int duration, ItemStack potionItem) {
