@@ -440,8 +440,6 @@ public class ServerEventHandler {
 		if (amount <= 0)
 			return;
 
-		boolean spawnedParticles = false;
-
 		// If the attacker is a player spawn the hearts aligned and facing it
 		if (event.source instanceof EntityDamageSource) {
 			EntityDamageSource src = (EntityDamageSource) event.source;
@@ -456,17 +454,7 @@ public class ServerEventHandler {
 					double z = event.entityLiving.posZ - amount * 0.35 * look.zCoord / 2 + i * 0.35 * look.zCoord;
 					EtFuturum.proxy.spawnParticle("damage_hearts", event.entityLiving.worldObj, x, y, z);
 				}
-				spawnedParticles = true;
 			}
 		}
-
-		// If the attacker is not a player then just spawn them randomly
-		if (!spawnedParticles)
-			for (int i = 0; i < amount; i++) {
-				double x = event.entityLiving.posX + event.entityLiving.worldObj.rand.nextGaussian() * 0.3;
-				double y = event.entityLiving.posY + 1.5 + event.entityLiving.worldObj.rand.nextGaussian() * 0.05;
-				double z = event.entityLiving.posZ + event.entityLiving.worldObj.rand.nextGaussian() * 0.3;
-				EtFuturum.proxy.spawnParticle("damage_hearts", event.entityLiving.worldObj, x, y, z);
-			}
 	}
 }
