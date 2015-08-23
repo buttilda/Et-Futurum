@@ -1,12 +1,14 @@
 package ganymedes01.etfuturum.items;
 
 import ganymedes01.etfuturum.core.utils.Utils;
+import ganymedes01.etfuturum.dispenser.DispenserBehaviourSpawnEgg;
 import ganymedes01.etfuturum.entities.ModEntityList;
 import ganymedes01.etfuturum.entities.ModEntityList.EntityData;
 
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -33,6 +35,7 @@ public class ItemEntityEgg extends Item {
 		setHasSubtypes(true);
 		setCreativeTab(CreativeTabs.tabMisc);
 		setUnlocalizedName(Utils.getUnlocalisedName("entity_egg"));
+		BlockDispenser.dispenseBehaviorRegistry.putObject(this, new DispenserBehaviourSpawnEgg());
 	}
 
 	@Override
@@ -120,7 +123,7 @@ public class ItemEntityEgg extends Item {
 		}
 	}
 
-	private Entity spawnEntity(World world, int id, double x, double y, double z) {
+	public static Entity spawnEntity(World world, int id, double x, double y, double z) {
 		Entity entity = ModEntityList.createEntityByID(id, world);
 
 		if (entity != null && entity instanceof EntityLivingBase) {

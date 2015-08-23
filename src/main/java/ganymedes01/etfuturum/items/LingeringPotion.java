@@ -3,6 +3,7 @@ package ganymedes01.etfuturum.items;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.core.utils.Utils;
+import ganymedes01.etfuturum.dispenser.DispenserBehaviourLingeringPotion;
 import ganymedes01.etfuturum.entities.EntityLingeringPotion;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import net.minecraft.block.BlockDispenser;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -43,6 +45,9 @@ public class LingeringPotion extends ItemPotion implements IConfigurable {
 		setTextureName("potion");
 		setUnlocalizedName(Utils.getUnlocalisedName("lingering_potion"));
 		setCreativeTab(EtFuturum.enableLingeringPotions ? EtFuturum.creativeTab : null);
+
+		if (EtFuturum.enableLingeringPotions)
+			BlockDispenser.dispenseBehaviorRegistry.putObject(this, new DispenserBehaviourLingeringPotion());
 	}
 
 	@Override

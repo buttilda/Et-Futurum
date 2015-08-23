@@ -3,9 +3,11 @@ package ganymedes01.etfuturum.items;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.core.utils.Utils;
+import ganymedes01.etfuturum.dispenser.DispenserBehaviourTippedArrow;
 
 import java.util.List;
 
+import net.minecraft.block.BlockDispenser;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -27,6 +29,9 @@ public class TippedArrow extends Item implements IConfigurable {
 		setTextureName("tipped_arrow");
 		setUnlocalizedName(Utils.getUnlocalisedName("tipped_arrow"));
 		setCreativeTab(EtFuturum.enableTippedArrows ? EtFuturum.creativeTab : null);
+
+		if (EtFuturum.enableTippedArrows)
+			BlockDispenser.dispenseBehaviorRegistry.putObject(this, new DispenserBehaviourTippedArrow());
 	}
 
 	public static PotionEffect getEffect(ItemStack stack) {
