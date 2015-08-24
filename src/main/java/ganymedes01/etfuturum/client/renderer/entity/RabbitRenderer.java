@@ -19,7 +19,6 @@ public class RabbitRenderer extends RenderLiving {
 	private static final ResourceLocation SALT = new ResourceLocation("textures/entity/rabbit/salt.png");
 	private static final ResourceLocation WHITE_SPLOTCHED = new ResourceLocation("textures/entity/rabbit/white_splotched.png");
 	private static final ResourceLocation TOAST = new ResourceLocation("textures/entity/rabbit/toast.png");
-	private static final ResourceLocation CAERBANNOG = new ResourceLocation("textures/entity/rabbit/caerbannog.png");
 
 	public RabbitRenderer() {
 		super(new ModelRabbit(), 0.3F);
@@ -47,8 +46,6 @@ public class RabbitRenderer extends RenderLiving {
 					return GOLD;
 				case 5:
 					return SALT;
-				case 99:
-					return CAERBANNOG;
 			}
 	}
 }
