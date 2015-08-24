@@ -27,7 +27,6 @@ public class VillagerZombieRenderer extends RenderLiving {
 		EntityZombieVillager zombie = (EntityZombieVillager) entity;
 		switch (zombie.getType()) {
 			case 0:
-			default:
 				return FARMER;
 			case 1:
 				return LIBRARIAN;
@@ -38,6 +37,7 @@ public class VillagerZombieRenderer extends RenderLiving {
 			case 4:
 				return BUTCHER;
 			case 5:
+			default:
 				return VILLAGER;
 		}
 	}
