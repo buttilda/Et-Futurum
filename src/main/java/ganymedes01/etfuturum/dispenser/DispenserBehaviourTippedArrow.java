@@ -19,6 +19,7 @@ public class DispenserBehaviourTippedArrow extends BehaviorDefaultDispenseItem {
 			@Override
 			protected IProjectile getProjectileEntity(World world, IPosition pos) {
 				EntityTippedArrow entity = new EntityTippedArrow(world, pos.getX(), pos.getY(), pos.getZ());
+				entity.canBePickedUp = 1;
 				entity.setEffect(TippedArrow.getEffect(stack));
 				return entity;
 			}
