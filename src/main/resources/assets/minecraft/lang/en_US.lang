@@ -12,6 +12,7 @@ container.enchant.clue=%s . . . ?
 entity.etfuturum.endermite.name=Endermite
 entity.etfuturum.wooden_armorstand.name=Armour Stand
 entity.etfuturum.rabbit.name=Rabbit
+entity.etfuturum.villager_zombie.name=Villager Zombie
 
 # Items
 item.etfuturum.mutton_raw.name=Raw Mutton

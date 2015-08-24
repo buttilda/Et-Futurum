@@ -86,6 +86,7 @@ public class EtFuturum {
 	public static boolean enableCryingObsidian = true;
 	public static boolean enableUpdatedFoodValues = true;
 	public static boolean enableUpdatedHarvestLevels = true;
+	public static boolean enableVillagerZombies = true;
 
 	public static int maxStonesPerCluster = 33;
 

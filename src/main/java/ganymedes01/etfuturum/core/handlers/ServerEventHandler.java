@@ -9,6 +9,7 @@ import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.entities.EntityEndermite;
 import ganymedes01.etfuturum.entities.EntityRabbit;
 import ganymedes01.etfuturum.entities.EntityTippedArrow;
+import ganymedes01.etfuturum.entities.EntityZombieVillager;
 import ganymedes01.etfuturum.inventory.ContainerEnchantment;
 import ganymedes01.etfuturum.items.TippedArrow;
 import ganymedes01.etfuturum.lib.GUIsID;
@@ -63,6 +64,7 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
@@ -79,6 +81,25 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ServerEventHandler {
+
+	@SubscribeEvent
+	public void livingUpdate(LivingUpdateEvent event) {
+		if (EtFuturum.enableVillagerZombies) {
+			if (event.entityLiving.worldObj.isRemote)
+				return;
+			if (event.entityLiving.getClass() == EntityZombie.class) {
+				EntityZombie zombie = (EntityZombie) event.entityLiving;
+				if (zombie.isVillager()) {
+					EntityZombieVillager villagerZombie = new EntityZombieVillager(zombie.worldObj);
+					villagerZombie.copyLocationAndAnglesFrom(zombie);
+					villagerZombie.onSpawnWithEgg(null);
+					villagerZombie.worldObj.spawnEntityInWorld(villagerZombie);
+
+					zombie.setDead();
+				}
+			}
+		}
+	}
 
 	@SubscribeEvent
 	public void livingAttack(LivingAttackEvent event) {
