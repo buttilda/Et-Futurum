@@ -30,6 +30,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathEntity;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.ReflectionHelper;
@@ -318,6 +319,11 @@ public class EntityRabbit extends EntityAnimal {
 			field_175540_bm = 0;
 		} else
 			super.handleHealthUpdate(id);
+	}
+
+	@Override
+	public ItemStack getPickedResult(MovingObjectPosition target) {
+		return ModEntityList.getEggFor(getClass());
 	}
 
 	class AIEvilAttack extends EntityAIAttackOnCollide {

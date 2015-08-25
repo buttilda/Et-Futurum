@@ -117,9 +117,9 @@ public class EtFuturum {
 		proxy.registerRenderers();
 
 		if (ModEntityList.hasEntitiesWithEggs()) {
-			Item entity_egg = new ItemEntityEgg();
-			GameRegistry.registerItem(entity_egg, "entity_egg");
-			OreDictionary.registerOre("mobEgg", entity_egg);
+			ModEntityList.entity_egg = new ItemEntityEgg();
+			GameRegistry.registerItem(ModEntityList.entity_egg, "entity_egg");
+			OreDictionary.registerOre("mobEgg", ModEntityList.entity_egg);
 		}
 	}
 

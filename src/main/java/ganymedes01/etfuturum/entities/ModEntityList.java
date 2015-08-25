@@ -6,12 +6,17 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class ModEntityList {
+
+	public static Item entity_egg;
 
 	private static EntityData[] array = new EntityData[0];
 	private static Map<Integer, Class<? extends Entity>> map = new HashMap<Integer, Class<? extends Entity>>();
@@ -85,6 +90,13 @@ public class ModEntityList {
 				list.add(data);
 		}
 		return list.toArray(new EntityData[list.size()]);
+	}
+
+	public static ItemStack getEggFor(Class<? extends Entity> entityCls) {
+		for (Entry<Integer, Class<? extends Entity>> entry : map.entrySet())
+			if (entry.getValue() == entityCls)
+				return new ItemStack(entity_egg, 1, entry.getKey());
+		return null;
 	}
 
 	public static class EntityData {
