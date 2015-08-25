@@ -3,5 +3,7 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/forge17"/>
+	<classpathentry kind="lib" path="libs/CodeChickenLib-1.7.10-1.1.3.127-dev.jar"/>
+	<classpathentry kind="lib" path="libs/NotEnoughItems-1.7.10-1.0.4.80-dev.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

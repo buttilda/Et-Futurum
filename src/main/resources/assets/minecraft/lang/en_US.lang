@@ -2,6 +2,7 @@
 itemGroup.etfuturum=Et Futurum
 
 # Containers
+container.etfuturum.banner=Banner
 container.enchant.lapis.one=1 Lapis Lazuli
 container.enchant.lapis.many=%d Lapis Lazuli
 container.enchant.level.one=1 Enchantment Level
