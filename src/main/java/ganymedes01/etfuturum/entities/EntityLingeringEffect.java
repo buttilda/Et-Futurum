@@ -32,11 +32,14 @@ public class EntityLingeringEffect extends Entity implements IEntityAdditionalSp
 	}
 
 	public EntityLingeringEffect(World world, EntityLingeringPotion potion) {
-		this(world);
-
-		stack = potion.getStack();
-		thrower = potion.getThrower();
+		this(world, potion.getStack(), potion.getThrower());
 		setPosition(potion.posX, potion.posY, potion.posZ);
+	}
+
+	public EntityLingeringEffect(World world, ItemStack stack, EntityLivingBase thrower) {
+		this(world);
+		this.stack = stack;
+		this.thrower = thrower;
 	}
 
 	@Override
@@ -161,5 +164,9 @@ public class EntityLingeringEffect extends Entity implements IEntityAdditionalSp
 
 	public ItemStack getStack() {
 		return stack;
+	}
+
+	public EntityLivingBase getThrower() {
+		return thrower;
 	}
 }
