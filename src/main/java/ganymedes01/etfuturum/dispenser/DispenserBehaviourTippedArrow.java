@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 public class DispenserBehaviourTippedArrow extends BehaviorDefaultDispenseItem {
 
 	@Override
-	public ItemStack dispenseStack(IBlockSource block, ItemStack stack) {
+	public ItemStack dispenseStack(IBlockSource block, final ItemStack stack) {
 		return new BehaviorProjectileDispense() {
 
 			@Override
