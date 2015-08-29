@@ -2,6 +2,7 @@
 itemGroup.etfuturum=Et Futurum
 
 # Containers
+container.etfuturum.banner=Флаг
 container.enchant.lapis.one=1 лазурит
 container.enchant.lapis.many=Лазурита: %d
 container.enchant.level.one=1 уровень зачарования
@@ -12,6 +13,7 @@ container.enchant.clue=%s . . . ?
 entity.etfuturum.endermite.name=Чешуйница Края
 entity.etfuturum.wooden_armorstand.name=Стойка для брони
 entity.etfuturum.rabbit.name=Кролик
+entity.etfuturum.villager_zombie.name=Зомби-житель
 
 # Items
 item.etfuturum.mutton_raw.name=Сырая баранина
@@ -30,7 +32,7 @@ item.etfuturum.beetroot_soup.name=Борщ
 item.etfuturum.chorus_fruit.name=Плод коруса
 item.etfuturum.chorus_fruit_popped.name=Приготовленный плод коруса
 item.etfuturum.dragon_breath.name=Дыхание дракона
-potion.prefix.lingering=Стелющееся
+potion.prefix.lingering=Длительное
 
 # Arrows
 tipped_arrow.potion.nightVision.name=Стрела ночного зрения
@@ -68,7 +70,7 @@ tile.etfuturum.red_sandstone_stairs.name=Ступеньки из красног�
 tile.etfuturum.red_mushroom.name=Гриб
 tile.etfuturum.brown_mushroom.name=Гриб
 tile.etfuturum.coarse_dirt.name=Грубая земля
-tile.etfuturum.slime.name=Слизневый блок
+tile.etfuturum.slime.name=Блок слизи
 tile.etfuturum.sponge.name=Губка
 tile.etfuturum.sponge_wet.name=Мокрая губка
 tile.etfuturum.door_spruce.name=Дверь из ели
@@ -89,10 +91,10 @@ tile.etfuturum.fence_gate_acacia.name=Калитка из акации
 tile.etfuturum.fence_gate_dark_oak.name=Калитка из тёмного дуба
 tile.etfuturum.old_gravel.name=Старый гравий
 tile.etfuturum.beetroots.name=Свёкла
-tile.etfuturum.purpur_block.name=Фиолетовый блок
-tile.etfuturum.purpur_slab.name=Фиолетовая плита
-tile.etfuturum.purpur_pillar.name=Фиолетовая колонна
-tile.etfuturum.purpur_stairs.name=Фиолетовые ступеньки
+tile.etfuturum.purpur_block.name=Пурпурный блок
+tile.etfuturum.purpur_slab.name=Пурпурная плита
+tile.etfuturum.purpur_pillar.name=Пурпурная колонна
+tile.etfuturum.purpur_stairs.name=Пурпурные ступеньки
 tile.etfuturum.end_bricks.name=Кирпичи из камня Края
 tile.etfuturum.grass_path.name=Травяная тропинка
 tile.etfuturum.end_rod.name=Стержень Края
