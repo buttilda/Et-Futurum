@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class DispenserBehaviourLingeringPotion implements IBehaviorDispenseItem {
 
 	@Override
-	public ItemStack dispense(IBlockSource block, ItemStack stack) {
+	public ItemStack dispense(IBlockSource block, final ItemStack stack) {
 		return new BehaviorProjectileDispense() {
 
 			@Override
