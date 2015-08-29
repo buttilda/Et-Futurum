@@ -1,6 +1,7 @@
 package ganymedes01.etfuturum.core.proxy;
 
 import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.client.gui.inventory.GuiAnvil;
 import ganymedes01.etfuturum.client.gui.inventory.GuiEnchantment;
 import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.handlers.ServerEventHandler;
@@ -13,6 +14,7 @@ import ganymedes01.etfuturum.entities.EntityRabbit;
 import ganymedes01.etfuturum.entities.EntityTippedArrow;
 import ganymedes01.etfuturum.entities.EntityZombieVillager;
 import ganymedes01.etfuturum.entities.ModEntityList;
+import ganymedes01.etfuturum.inventory.ContainerAnvil;
 import ganymedes01.etfuturum.inventory.ContainerEnchantment;
 import ganymedes01.etfuturum.lib.GUIsID;
 import ganymedes01.etfuturum.tileentities.TileEntityBanner;
@@ -88,6 +90,8 @@ public class CommonProxy implements IGuiHandler {
 		switch (ID) {
 			case GUIsID.ENCHANTING_TABLE:
 				return new ContainerEnchantment(player.inventory, world, x, y, z);
+			case GUIsID.ANVIL:
+				return new ContainerAnvil(player, world, x, y, z);
 			default:
 				return null;
 		}
@@ -98,6 +102,8 @@ public class CommonProxy implements IGuiHandler {
 		switch (ID) {
 			case GUIsID.ENCHANTING_TABLE:
 				return new GuiEnchantment(player.inventory, world, null);
+			case GUIsID.ANVIL:
+				return new GuiAnvil(player, world, x, y, z);
 			default:
 				return null;
 		}

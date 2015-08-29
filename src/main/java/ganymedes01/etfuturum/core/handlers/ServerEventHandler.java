@@ -258,8 +258,6 @@ public class ServerEventHandler {
 
 	@SubscribeEvent
 	public void onPlayerInteract0(PlayerInteractEvent event) {
-		if (!EtFuturum.enableEnchants)
-			return;
 		if (event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
 			World world = event.world;
 			EntityPlayer player = event.entityPlayer;
@@ -271,13 +269,22 @@ public class ServerEventHandler {
 				return;
 			if (player.isSneaking())
 				return;
-			else {
+
+			if (EtFuturum.enableEnchants) {
 				TileEntityEnchantmentTable tile = Utils.getTileEntity(world, x, y, z, TileEntityEnchantmentTable.class);
 				if (tile != null && world.getBlock(x, y, z) == Blocks.enchanting_table) {
 					player.openGui(EtFuturum.instance, GUIsID.ENCHANTING_TABLE, world, x, y, z);
 					event.setCanceled(true);
+					return;
 				}
 			}
+
+			if (EtFuturum.enableAnvil)
+				if (world.getBlock(x, y, z) == Blocks.anvil) {
+					player.openGui(EtFuturum.instance, GUIsID.ANVIL, world, x, y, z);
+					event.setCanceled(true);
+					return;
+				}
 		}
 	}
 

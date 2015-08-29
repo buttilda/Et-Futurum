@@ -62,6 +62,7 @@ public class EtFuturum {
 	public static boolean enableCoarseDirt = true;
 	public static boolean enableRedSandstone = true;
 	public static boolean enableEnchants = true;
+	public static boolean enableAnvil = true;
 	public static boolean enableFences = true;
 	public static boolean enableSilkTouchingMushrooms = true;
 	public static boolean enableBanners = true;

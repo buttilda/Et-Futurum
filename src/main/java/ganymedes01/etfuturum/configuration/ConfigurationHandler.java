@@ -49,6 +49,7 @@ public class ConfigurationHandler {
 		EtFuturum.enableCoarseDirt = configBoolean("Coarse Dirt", true, EtFuturum.enableCoarseDirt);
 		EtFuturum.enableRedSandstone = configBoolean("Red Sandstone", true, EtFuturum.enableRedSandstone);
 		EtFuturum.enableEnchants = configBoolean("Enchanting Table", true, EtFuturum.enableEnchants);
+		EtFuturum.enableAnvil = configBoolean("Anvil", true, EtFuturum.enableAnvil);
 		EtFuturum.enableFences = configBoolean("Fences and Gates", true, EtFuturum.enableFences);
 		EtFuturum.enableSilkTouchingMushrooms = configBoolean("Mushroom Blocks", true, EtFuturum.enableSilkTouchingMushrooms);
 		EtFuturum.enableBanners = configBoolean("Banners", true, EtFuturum.enableBanners);
