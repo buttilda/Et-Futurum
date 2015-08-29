@@ -72,6 +72,7 @@ public class ConfigurationHandler {
 		EtFuturum.enableUpdatedFoodValues = configBoolean("Use updated food values", true, EtFuturum.enableUpdatedFoodValues);
 		EtFuturum.enableUpdatedHarvestLevels = configBoolean("Use updated harvest levels", true, EtFuturum.enableUpdatedHarvestLevels);
 		EtFuturum.enableVillagerZombies = configBoolean("Villager Zombies", true, EtFuturum.enableVillagerZombies);
+		EtFuturum.enableStoneBrickRecipes = configBoolean("Stone Brick Recipes", true, EtFuturum.enableStoneBrickRecipes);
 
 		EtFuturum.enableFancySkulls = configBoolean("Fancy Skulls", true, EtFuturum.enableFancySkulls);
 		EtFuturum.enableSkullDrop = configBoolean("Skulls drop from charged creeper kills", true, EtFuturum.enableSkullDrop);
