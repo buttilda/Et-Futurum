@@ -46,10 +46,14 @@ public class EntityTippedArrow extends EntityArrow implements IEntityAdditionalS
 		return effect;
 	}
 
+	private boolean isEffectValid() {
+		return effect != null && Potion.potionTypes[effect.getPotionID()] != null;
+	}
+
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if (effect != null) {
+		if (isEffectValid()) {
 			Color colour = new Color(Potion.potionTypes[effect.getPotionID()].getLiquidColor());
 			worldObj.spawnParticle("mobSpell", posX, posY, posZ, colour.getRed() / 255F, colour.getGreen() / 255F, colour.getBlue() / 255F);
 		}
@@ -77,7 +81,7 @@ public class EntityTippedArrow extends EntityArrow implements IEntityAdditionalS
 		} catch (Exception e) {
 		}
 
-		if (!worldObj.isRemote && inGround && arrowShake <= 0 && effect != null) {
+		if (!worldObj.isRemote && inGround && arrowShake <= 0 && isEffectValid()) {
 			boolean flag = canBePickedUp == 1 || canBePickedUp == 2 && entity.capabilities.isCreativeMode;
 
 			ItemStack stack = new ItemStack(ModItems.tipped_arrow);
