@@ -59,6 +59,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.brewing.PotionBrewEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
@@ -472,7 +473,7 @@ public class ServerEventHandler {
 		if (event.source instanceof EntityDamageSource) {
 			EntityDamageSource src = (EntityDamageSource) event.source;
 			Entity attacker = src.getSourceOfDamage();
-			if (attacker instanceof EntityPlayer) {
+			if (attacker instanceof EntityPlayer && !(attacker instanceof FakePlayer)) {
 				EntityPlayer player = (EntityPlayer) attacker;
 				Vec3 look = player.getLookVec();
 				look.rotateAroundY((float) Math.PI / 2);
