@@ -465,7 +465,7 @@ public class ServerEventHandler {
 	public void entityHurtEvent(LivingHurtEvent event) {
 		if (!EtFuturum.enableDmgIndicator)
 			return;
-		int amount = MathHelper.floor_float(event.ammount / 2F);
+		int amount = MathHelper.floor_float(Math.min(event.entityLiving.getHealth(), event.ammount) / 2F);
 		if (amount <= 0)
 			return;
 
