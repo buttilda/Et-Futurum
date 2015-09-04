@@ -428,22 +428,58 @@ public class ServerEventHandler {
 		ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
 		if (stack == null)
 			return;
+		if (!(event.target instanceof EntityAnimal))
+			return;
 
-		if (event.target instanceof EntityPig) {
-			if (stack.getItem() == ModItems.beetroot && EtFuturum.enableBeetroot)
-				setAnimalInLove((EntityPig) event.target, event.entityPlayer, stack);
-		} else if (event.target instanceof EntityChicken)
-			if (stack.getItem() == ModItems.beetroot_seeds && EtFuturum.enableBeetroot)
-				setAnimalInLove((EntityChicken) event.target, event.entityPlayer, stack);
+		EntityAnimal animal = (EntityAnimal) event.target;
+		if (!animal.isChild()) {
+			if (animal instanceof EntityPig) {
+				if (stack.getItem() == ModItems.beetroot && EtFuturum.enableBeetroot)
+					setAnimalInLove(animal, event.entityPlayer, stack);
+			} else if (animal instanceof EntityChicken)
+				if (stack.getItem() == ModItems.beetroot_seeds && EtFuturum.enableBeetroot)
+					setAnimalInLove(animal, event.entityPlayer, stack);
+		} else if (isFoodItem(animal, stack))
+			feedBaby(animal, event.entityPlayer, stack);
 	}
 
-	private void setAnimalInLove(EntityAnimal pig, EntityPlayer player, ItemStack stack) {
-		if (!pig.isChild() && !pig.isInLove()) {
-			pig.func_146082_f(player);
+	private void setAnimalInLove(EntityAnimal animal, EntityPlayer player, ItemStack stack) {
+		if (!animal.isInLove()) {
+			animal.func_146082_f(player);
 			if (!player.capabilities.isCreativeMode)
 				if (--stack.stackSize <= 0)
 					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 		}
+	}
+
+	private void feedBaby(EntityAnimal animal, EntityPlayer player, ItemStack stack) {
+		int currentAge = animal.getGrowingAge();
+		int age = (int) (-currentAge * 0.1F);
+		animal.setGrowingAge(currentAge + age);
+		player.swingItem();
+
+		Random itemRand = animal.worldObj.rand;
+		for (int i = 0; i < 3; i++) {
+			double d0 = itemRand.nextGaussian() * 0.02D;
+			double d1 = itemRand.nextGaussian() * 0.02D;
+			double d2 = itemRand.nextGaussian() * 0.02D;
+			animal.worldObj.spawnParticle("happyVillager", animal.posX + itemRand.nextFloat() * 0.5, animal.posY + 0.5 + itemRand.nextFloat() * 0.5, animal.posZ + itemRand.nextFloat() * 0.5, d0, d1, d2);
+		}
+
+		if (!player.capabilities.isCreativeMode)
+			if (--stack.stackSize <= 0)
+				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+	}
+
+	private boolean isFoodItem(EntityAnimal animal, ItemStack food) {
+		if (animal.isBreedingItem(food))
+			return true;
+		else if (animal instanceof EntityPig && food.getItem() == ModItems.beetroot && EtFuturum.enableBeetroot)
+			return true;
+		else if (animal instanceof EntityChicken && food.getItem() == ModItems.beetroot_seeds && EtFuturum.enableBeetroot)
+			return true;
+		else
+			return false;
 	}
 
 	@SubscribeEvent
