@@ -89,6 +89,7 @@ public class EtFuturum {
 	public static boolean enableUpdatedHarvestLevels = true;
 	public static boolean enableVillagerZombies = true;
 	public static boolean enableStoneBrickRecipes = true;
+	public static boolean enableBabyGrowthBoost = true;
 
 	public static int maxStonesPerCluster = 33;
 

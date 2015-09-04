@@ -439,7 +439,7 @@ public class ServerEventHandler {
 			} else if (animal instanceof EntityChicken)
 				if (stack.getItem() == ModItems.beetroot_seeds && EtFuturum.enableBeetroot)
 					setAnimalInLove(animal, event.entityPlayer, stack);
-		} else if (isFoodItem(animal, stack))
+		} else if (EtFuturum.enableBabyGrowthBoost && isFoodItem(animal, stack))
 			feedBaby(animal, event.entityPlayer, stack);
 	}
 
