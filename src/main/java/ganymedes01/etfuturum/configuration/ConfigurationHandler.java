@@ -74,6 +74,7 @@ public class ConfigurationHandler {
 		EtFuturum.enableVillagerZombies = configBoolean("Villager Zombies", true, EtFuturum.enableVillagerZombies);
 		EtFuturum.enableStoneBrickRecipes = configBoolean("Stone Brick Recipes", true, EtFuturum.enableStoneBrickRecipes);
 		EtFuturum.enableBabyGrowthBoost = configBoolean("Baby growth boost", true, EtFuturum.enableBabyGrowthBoost);
+		EtFuturum.enableVillagerTurnsIntoWitch = configBoolean("Villagers turn into Witches when struck by lightning", true, EtFuturum.enableVillagerTurnsIntoWitch);
 
 		EtFuturum.enableFancySkulls = configBoolean("Fancy Skulls", true, EtFuturum.enableFancySkulls);
 		EtFuturum.enableSkullDrop = configBoolean("Skulls drop from charged creeper kills", true, EtFuturum.enableSkullDrop);

@@ -35,11 +35,13 @@ import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -62,6 +64,7 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.brewing.PotionBrewEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -519,6 +522,20 @@ public class ServerEventHandler {
 					double z = event.entityLiving.posZ - amount * 0.35 * look.zCoord / 2 + i * 0.35 * look.zCoord;
 					EtFuturum.proxy.spawnParticle("damage_hearts", event.entityLiving.worldObj, x, y, z);
 				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void entityStruckByLightning(EntityStruckByLightningEvent event) {
+		if (EtFuturum.enableVillagerTurnsIntoWitch && event.entity instanceof EntityVillager) {
+			EntityVillager villager = (EntityVillager) event.entity;
+			if (!villager.worldObj.isRemote) {
+				EntityWitch witch = new EntityWitch(villager.worldObj);
+				witch.copyLocationAndAnglesFrom(villager);
+				witch.onSpawnWithEgg(null);
+				villager.worldObj.spawnEntityInWorld(witch);
+				villager.setDead();
 			}
 		}
 	}
