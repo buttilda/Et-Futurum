@@ -83,7 +83,7 @@ public class OceanMonument {
 					block = Blocks.gold_block;
 					break;
 				case 5:
-					block = ModBlocks.sponge;
+					block = EtFuturum.enableSponge ? ModBlocks.sponge : Blocks.sponge;
 					meta = 1;
 					break;
 				case 6:
