@@ -1,15 +1,35 @@
 package ganymedes01.etfuturum.core.handlers;
 
 import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.ModBlocks;
+import ganymedes01.etfuturum.blocks.PrismarineBlocks;
 import ganymedes01.etfuturum.client.OpenGLHelper;
+import ganymedes01.etfuturum.client.PrismarineIcon;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent.SetArmorModel;
+import net.minecraftforge.client.event.TextureStitchEvent;
 
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ClientEventHandler {
+
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void loadTextures(TextureStitchEvent.Pre event) {
+		if (EtFuturum.enablePrismarine)
+			if (event.map.getTextureType() == 0) {
+				TextureAtlasSprite icon = new PrismarineIcon("prismarine_rough");
+				if (event.map.setTextureEntry("prismarine_rough", icon))
+					((PrismarineBlocks) ModBlocks.prismarine).setIcon(0, icon);
+				else
+					((PrismarineBlocks) ModBlocks.prismarine).setIcon(0, event.map.registerIcon("prismarine_rough"));
+			}
+	}
 
 	@SubscribeEvent
 	public void renderPlayerEventPre(RenderPlayerEvent.Pre event) {

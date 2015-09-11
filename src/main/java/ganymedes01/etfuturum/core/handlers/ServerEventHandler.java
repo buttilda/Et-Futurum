@@ -3,8 +3,6 @@ package ganymedes01.etfuturum.core.handlers;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.ModItems;
-import ganymedes01.etfuturum.blocks.PrismarineBlocks;
-import ganymedes01.etfuturum.client.PrismarineIcon;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.entities.EntityEndermite;
 import ganymedes01.etfuturum.entities.EntityRabbit;
@@ -25,7 +23,6 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -60,7 +57,6 @@ import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.brewing.PotionBrewEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -81,8 +77,6 @@ import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ServerEventHandler {
 
@@ -182,19 +176,6 @@ public class ServerEventHandler {
 				return;
 			}
 		}
-	}
-
-	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
-	public void loadTextures(TextureStitchEvent.Pre event) {
-		if (EtFuturum.enablePrismarine)
-			if (event.map.getTextureType() == 0) {
-				TextureAtlasSprite icon = new PrismarineIcon("prismarine_rough");
-				if (event.map.setTextureEntry("prismarine_rough", icon))
-					((PrismarineBlocks) ModBlocks.prismarine).setIcon(0, icon);
-				else
-					((PrismarineBlocks) ModBlocks.prismarine).setIcon(0, event.map.registerIcon("prismarine_rough"));
-			}
 	}
 
 	@SubscribeEvent
