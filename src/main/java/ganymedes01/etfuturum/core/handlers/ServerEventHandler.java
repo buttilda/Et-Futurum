@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Random;
 
@@ -45,6 +46,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemSpade;
@@ -74,6 +76,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -297,7 +300,7 @@ public class ServerEventHandler {
 				if (event.action == Action.RIGHT_CLICK_BLOCK)
 					if (world.getBlock(event.x, event.y, event.z) == Blocks.grass) {
 						ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
-						if (stack != null && stack.getItem() instanceof ItemSpade) {
+						if (stack != null && (stack.getItem() instanceof ItemSpade || isTinkersShovel(stack))) {
 							world.setBlock(event.x, event.y, event.z, ModBlocks.grass_path);
 							event.entityPlayer.swingItem();
 							stack.damageItem(1, event.entityPlayer);
@@ -305,6 +308,20 @@ public class ServerEventHandler {
 						}
 					}
 			}
+	}
+
+	private boolean isTinkersShovel(ItemStack stack) {
+		if (Loader.isModLoaded("TConstruct"))
+			try {
+				Class<?> TinkerTools = Class.forName("tconstruct.tools.TinkerTools");
+				Field field = TinkerTools.getDeclaredField("shovel");
+				field.setAccessible(true);
+				Item cleaver = (Item) field.get(null);
+
+				return cleaver == stack.getItem();
+			} catch (Exception e) {
+			}
+		return false;
 	}
 
 	@SubscribeEvent
