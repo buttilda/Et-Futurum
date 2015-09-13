@@ -13,11 +13,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelRabbit extends ModelBase {
 
-	private ModelRenderer rabbitLeftFoot, rabbitRightFoot;
-	private ModelRenderer rabbitLeftThigh, rabbitRightThigh;
-	private ModelRenderer rabbitBody, rabbitTail;
-	private ModelRenderer rabbitLeftArm, rabbitRightArm;
-	private ModelRenderer rabbitHead, rabbitRightEar, rabbitLeftEar, rabbitNose;
+	protected ModelRenderer rabbitLeftFoot, rabbitRightFoot;
+	protected ModelRenderer rabbitLeftThigh, rabbitRightThigh;
+	protected ModelRenderer rabbitBody, rabbitTail;
+	protected ModelRenderer rabbitLeftArm, rabbitRightArm;
+	protected ModelRenderer rabbitHead, rabbitRightEar, rabbitLeftEar, rabbitNose;
 	private float field_178701_m = 0.0F;
 
 	public ModelRabbit() {
