@@ -100,7 +100,6 @@ public class TileEntityFancySkullRenderer extends TileEntitySpecialRenderer {
 		OpenGLHelper.scale(-1.0F, -1.0F, 1.0F);
 		OpenGLHelper.enableAlpha();
 		model.render(rotation);
-		OpenGLHelper.disableAlpha();
 		OpenGLHelper.popMatrix();
 	}
 
