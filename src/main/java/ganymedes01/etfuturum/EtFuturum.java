@@ -21,6 +21,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraftforge.oredict.OreDictionary;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -94,6 +95,8 @@ public class EtFuturum {
 
 	public static int maxStonesPerCluster = 33;
 
+	public static boolean isTinkersConstructLoaded = false;
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		ConfigurationHandler.INSTANCE.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MOD_ID + ".cfg"));
@@ -125,6 +128,8 @@ public class EtFuturum {
 			GameRegistry.registerItem(ModEntityList.entity_egg, "entity_egg");
 			OreDictionary.registerOre("mobEgg", ModEntityList.entity_egg);
 		}
+
+		isTinkersConstructLoaded = Loader.isModLoaded("TConstruct");
 	}
 
 	@EventHandler

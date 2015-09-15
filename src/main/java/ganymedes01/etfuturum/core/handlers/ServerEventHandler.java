@@ -76,12 +76,13 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class ServerEventHandler {
+
+	private Item tinkersShovel;
 
 	@SubscribeEvent
 	public void livingUpdate(LivingUpdateEvent event) {
@@ -311,16 +312,18 @@ public class ServerEventHandler {
 	}
 
 	private boolean isTinkersShovel(ItemStack stack) {
-		if (Loader.isModLoaded("TConstruct"))
-			try {
-				Class<?> TinkerTools = Class.forName("tconstruct.tools.TinkerTools");
-				Field field = TinkerTools.getDeclaredField("shovel");
-				field.setAccessible(true);
-				Item cleaver = (Item) field.get(null);
+		if (EtFuturum.isTinkersConstructLoaded) {
+			if (tinkersShovel == null)
+				try {
+					Class<?> TinkerTools = Class.forName("tconstruct.tools.TinkerTools");
+					Field field = TinkerTools.getDeclaredField("shovel");
+					field.setAccessible(true);
+					tinkersShovel = (Item) field.get(null);
+				} catch (Exception e) {
+				}
+			return tinkersShovel == stack.getItem();
+		}
 
-				return cleaver == stack.getItem();
-			} catch (Exception e) {
-			}
 		return false;
 	}
 
