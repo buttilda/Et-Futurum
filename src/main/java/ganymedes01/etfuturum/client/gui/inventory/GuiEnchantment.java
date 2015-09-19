@@ -3,6 +3,7 @@ package ganymedes01.etfuturum.client.gui.inventory;
 import ganymedes01.etfuturum.client.OpenGLHelper;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.inventory.ContainerEnchantment;
+import ganymedes01.etfuturum.lib.Reference;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -33,7 +34,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiEnchantment extends GuiContainer {
 
-	private static final ResourceLocation field_147078_C = Utils.getResource("textures/gui/container/enchanting_table.png");
+	private static final ResourceLocation field_147078_C = Utils.getResource(Reference.MOD_ID + ":textures/gui/container/enchanting_table.png");
 	private static final ResourceLocation field_147070_D = Utils.getResource("textures/entity/enchanting_table_book.png");
 	private static final ModelBook field_147072_E = new ModelBook();
 	private final InventoryPlayer field_175379_F;
