@@ -20,7 +20,6 @@ public class SlimeBlock extends Block implements IConfigurable {
 	public SlimeBlock() {
 		super(Material.clay);
 		setHardness(0.0F);
-		slipperiness = 0.0F;
 		setBlockTextureName("slime");
 		setStepSound(ModSounds.soundSlime);
 		setBlockName(Utils.getUnlocalisedName("slime"));
@@ -29,7 +28,7 @@ public class SlimeBlock extends Block implements IConfigurable {
 
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-		final float f = 0.125F;
+		float f = 0.125F;
 		return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1 - f, z + 1);
 	}
 
