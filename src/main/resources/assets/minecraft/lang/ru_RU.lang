@@ -100,6 +100,7 @@ tile.etfuturum.grass_path.name=Травяная тропинка
 tile.etfuturum.end_rod.name=Стержень Края
 tile.etfuturum.chorus_flower.name=Цветок коруса
 tile.etfuturum.chorus_plant.name=Растение коруса
+tile.etfuturum.crying_obsidian.name=Плачущий обсидиан
 
 # Banners
 item.banner.black.name=Чёрный флаг
