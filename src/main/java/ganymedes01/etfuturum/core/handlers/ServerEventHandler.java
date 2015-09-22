@@ -433,7 +433,7 @@ public class ServerEventHandler {
 				EntityAITaskEntry entry = (EntityAITaskEntry) obj;
 				if (entry.action instanceof EntityAIOpenDoor) {
 					villager.tasks.removeTask(entry.action);
-					villager.tasks.addTask(4, new EntityAIOpenCustomDoor(villager, true));
+					villager.tasks.addTask(entry.priority, new EntityAIOpenCustomDoor(villager, true));
 					break;
 				}
 			}
