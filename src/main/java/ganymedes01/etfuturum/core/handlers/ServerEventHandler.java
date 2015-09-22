@@ -8,6 +8,7 @@ import ganymedes01.etfuturum.entities.EntityEndermite;
 import ganymedes01.etfuturum.entities.EntityRabbit;
 import ganymedes01.etfuturum.entities.EntityTippedArrow;
 import ganymedes01.etfuturum.entities.EntityZombieVillager;
+import ganymedes01.etfuturum.entities.ai.EntityAIOpenCustomDoor;
 import ganymedes01.etfuturum.inventory.ContainerEnchantment;
 import ganymedes01.etfuturum.items.TippedArrow;
 import ganymedes01.etfuturum.lib.GUIsID;
@@ -28,7 +29,9 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.EntityAIOpenDoor;
 import net.minecraft.entity.ai.EntityAITargetNonTamed;
+import net.minecraft.entity.ai.EntityAITasks.EntityAITaskEntry;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
@@ -424,6 +427,16 @@ public class ServerEventHandler {
 			EntityWolf wolf = (EntityWolf) event.entity;
 			if (EtFuturum.enableRabbit)
 				wolf.targetTasks.addTask(4, new EntityAITargetNonTamed(wolf, EntityRabbit.class, 200, false));
+		} else if (event.entity instanceof EntityVillager) {
+			EntityVillager villager = (EntityVillager) event.entity;
+			for (Object obj : villager.tasks.taskEntries) {
+				EntityAITaskEntry entry = (EntityAITaskEntry) obj;
+				if (entry.action instanceof EntityAIOpenDoor) {
+					villager.tasks.removeTask(entry.action);
+					villager.tasks.addTask(4, new EntityAIOpenCustomDoor(villager, true));
+					break;
+				}
+			}
 		}
 	}
 
