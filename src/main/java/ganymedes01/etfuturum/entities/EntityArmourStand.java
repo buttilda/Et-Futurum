@@ -560,4 +560,8 @@ public class EntityArmourStand extends EntityLiving {
 	public Rotations getRightLegRotation() {
 		return rightLegRotation;
 	}
+
+	@Override
+	protected void updatePotionEffects() {
+	}
 }
