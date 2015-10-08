@@ -136,8 +136,8 @@ public class ModRecipes {
 			addShapedRecipe(new ItemStack(ModBlocks.sea_lantern), "xyx", "yyy", "xyx", 'x', "shardPrismarine", 'y', "crystalPrismarine");
 
 			if (EtFuturum.enableRecipeForPrismarine) {
-				addShapedRecipe(new ItemStack(ModItems.prismarine_shard, 1, 4), "xy", "zx", 'x', "gemQuartz", 'y', "dyeBlue", 'z', "dyeGreen");
-				addShapedRecipe(new ItemStack(ModItems.prismarine_crystals, 1, 4), "xy", "yx", 'x', "gemQuartz", 'y', "dustGlowstone");
+				addShapedRecipe(new ItemStack(ModItems.prismarine_shard, 4), "xy", "zx", 'x', "gemQuartz", 'y', "dyeBlue", 'z', "dyeGreen");
+				addShapedRecipe(new ItemStack(ModItems.prismarine_crystals, 4), "xy", "yx", 'x', "gemQuartz", 'y', "dustGlowstone");
 			}
 		}
 
