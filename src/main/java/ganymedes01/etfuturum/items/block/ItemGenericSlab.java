@@ -25,7 +25,7 @@ public class ItemGenericSlab extends ItemBlock {
 			int meta = world.getBlockMetadata(x, y, z);
 			boolean flag = meta == 1;
 
-			if ((side == 1 && !flag || side == 0 && flag) && block != field_150939_a ^ meta != 2) {
+			if (block == field_150939_a && (side == 1 && !flag || side == 0 && flag)) {
 				if (world.checkNoEntityCollision(field_150939_a.getCollisionBoundingBoxFromPool(world, x, y, z)) && world.setBlock(x, y, z, field_150939_a, 2, 3)) {
 					world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, field_150939_a.stepSound.func_150496_b(), (field_150939_a.stepSound.getVolume() + 1.0F) / 2.0F, field_150939_a.stepSound.getPitch() * 0.8F);
 					stack.stackSize--;
