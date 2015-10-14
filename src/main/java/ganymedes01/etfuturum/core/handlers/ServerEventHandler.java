@@ -2,6 +2,7 @@ package ganymedes01.etfuturum.core.handlers;
 
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
+import ganymedes01.etfuturum.ModEnchantments;
 import ganymedes01.etfuturum.ModItems;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.entities.EntityEndermite;
@@ -89,10 +90,10 @@ public class ServerEventHandler {
 
 	@SubscribeEvent
 	public void livingUpdate(LivingUpdateEvent event) {
-		if (EtFuturum.enableVillagerZombies) {
-			if (event.entityLiving.worldObj.isRemote)
-				return;
-			if (event.entityLiving.getClass() == EntityZombie.class) {
+		ModEnchantments.onLivingUpdate(event.entityLiving);
+
+		if (EtFuturum.enableVillagerZombies)
+			if (!event.entityLiving.worldObj.isRemote && event.entityLiving.getClass() == EntityZombie.class) {
 				EntityZombie zombie = (EntityZombie) event.entityLiving;
 				if (zombie.isVillager()) {
 					EntityZombieVillager villagerZombie = new EntityZombieVillager(zombie.worldObj);
@@ -103,7 +104,6 @@ public class ServerEventHandler {
 					zombie.setDead();
 				}
 			}
-		}
 	}
 
 	@SubscribeEvent

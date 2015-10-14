@@ -92,6 +92,7 @@ public class EtFuturum {
 	public static boolean enableStoneBrickRecipes = true;
 	public static boolean enableBabyGrowthBoost = true;
 	public static boolean enableVillagerTurnsIntoWitch = true;
+	public static boolean enableElytra = true;
 
 	public static int maxStonesPerCluster = 33;
 
@@ -105,6 +106,7 @@ public class EtFuturum {
 
 		ModBlocks.init();
 		ModItems.init();
+		ModEnchantments.init();
 
 		OceanMonument.makeMap();
 

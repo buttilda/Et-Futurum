@@ -1,6 +1,10 @@
 # Creative Tab
 itemGroup.etfuturum=Et Futurum
 
+# Enchantments
+enchantment.frost_walker=Frost Walker
+enchantment.mending=Mending
+
 # Containers
 container.etfuturum.banner=Banner
 container.enchant.lapis.one=1 Lapis Lazuli
@@ -32,6 +36,7 @@ item.etfuturum.beetroot_soup.name=Beetroot Soup
 item.etfuturum.chorus_fruit.name=Chorus Fruit
 item.etfuturum.chorus_fruit_popped.name=Popped Chorus Fruit
 item.etfuturum.dragon_breath.name=Dragon's Breath
+item.etfuturum.elytra.name=Elytra
 potion.prefix.lingering=Lingering
 
 # Arrows
