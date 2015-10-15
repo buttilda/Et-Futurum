@@ -78,6 +78,7 @@ import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
+import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.common.eventhandler.Event.Result;
@@ -87,6 +88,11 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class ServerEventHandler {
 
 	private Item tinkersShovel;
+
+	@SubscribeEvent
+	public void onPlayerPickXP(PlayerPickupXpEvent event) {
+		ModEnchantments.onPlayerPickupXP(event);
+	}
 
 	@SubscribeEvent
 	public void livingUpdate(LivingUpdateEvent event) {
