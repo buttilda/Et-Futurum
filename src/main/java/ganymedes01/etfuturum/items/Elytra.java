@@ -8,7 +8,6 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -31,13 +30,8 @@ public class Elytra extends ItemArmor implements IConfigurable {
 	}
 
 	@Override
-	public boolean getIsRepairable(ItemStack item, ItemStack material) {
-		return material.getItem() == Items.leather;
-	}
-
-	@Override
-	public boolean isValidArmor(ItemStack stack, int armorType, Entity entity) {
-		return armorType == 1;
+	public boolean getIsRepairable(ItemStack stack, ItemStack material) {
+		return ArmorMaterial.CLOTH.func_151685_b() == material.getItem();
 	}
 
 	@Override

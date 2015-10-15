@@ -95,6 +95,7 @@ public class EtFuturum {
 	public static boolean enableElytra = true;
 	public static boolean enableFrostWalker = true;
 	public static boolean enableMending = true;
+	public static boolean enableBrewingStands = true;
 
 	public static int maxStonesPerCluster = 33;
 

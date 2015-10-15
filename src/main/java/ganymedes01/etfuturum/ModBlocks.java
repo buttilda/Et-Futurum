@@ -16,6 +16,7 @@ import ganymedes01.etfuturum.blocks.FrostedIce;
 import ganymedes01.etfuturum.blocks.GrassPath;
 import ganymedes01.etfuturum.blocks.InvertedDaylightDetector;
 import ganymedes01.etfuturum.blocks.IronTrapdoor;
+import ganymedes01.etfuturum.blocks.NewBrewingStand;
 import ganymedes01.etfuturum.blocks.OldGravel;
 import ganymedes01.etfuturum.blocks.PrismarineBlocks;
 import ganymedes01.etfuturum.blocks.PurpurBlock;
@@ -67,6 +68,7 @@ public class ModBlocks {
 	public static final Block chorus_flower = new ChorusFlower();
 	public static final Block crying_obsidian = new CryingObsidian();
 	public static final Block frosted_ice = new FrostedIce();
+	public static final Block brewing_stand = new NewBrewingStand();
 
 	public static final Block[] doors = new Block[BlockWood.field_150096_a.length - 1];
 	public static final Block[] fences = new Block[BlockWood.field_150096_a.length];

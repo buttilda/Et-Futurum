@@ -3,6 +3,7 @@ package ganymedes01.etfuturum.core.proxy;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.client.gui.inventory.GuiAnvil;
 import ganymedes01.etfuturum.client.gui.inventory.GuiEnchantment;
+import ganymedes01.etfuturum.client.gui.inventory.GuiNewBrewingStand;
 import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.handlers.ServerEventHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
@@ -16,9 +17,11 @@ import ganymedes01.etfuturum.entities.EntityZombieVillager;
 import ganymedes01.etfuturum.entities.ModEntityList;
 import ganymedes01.etfuturum.inventory.ContainerAnvil;
 import ganymedes01.etfuturum.inventory.ContainerEnchantment;
+import ganymedes01.etfuturum.inventory.ContainerNewBrewingStand;
 import ganymedes01.etfuturum.lib.GUIsID;
 import ganymedes01.etfuturum.tileentities.TileEntityBanner;
 import ganymedes01.etfuturum.tileentities.TileEntityEndRod;
+import ganymedes01.etfuturum.tileentities.TileEntityNewBrewingStand;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -53,6 +56,8 @@ public class CommonProxy implements IGuiHandler {
 			GameRegistry.registerTileEntity(TileEntityEndRod.class, Utils.getUnlocalisedName("end_rod"));
 		if (EtFuturum.enableTippedArrows)
 			ModEntityList.registerEntity(EntityTippedArrow.class, "tipped_arrow", 2, EtFuturum.instance, 64, 20, true);
+		if (EtFuturum.enableBrewingStands)
+			GameRegistry.registerTileEntity(TileEntityNewBrewingStand.class, Utils.getUnlocalisedName("brewing_stand"));
 
 		if (EtFuturum.enableRabbit) {
 			ModEntityList.registerEntity(EntityRabbit.class, "rabbit", 3, EtFuturum.instance, 80, 3, true, 10051392, 7555121);
@@ -92,6 +97,8 @@ public class CommonProxy implements IGuiHandler {
 				return new ContainerEnchantment(player.inventory, world, x, y, z);
 			case GUIsID.ANVIL:
 				return new ContainerAnvil(player, world, x, y, z);
+			case GUIsID.BREWING_STAND:
+				return new ContainerNewBrewingStand(player.inventory, (TileEntityNewBrewingStand) world.getTileEntity(x, y, z));
 			default:
 				return null;
 		}
@@ -104,6 +111,8 @@ public class CommonProxy implements IGuiHandler {
 				return new GuiEnchantment(player.inventory, world, null);
 			case GUIsID.ANVIL:
 				return new GuiAnvil(player, world, x, y, z);
+			case GUIsID.BREWING_STAND:
+				return new GuiNewBrewingStand(player.inventory, (TileEntityNewBrewingStand) world.getTileEntity(x, y, z));
 			default:
 				return null;
 		}

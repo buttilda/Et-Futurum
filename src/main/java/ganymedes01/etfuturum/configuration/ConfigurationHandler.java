@@ -86,6 +86,7 @@ public class ConfigurationHandler {
 		EtFuturum.enableFrostWalker = configBoolean("Frost Walker", true, EtFuturum.enableFrostWalker);
 		FrostWalker.ID = configInteger("Frost Walker ID", true, FrostWalker.ID);
 		Mending.ID = configInteger("Mending ID", true, Mending.ID);
+		EtFuturum.enableBrewingStands = configBoolean("Brewing Stands", true, EtFuturum.enableBrewingStands);
 
 		EtFuturum.maxStonesPerCluster = configInteger("Max number of 1.8 stones in a cluster", true, EtFuturum.maxStonesPerCluster);
 
