@@ -1,6 +1,8 @@
 package ganymedes01.etfuturum.configuration;
 
 import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.enchantment.FrostWalker;
+import ganymedes01.etfuturum.enchantment.Mending;
 import ganymedes01.etfuturum.lib.Reference;
 
 import java.io.File;
@@ -80,6 +82,9 @@ public class ConfigurationHandler {
 		EtFuturum.enableBurnableBlocks = configBoolean("Fences, gates and dead bushes burn", true, EtFuturum.enableBurnableBlocks);
 		EtFuturum.enableFrostWalker = configBoolean("Frost Walker", true, EtFuturum.enableFrostWalker);
 		EtFuturum.enableMending = configBoolean("Mending", true, EtFuturum.enableMending);
+		EtFuturum.enableFrostWalker = configBoolean("Frost Walker", true, EtFuturum.enableFrostWalker);
+		FrostWalker.ID = configInteger("Frost Walker ID", true, FrostWalker.ID);
+		Mending.ID = configInteger("Mending ID", true, Mending.ID);
 
 		EtFuturum.maxStonesPerCluster = configInteger("Max number of 1.8 stones in a cluster", true, EtFuturum.maxStonesPerCluster);
 
