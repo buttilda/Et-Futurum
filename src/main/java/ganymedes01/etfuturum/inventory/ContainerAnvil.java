@@ -38,8 +38,6 @@ public class ContainerAnvil extends ContainerRepair {
 		ItemStack itemstack = inputSlots.getStackInSlot(0);
 		maximumCost = 1;
 		int i = 0;
-		byte b0 = 0;
-		byte b1 = 0;
 
 		if (itemstack == null) {
 			outputSlot.setInventorySlotContents(0, null);
@@ -49,12 +47,12 @@ public class ContainerAnvil extends ContainerRepair {
 			ItemStack itemstack2 = inputSlots.getStackInSlot(1);
 			Map<Integer, Integer> map = EnchantmentHelper.getEnchantments(itemstack1);
 			boolean flag7 = false;
-			int i2 = b0 + itemstack.getRepairCost() + (itemstack2 == null ? 0 : itemstack2.getRepairCost());
+			int cost = itemstack.getRepairCost() + (itemstack2 == null ? 0 : itemstack2.getRepairCost());
 			stackSizeToBeUsedInRepair = 0;
 			int j;
 
 			if (itemstack2 != null) {
-				if (!ForgeHooks.onAnvilChange(this, itemstack, itemstack2, outputSlot, repairedItemName, i2))
+				if (!ForgeHooks.onAnvilChange(this, itemstack, itemstack2, outputSlot, repairedItemName, cost))
 					return;
 				flag7 = itemstack2.getItem() == Items.enchanted_book && Items.enchanted_book.func_92110_g(itemstack2).tagCount() > 0;
 				int k;
@@ -72,7 +70,7 @@ public class ContainerAnvil extends ContainerRepair {
 					for (k = 0; j > 0 && k < itemstack2.stackSize; ++k) {
 						l = itemstack1.getItemDamage() - j;
 						itemstack1.setItemDamage(l);
-						++i;
+						i++;
 						j = Math.min(itemstack1.getItemDamage(), itemstack1.getMaxDamage() / 4);
 					}
 
@@ -135,7 +133,7 @@ public class ContainerAnvil extends ContainerRepair {
 								if (l1 != l && !(enchantment.canApplyTogether(e2) && e2.canApplyTogether(enchantment))) //Forge BugFix: Let Both enchantments veto being together
 								{
 									flag8 = false;
-									++i;
+									i++;
 								}
 							}
 
@@ -181,36 +179,27 @@ public class ContainerAnvil extends ContainerRepair {
 				itemstack1 = null;
 
 			if (StringUtils.isBlank(repairedItemName)) {
-				if (itemstack.hasDisplayName()) {
-					b1 = 1;
-					i += b1;
+				if (itemstack.hasDisplayName())
 					itemstack1.func_135074_t();
-				}
-			} else if (!repairedItemName.equals(itemstack.getDisplayName())) {
-				b1 = 1;
-				i += b1;
+			} else if (!repairedItemName.equals(itemstack.getDisplayName()))
 				itemstack1.setStackDisplayName(repairedItemName);
-			}
 
-			maximumCost = i2 + i;
+			maximumCost = cost + i;
 
 			if (i <= 0)
 				itemstack1 = null;
-
-			if (b1 == i && b1 > 0 && maximumCost >= 40)
-				maximumCost = 39;
 
 			if (maximumCost >= 40 && !player.capabilities.isCreativeMode)
 				itemstack1 = null;
 
 			if (itemstack1 != null) {
-				j = itemstack1.getRepairCost();
+				int repairCost = itemstack1.getRepairCost();
 
-				if (itemstack2 != null && j < itemstack2.getRepairCost())
-					j = itemstack2.getRepairCost();
+				if (itemstack2 != null && repairCost < itemstack2.getRepairCost())
+					repairCost = itemstack2.getRepairCost();
 
-				j = j * 2 + 1;
-				itemstack1.setRepairCost(j);
+				repairCost = repairCost * 2 + 1;
+				itemstack1.setRepairCost(repairCost);
 				EnchantmentHelper.setEnchantments(map, itemstack1);
 			}
 
