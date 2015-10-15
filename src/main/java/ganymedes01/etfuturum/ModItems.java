@@ -5,6 +5,7 @@ import ganymedes01.etfuturum.items.BeetrootSeeds;
 import ganymedes01.etfuturum.items.BeetrootSoup;
 import ganymedes01.etfuturum.items.ChorusFruit;
 import ganymedes01.etfuturum.items.DragonBreath;
+import ganymedes01.etfuturum.items.Elytra;
 import ganymedes01.etfuturum.items.ItemArmourStand;
 import ganymedes01.etfuturum.items.LingeringPotion;
 import ganymedes01.etfuturum.items.MuttonCooked;
@@ -44,6 +45,7 @@ public class ModItems {
 	public static final Item tipped_arrow = new TippedArrow();
 	public static final Item lingering_potion = new LingeringPotion();
 	public static final Item dragon_breath = new DragonBreath();
+	public static final Item elytra = new Elytra();
 
 	public static void init() {
 		try {
