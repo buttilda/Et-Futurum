@@ -92,7 +92,8 @@ public class EtFuturum {
 	public static boolean enableStoneBrickRecipes = true;
 	public static boolean enableBabyGrowthBoost = true;
 	public static boolean enableVillagerTurnsIntoWitch = true;
-	public static boolean enableElytra = true;
+	public static boolean enableFrostWalker = true;
+	public static boolean enableMending = true;
 
 	public static int maxStonesPerCluster = 33;
 

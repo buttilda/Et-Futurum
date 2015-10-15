@@ -18,13 +18,17 @@ public class ModEnchantments {
 	public static Enchantment mending;
 
 	public static void init() {
-		frostWalker = new FrostWalker();
-		mending = new Mending();
+		if (EtFuturum.enableFrostWalker)
+			frostWalker = new FrostWalker();
+		if (EtFuturum.enableMending)
+			mending = new Mending();
 	}
 
 	// Frost Walker logic
 	public static void onLivingUpdate(EntityLivingBase entity) {
 		if (entity.worldObj.isRemote)
+			return;
+		if (!EtFuturum.enableFrostWalker)
 			return;
 
 		ItemStack boots = entity.getEquipmentInSlot(1);
@@ -51,6 +55,8 @@ public class ModEnchantments {
 		EntityPlayer player = event.entityPlayer;
 		EntityXPOrb orb = event.orb;
 		if (player.worldObj.isRemote)
+			return;
+		if (!EtFuturum.enableMending)
 			return;
 
 		ItemStack[] stacks = new ItemStack[5];

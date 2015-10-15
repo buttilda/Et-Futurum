@@ -75,10 +75,11 @@ public class ConfigurationHandler {
 		EtFuturum.enableStoneBrickRecipes = configBoolean("Stone Brick Recipes", true, EtFuturum.enableStoneBrickRecipes);
 		EtFuturum.enableBabyGrowthBoost = configBoolean("Baby growth boost", true, EtFuturum.enableBabyGrowthBoost);
 		EtFuturum.enableVillagerTurnsIntoWitch = configBoolean("Villagers turn into Witches when struck by lightning", true, EtFuturum.enableVillagerTurnsIntoWitch);
-
 		EtFuturum.enableFancySkulls = configBoolean("Fancy Skulls", true, EtFuturum.enableFancySkulls);
 		EtFuturum.enableSkullDrop = configBoolean("Skulls drop from charged creeper kills", true, EtFuturum.enableSkullDrop);
 		EtFuturum.enableBurnableBlocks = configBoolean("Fences, gates and dead bushes burn", true, EtFuturum.enableBurnableBlocks);
+		EtFuturum.enableFrostWalker = configBoolean("Frost Walker", true, EtFuturum.enableFrostWalker);
+		EtFuturum.enableMending = configBoolean("Mending", true, EtFuturum.enableMending);
 
 		EtFuturum.maxStonesPerCluster = configInteger("Max number of 1.8 stones in a cluster", true, EtFuturum.maxStonesPerCluster);
 
