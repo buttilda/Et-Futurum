@@ -2,6 +2,7 @@ package ganymedes01.etfuturum.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class FrostWalker extends Enchantment {
@@ -21,6 +22,6 @@ public class FrostWalker extends Enchantment {
 
 	@Override
 	public boolean canApplyAtEnchantingTable(ItemStack stack) {
-		return false;
+		return stack != null && stack.getItem() == Items.book;
 	}
 }
