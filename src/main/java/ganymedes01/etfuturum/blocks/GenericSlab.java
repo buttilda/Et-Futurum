@@ -17,6 +17,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -29,6 +30,12 @@ public abstract class GenericSlab extends Block implements ISubBlocksBlock, ICon
 		this.base = base;
 		setLightOpacity(0);
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+	}
+
+	@Override
+	public boolean isSideSolid(IBlockAccess world, int x, int y, int z, ForgeDirection side) {
+		int meta = world.getBlockMetadata(x, y, z);
+		return meta == 2 || side == ForgeDirection.UP && meta == 1 || side == ForgeDirection.DOWN && meta == 0;
 	}
 
 	@Override
