@@ -6,6 +6,7 @@ import ganymedes01.etfuturum.client.gui.inventory.GuiEnchantment;
 import ganymedes01.etfuturum.client.gui.inventory.GuiNewBrewingStand;
 import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.handlers.ServerEventHandler;
+import ganymedes01.etfuturum.core.handlers.WorldTickEventHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.entities.EntityArmourStand;
 import ganymedes01.etfuturum.entities.EntityEndermite;
@@ -41,6 +42,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class CommonProxy implements IGuiHandler {
 
 	public void registerEvents() {
+		FMLCommonHandler.instance().bus().register(new WorldTickEventHandler());
 		FMLCommonHandler.instance().bus().register(ConfigurationHandler.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
 	}
