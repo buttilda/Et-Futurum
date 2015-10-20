@@ -2,7 +2,6 @@ package ganymedes01.etfuturum.core.proxy;
 
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
-import ganymedes01.etfuturum.client.particle.BlackHeartFX;
 import ganymedes01.etfuturum.client.renderer.block.BlockChestRenderer;
 import ganymedes01.etfuturum.client.renderer.block.BlockChorusFlowerRender;
 import ganymedes01.etfuturum.client.renderer.block.BlockChorusPlantRender;
@@ -30,12 +29,9 @@ import ganymedes01.etfuturum.entities.EntityRabbit;
 import ganymedes01.etfuturum.entities.EntityZombieVillager;
 import ganymedes01.etfuturum.tileentities.TileEntityBanner;
 import ganymedes01.etfuturum.tileentities.TileEntityEndRod;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntitySkull;
-import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -101,16 +97,5 @@ public class ClientProxy extends CommonProxy {
 		}
 		if (EtFuturum.enableVillagerZombies)
 			RenderingRegistry.registerEntityRenderingHandler(EntityZombieVillager.class, new VillagerZombieRenderer());
-	}
-
-	@Override
-	public void spawnParticle(String particleName, World world, double x, double y, double z) {
-		EntityFX fx = null;
-
-		if ("damage_hearts".equals(particleName))
-			fx = new BlackHeartFX(world, x, y, z);
-
-		if (fx != null)
-			Minecraft.getMinecraft().effectRenderer.addEffect(fx);
 	}
 }

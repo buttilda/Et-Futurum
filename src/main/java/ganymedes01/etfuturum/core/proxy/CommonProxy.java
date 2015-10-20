@@ -119,7 +119,4 @@ public class CommonProxy implements IGuiHandler {
 				return null;
 		}
 	}
-
-	public void spawnParticle(String particleName, World world, double x, double y, double z) {
-	}
 }

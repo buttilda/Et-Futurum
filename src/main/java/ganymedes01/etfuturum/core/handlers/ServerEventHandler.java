@@ -14,6 +14,7 @@ import ganymedes01.etfuturum.inventory.ContainerEnchantment;
 import ganymedes01.etfuturum.items.TippedArrow;
 import ganymedes01.etfuturum.lib.GUIsID;
 import ganymedes01.etfuturum.lib.Reference;
+import ganymedes01.etfuturum.network.BlackHeartParticlesMessage;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -540,7 +541,7 @@ public class ServerEventHandler {
 					double x = event.entityLiving.posX - amount * 0.35 * look.xCoord / 2 + i * 0.35 * look.xCoord;
 					double y = event.entityLiving.posY + 1.5 + event.entityLiving.worldObj.rand.nextGaussian() * 0.05;
 					double z = event.entityLiving.posZ - amount * 0.35 * look.zCoord / 2 + i * 0.35 * look.zCoord;
-					EtFuturum.proxy.spawnParticle("damage_hearts", event.entityLiving.worldObj, x, y, z);
+					EtFuturum.networkWrapper.sendToAll(new BlackHeartParticlesMessage(player.worldObj, x, y, z));
 				}
 			}
 		}

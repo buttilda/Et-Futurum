@@ -7,6 +7,8 @@ import ganymedes01.etfuturum.items.ItemEntityEgg;
 import ganymedes01.etfuturum.lib.Reference;
 import ganymedes01.etfuturum.network.ArmourStandInteractHandler;
 import ganymedes01.etfuturum.network.ArmourStandInteractMessage;
+import ganymedes01.etfuturum.network.BlackHeartParticlesHandler;
+import ganymedes01.etfuturum.network.BlackHeartParticlesMessage;
 import ganymedes01.etfuturum.recipes.ModRecipes;
 import ganymedes01.etfuturum.world.EtFuturumWorldGenerator;
 import ganymedes01.etfuturum.world.OceanMonument;
@@ -116,6 +118,7 @@ public class EtFuturum {
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		networkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD_ID);
 		networkWrapper.registerMessage(ArmourStandInteractHandler.class, ArmourStandInteractMessage.class, 0, Side.SERVER);
+		networkWrapper.registerMessage(BlackHeartParticlesHandler.class, BlackHeartParticlesMessage.class, 1, Side.CLIENT);
 	}
 
 	@EventHandler
