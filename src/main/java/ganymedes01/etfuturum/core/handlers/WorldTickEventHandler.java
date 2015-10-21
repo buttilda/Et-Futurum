@@ -18,7 +18,7 @@ public class WorldTickEventHandler {
 	@SubscribeEvent
 	@SuppressWarnings("unchecked")
 	public void tick(WorldTickEvent event) {
-		if (event.side != Side.SERVER || event.phase != Phase.START)
+		if (event.side != Side.SERVER || event.phase != Phase.END)
 			return;
 
 		World world = event.world;
