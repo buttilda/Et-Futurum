@@ -541,7 +541,7 @@ public class ServerEventHandler {
 					double x = event.entityLiving.posX - amount * 0.35 * look.xCoord / 2 + i * 0.35 * look.xCoord;
 					double y = event.entityLiving.posY + 1.5 + event.entityLiving.worldObj.rand.nextGaussian() * 0.05;
 					double z = event.entityLiving.posZ - amount * 0.35 * look.zCoord / 2 + i * 0.35 * look.zCoord;
-					EtFuturum.networkWrapper.sendToAll(new BlackHeartParticlesMessage(player.worldObj, x, y, z));
+					EtFuturum.networkWrapper.sendToDimension(new BlackHeartParticlesMessage(x, y, z), player.worldObj.provider.dimensionId);
 				}
 			}
 		}
