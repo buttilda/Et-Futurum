@@ -106,6 +106,7 @@ tile.etfuturum.end_rod.name=End Rod
 tile.etfuturum.chorus_flower.name=Chorus Flower
 tile.etfuturum.chorus_plant.name=Chorus Plant
 tile.etfuturum.crying_obsidian.name=Crying Obsidian
+tile.etfuturum.brewing_stand.name=Brewing Stand
 
 # Banners
 item.banner.black.name=Black Banner
