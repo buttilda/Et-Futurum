@@ -35,7 +35,7 @@ public class EtFuturumWorldGenerator implements IWorldGenerator {
 						if (world.getBlock(x, y, z) == Blocks.dirt && world.getBlockMetadata(x, y, z) == 1)
 							world.setBlock(x, y, z, ModBlocks.coarse_dirt, 0, 2);
 
-		if (EtFuturum.enableStones && world.provider.dimensionId != -1 && world.provider.dimensionId != 1)
+		if (EtFuturum.enableStones && EtFuturum.maxStonesPerCluster > 0 && world.provider.dimensionId != -1 && world.provider.dimensionId != 1)
 			for (Iterator<WorldGenMinable> iterator = generators.iterator(); iterator.hasNext();) {
 				WorldGenMinable generator = iterator.next();
 				for (int i = 0; i < 10; i++) {
