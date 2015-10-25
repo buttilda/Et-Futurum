@@ -4,11 +4,13 @@ import ganymedes01.etfuturum.core.utils.Utils;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockIce;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -21,10 +23,17 @@ public class FrostedIce extends BlockIce {
 		setHardness(0.5F);
 		setLightOpacity(3);
 		setCreativeTab(null);
-		setTickRandomly(true);
 		setStepSound(soundTypeGlass);
 		setBlockTextureName("frosted_ice");
 		setBlockName(Utils.getUnlocalisedName("frosted_ice"));
+	}
+
+	@Override
+	public void onBlockAdded(World world, int x, int y, int z) {
+		if (world.isRemote)
+			return;
+
+		world.scheduleBlockUpdate(x, y, z, this, 40 + world.rand.nextInt(40));
 	}
 
 	@Override
@@ -32,11 +41,23 @@ public class FrostedIce extends BlockIce {
 		if (world.isRemote)
 			return;
 
-		int meta = world.getBlockMetadata(x, y, z);
-		if (meta < 3)
-			world.setBlockMetadataWithNotify(x, y, z, meta + 1, 2);
-		else
-			world.setBlock(x, y, z, Blocks.water);
+		int surroundingBlockCount = 0;
+		for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
+			Block block = world.getBlock(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
+			if (block == this || block == Blocks.ice || block == Blocks.packed_ice)
+				if (++surroundingBlockCount >= 4)
+					break;
+		}
+
+		if (surroundingBlockCount < 4 || rand.nextInt(100) <= 33) {
+			int meta = world.getBlockMetadata(x, y, z);
+			if (meta < 3)
+				world.setBlockMetadataWithNotify(x, y, z, meta + 1, 2);
+			else
+				world.setBlock(x, y, z, Blocks.water);
+		}
+
+		world.scheduleBlockUpdate(x, y, z, this, 40 + rand.nextInt(40));
 	}
 
 	@Override
