@@ -20,6 +20,7 @@ public class FrostedIce extends BlockIce {
 	public FrostedIce() {
 		setHardness(0.5F);
 		setLightOpacity(3);
+		setCreativeTab(null);
 		setTickRandomly(true);
 		setStepSound(soundTypeGlass);
 		setBlockTextureName("frosted_ice");
