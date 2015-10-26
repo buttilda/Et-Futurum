@@ -1,12 +1,14 @@
 package ganymedes01.etfuturum.core.handlers;
 
 import ganymedes01.etfuturum.ModBlocks;
+import ganymedes01.etfuturum.tileentities.TileEntityNewBrewingStand;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityBrewingStand;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
@@ -15,19 +17,26 @@ import cpw.mods.fml.relauncher.Side;
 
 public class WorldTickEventHandler {
 
+	private boolean isReplacing = false;
+	private ArrayList<TileEntity> tiles = new ArrayList<TileEntity>();
+
 	@SubscribeEvent
-	@SuppressWarnings("unchecked")
 	public void tick(WorldTickEvent event) {
-		if (event.side != Side.SERVER || event.phase != Phase.END)
+		if (event.side != Side.SERVER || event.phase != Phase.END || isReplacing == true)
 			return;
 
 		World world = event.world;
-		for (TileEntity tile : (List<TileEntity>) world.loadedTileEntityList) {
-			Block block = world.getBlock(tile.xCoord, tile.yCoord, tile.zCoord);
-			if (block == Blocks.brewing_stand) {
-				world.setBlock(tile.xCoord, tile.yCoord, tile.zCoord, ModBlocks.brewing_stand);
-				return;
+		tiles = (ArrayList<TileEntity>) world.loadedTileEntityList;
+
+		isReplacing = true;
+		if (!tiles.isEmpty()) {
+			for (TileEntity tile : tiles) {
+				if (tile instanceof TileEntityBrewingStand && !(tile instanceof TileEntityNewBrewingStand)) {
+					tiles.remove(tile);
+					world.setBlock(tile.xCoord, tile.yCoord, tile.zCoord, ModBlocks.brewing_stand);
+				}
 			}
 		}
+		isReplacing = false;
 	}
 }
