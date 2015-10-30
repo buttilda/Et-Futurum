@@ -98,6 +98,7 @@ public class EtFuturum {
 	public static boolean enableFrostWalker = true;
 	public static boolean enableMending = true;
 	public static boolean enableBrewingStands = true;
+	public static boolean enableDragonRespawn = true;
 
 	public static int maxStonesPerCluster = 33;
 

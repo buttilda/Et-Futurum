@@ -231,6 +231,9 @@ public class ModRecipes {
 
 		if (EtFuturum.enableLingeringPotions)
 			addShapelessRecipe(new ItemStack(ModItems.dragon_breath), new ItemStack(Items.potionitem, 1, 8195), ModItems.chorus_fruit, ModItems.chorus_fruit);
+
+		if (EtFuturum.enableDragonRespawn)
+			addShapedRecipe(new ItemStack(ModItems.end_crystal), "xxx", "xyx", "xzx", 'x', "blockGlassColorless", 'y', Items.ender_eye, 'z', Items.ghast_tear);
 	}
 
 	private static void addTippedArrowRecipe(Potion potionEffect, int duration, ItemStack potionItem) {
