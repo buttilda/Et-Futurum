@@ -206,7 +206,7 @@ public class ModRecipes {
 			addShapedRecipe(new ItemStack(ModBlocks.purpur_pillar), "x", "x", 'x', ModBlocks.purpur_slab);
 			addShapedRecipe(new ItemStack(ModBlocks.end_bricks), "xx", "xx", 'x', Blocks.end_stone);
 			GameRegistry.addSmelting(new ItemStack(ModItems.chorus_fruit), new ItemStack(ModItems.popped_chorus_fruit), 0.0F);
-			addShapedRecipe(new ItemStack(ModBlocks.end_rod), "x", "x", "y", 'x', "gemQuartz", 'y', ModItems.popped_chorus_fruit);
+			addShapedRecipe(new ItemStack(ModBlocks.end_rod), "x", "y", 'x', Items.blaze_rod, 'y', ModItems.popped_chorus_fruit);
 		}
 
 		if (EtFuturum.enableTippedArrows) {
