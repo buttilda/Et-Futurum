@@ -62,15 +62,18 @@ public class EntityTippedArrow extends EntityArrow implements IEntityAdditionalS
 	@Override
 	public void writeEntityToNBT(NBTTagCompound nbt) {
 		super.writeEntityToNBT(nbt);
-		NBTTagCompound effectNBT = new NBTTagCompound();
-		effect.writeCustomPotionEffectToNBT(effectNBT);
-		nbt.setTag("Effect", effectNBT);
+		if (effect != null) {
+			NBTTagCompound effectNBT = new NBTTagCompound();
+			effect.writeCustomPotionEffectToNBT(effectNBT);
+			nbt.setTag("Effect", effectNBT);
+		}
 	}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound nbt) {
 		super.readEntityFromNBT(nbt);
-		effect = PotionEffect.readCustomPotionEffectFromNBT((NBTTagCompound) nbt.getTag("Effect"));
+		if (nbt.hasKey("Effect"))
+			effect = PotionEffect.readCustomPotionEffectFromNBT((NBTTagCompound) nbt.getTag("Effect"));
 	}
 
 	@Override

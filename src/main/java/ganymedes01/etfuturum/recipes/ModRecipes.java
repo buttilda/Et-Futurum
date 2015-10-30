@@ -4,7 +4,6 @@ import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.ModItems;
 import ganymedes01.etfuturum.blocks.Stone;
-import ganymedes01.etfuturum.items.TippedArrow;
 import ganymedes01.etfuturum.lib.EnumColour;
 import ganymedes01.etfuturum.lib.Reference;
 import net.minecraft.block.Block;
@@ -14,7 +13,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.potion.Potion;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.RecipeSorter.Category;
@@ -209,23 +207,6 @@ public class ModRecipes {
 			addShapedRecipe(new ItemStack(ModBlocks.end_rod), "x", "y", 'x', Items.blaze_rod, 'y', ModItems.popped_chorus_fruit);
 		}
 
-		if (EtFuturum.enableTippedArrows) {
-			addTippedArrowRecipe(Potion.nightVision, 3600, new ItemStack(Items.potionitem, 1, 16390));
-			addTippedArrowRecipe(Potion.invisibility, 3600, new ItemStack(Items.potionitem, 1, 16398));
-			if (EtFuturum.enableRabbit)
-				addTippedArrowRecipe(Potion.jump, 3600, new ItemStack(Items.potionitem, 1, 16395));
-			addTippedArrowRecipe(Potion.fireResistance, 3600, new ItemStack(Items.potionitem, 1, 16387));
-			addTippedArrowRecipe(Potion.moveSpeed, 3600, new ItemStack(Items.potionitem, 1, 16386));
-			addTippedArrowRecipe(Potion.moveSlowdown, 1800, new ItemStack(Items.potionitem, 1, 16394));
-			addTippedArrowRecipe(Potion.waterBreathing, 3600, new ItemStack(Items.potionitem, 1, 16397));
-			addTippedArrowRecipe(Potion.heal, 1, new ItemStack(Items.potionitem, 1, 16389));
-			addTippedArrowRecipe(Potion.harm, 1, new ItemStack(Items.potionitem, 1, 16396));
-			addTippedArrowRecipe(Potion.poison, 900, new ItemStack(Items.potionitem, 1, 16388));
-			addTippedArrowRecipe(Potion.regeneration, 900, new ItemStack(Items.potionitem, 1, 16385));
-			addTippedArrowRecipe(Potion.damageBoost, 3600, new ItemStack(Items.potionitem, 1, 16393));
-			addTippedArrowRecipe(Potion.weakness, 1800, new ItemStack(Items.potionitem, 1, 16392));
-		}
-
 		if (EtFuturum.enableCryingObsidian)
 			addShapelessRecipe(new ItemStack(ModBlocks.crying_obsidian), Blocks.obsidian, "gemLapis");
 
@@ -234,10 +215,6 @@ public class ModRecipes {
 
 		if (EtFuturum.enableDragonRespawn)
 			addShapedRecipe(new ItemStack(ModItems.end_crystal), "xxx", "xyx", "xzx", 'x', "blockGlassColorless", 'y', Items.ender_eye, 'z', Items.ghast_tear);
-	}
-
-	private static void addTippedArrowRecipe(Potion potionEffect, int duration, ItemStack potionItem) {
-		addShapelessRecipe(TippedArrow.setEffect(new ItemStack(ModItems.tipped_arrow), potionEffect, duration), potionItem, Items.arrow);
 	}
 
 	private static void addShapedRecipe(ItemStack output, Object... objects) {
