@@ -3,9 +3,9 @@ package ganymedes01.etfuturum.items;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.core.utils.Utils;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemSimpleFoiled;
 
-public class EndCrystal extends Item implements IConfigurable {
+public class EndCrystal extends ItemSimpleFoiled implements IConfigurable {
 
 	public EndCrystal() {
 		setTextureName("end_crystal");
