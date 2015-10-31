@@ -77,7 +77,7 @@ public class EntityTippedArrow extends EntityArrow implements IEntityAdditionalS
 	}
 
 	@Override
-	public void onCollideWithPlayer(EntityPlayer entity) {
+	public void onCollideWithPlayer(EntityPlayer player) {
 		boolean inGround = false;
 		try {
 			inGround = ReflectionHelper.getPrivateValue(EntityArrow.class, this, "inGround", "field_70254_i");
@@ -85,17 +85,17 @@ public class EntityTippedArrow extends EntityArrow implements IEntityAdditionalS
 		}
 
 		if (!worldObj.isRemote && inGround && arrowShake <= 0 && isEffectValid()) {
-			boolean flag = canBePickedUp == 1 || canBePickedUp == 2 && entity.capabilities.isCreativeMode;
+			boolean flag = canBePickedUp == 1 || canBePickedUp == 2 && player.capabilities.isCreativeMode;
 
 			ItemStack stack = new ItemStack(ModItems.tipped_arrow);
 			TippedArrow.setEffect(stack, Potion.potionTypes[effect.getPotionID()], effect.getDuration());
 
-			if (canBePickedUp == 1 && !entity.inventory.addItemStackToInventory(stack))
+			if (canBePickedUp == 1 && !player.inventory.addItemStackToInventory(stack))
 				flag = false;
 
 			if (flag) {
 				playSound("random.pop", 0.2F, ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
-				entity.onItemPickup(this, 1);
+				player.onItemPickup(this, 1);
 				setDead();
 			}
 		}

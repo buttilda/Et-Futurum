@@ -17,6 +17,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class EntityLingeringEffect extends Entity implements IEntityAdditionalSpawnData {
 
@@ -114,6 +115,12 @@ public class EntityLingeringEffect extends Entity implements IEntityAdditionalSp
 		if (arrows != null && !arrows.isEmpty())
 			for (EntityArrow arrow : arrows)
 				if (!(arrow instanceof EntityTippedArrow)) {
+					boolean isGround = ReflectionHelper.getPrivateValue(EntityArrow.class, arrow, "inGround", "field_70254_i");
+					if (isGround)
+						continue;
+					if (arrow.shootingEntity == null)
+						continue;
+
 					EntityTippedArrow tippedArrow = new EntityTippedArrow(worldObj);
 					NBTTagCompound nbt = new NBTTagCompound();
 					arrow.writeToNBT(nbt);
