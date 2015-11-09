@@ -9,6 +9,8 @@ import cpw.mods.fml.relauncher.Side;
 import ganymedes01.etfuturum.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -27,7 +29,16 @@ public class WorldTickEventHandler {
 		for (TileEntity tile : (List<TileEntity>) world.loadedTileEntityList) {
 			Block block = world.getBlock(tile.xCoord, tile.yCoord, tile.zCoord);
 			if (block == Blocks.brewing_stand) {
+				NBTTagCompound nbt = new NBTTagCompound();
+				tile.writeToNBT(nbt);
+				if (tile instanceof IInventory) {
+					IInventory invt = (IInventory) tile;
+					for (int i = 0; i < invt.getSizeInventory(); i++)
+						invt.setInventorySlotContents(i, null);
+				}
 				world.setBlock(tile.xCoord, tile.yCoord, tile.zCoord, ModBlocks.brewing_stand);
+				TileEntity newTile = world.getTileEntity(tile.xCoord, tile.yCoord, tile.zCoord);
+				newTile.readFromNBT(nbt);
 				return;
 			}
 		}
