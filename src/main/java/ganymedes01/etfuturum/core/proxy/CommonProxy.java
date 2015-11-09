@@ -19,6 +19,7 @@ import ganymedes01.etfuturum.entities.EntityArmourStand;
 import ganymedes01.etfuturum.entities.EntityEndermite;
 import ganymedes01.etfuturum.entities.EntityLingeringEffect;
 import ganymedes01.etfuturum.entities.EntityLingeringPotion;
+import ganymedes01.etfuturum.entities.EntityPlacedEndCrystal;
 import ganymedes01.etfuturum.entities.EntityRabbit;
 import ganymedes01.etfuturum.entities.EntityTippedArrow;
 import ganymedes01.etfuturum.entities.EntityZombieVillager;
@@ -89,6 +90,9 @@ public class CommonProxy implements IGuiHandler {
 
 		if (EtFuturum.enableVillagerZombies)
 			ModEntityList.registerEntity(EntityZombieVillager.class, "villager_zombie", 6, EtFuturum.instance, 80, 3, true, 44975, 7969893);
+
+		if (EtFuturum.enableDragonRespawn)
+			ModEntityList.registerEntity(EntityPlacedEndCrystal.class, "end_crystal", 7, EtFuturum.instance, 256, Integer.MAX_VALUE, false);
 	}
 
 	public void registerRenderers() {

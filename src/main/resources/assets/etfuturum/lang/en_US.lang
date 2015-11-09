@@ -18,6 +18,7 @@ entity.etfuturum.endermite.name=Endermite
 entity.etfuturum.wooden_armorstand.name=Armour Stand
 entity.etfuturum.rabbit.name=Rabbit
 entity.etfuturum.villager_zombie.name=Villager Zombie
+entity.etfuturum.end_crystal.name=End Crystal
 
 # Items
 item.etfuturum.mutton_raw.name=Raw Mutton
@@ -37,6 +38,7 @@ item.etfuturum.chorus_fruit.name=Chorus Fruit
 item.etfuturum.chorus_fruit_popped.name=Popped Chorus Fruit
 item.etfuturum.dragon_breath.name=Dragon's Breath
 item.etfuturum.elytra.name=Elytra
+item.etfuturum.end_crystal.name=End Crystal
 potion.prefix.lingering=Lingering
 
 # Arrows
