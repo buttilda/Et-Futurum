@@ -1,15 +1,14 @@
 package ganymedes01.etfuturum.configuration;
 
+import java.io.File;
+
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.enchantment.FrostWalker;
 import ganymedes01.etfuturum.enchantment.Mending;
 import ganymedes01.etfuturum.lib.Reference;
-
-import java.io.File;
-
 import net.minecraftforge.common.config.Configuration;
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class ConfigurationHandler {
 
@@ -87,6 +86,7 @@ public class ConfigurationHandler {
 		FrostWalker.ID = configInteger("Frost Walker ID", true, FrostWalker.ID);
 		Mending.ID = configInteger("Mending ID", true, Mending.ID);
 		EtFuturum.enableBrewingStands = configBoolean("Brewing Stands", true, EtFuturum.enableBrewingStands);
+		EtFuturum.enableRoses = configBoolean("Old Roses", true, EtFuturum.enableRoses);
 
 		EtFuturum.maxStonesPerCluster = configInteger("Max number of 1.8 stones in a cluster", true, EtFuturum.maxStonesPerCluster);
 

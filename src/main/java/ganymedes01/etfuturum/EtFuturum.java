@@ -1,28 +1,9 @@
 package ganymedes01.etfuturum;
 
-import ganymedes01.etfuturum.configuration.ConfigurationHandler;
-import ganymedes01.etfuturum.core.proxy.CommonProxy;
-import ganymedes01.etfuturum.entities.ModEntityList;
-import ganymedes01.etfuturum.items.ItemEntityEgg;
-import ganymedes01.etfuturum.lib.Reference;
-import ganymedes01.etfuturum.network.ArmourStandInteractHandler;
-import ganymedes01.etfuturum.network.ArmourStandInteractMessage;
-import ganymedes01.etfuturum.network.BlackHeartParticlesHandler;
-import ganymedes01.etfuturum.network.BlackHeartParticlesMessage;
-import ganymedes01.etfuturum.recipes.ModRecipes;
-import ganymedes01.etfuturum.world.EtFuturumWorldGenerator;
-import ganymedes01.etfuturum.world.OceanMonument;
-
 import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
-import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -36,6 +17,24 @@ import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
+import ganymedes01.etfuturum.core.proxy.CommonProxy;
+import ganymedes01.etfuturum.entities.ModEntityList;
+import ganymedes01.etfuturum.items.ItemEntityEgg;
+import ganymedes01.etfuturum.lib.Reference;
+import ganymedes01.etfuturum.network.ArmourStandInteractHandler;
+import ganymedes01.etfuturum.network.ArmourStandInteractMessage;
+import ganymedes01.etfuturum.network.BlackHeartParticlesHandler;
+import ganymedes01.etfuturum.network.BlackHeartParticlesMessage;
+import ganymedes01.etfuturum.recipes.ModRecipes;
+import ganymedes01.etfuturum.world.EtFuturumWorldGenerator;
+import ganymedes01.etfuturum.world.OceanMonument;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraftforge.oredict.OreDictionary;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class EtFuturum {
@@ -99,6 +98,7 @@ public class EtFuturum {
 	public static boolean enableMending = true;
 	public static boolean enableBrewingStands = true;
 	public static boolean enableDragonRespawn = true;
+	public static boolean enableRoses = true;
 
 	public static int maxStonesPerCluster = 33;
 

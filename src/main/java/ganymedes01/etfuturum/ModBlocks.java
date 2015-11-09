@@ -1,7 +1,11 @@
 package ganymedes01.etfuturum;
 
+import java.lang.reflect.Field;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.etfuturum.blocks.BlockBanner;
 import ganymedes01.etfuturum.blocks.BlockBeetroot;
+import ganymedes01.etfuturum.blocks.BlockRose;
 import ganymedes01.etfuturum.blocks.BlockSilkedMushroom;
 import ganymedes01.etfuturum.blocks.BlockWoodDoor;
 import ganymedes01.etfuturum.blocks.BlockWoodFence;
@@ -30,14 +34,10 @@ import ganymedes01.etfuturum.blocks.SeaLantern;
 import ganymedes01.etfuturum.blocks.SlimeBlock;
 import ganymedes01.etfuturum.blocks.Sponge;
 import ganymedes01.etfuturum.blocks.Stone;
-
-import java.lang.reflect.Field;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockWood;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModBlocks {
 
@@ -69,6 +69,7 @@ public class ModBlocks {
 	public static final Block crying_obsidian = new CryingObsidian();
 	public static final Block frosted_ice = new FrostedIce();
 	public static final Block brewing_stand = new NewBrewingStand();
+	public static final Block rose = new BlockRose();
 
 	public static final Block[] doors = new Block[BlockWood.field_150096_a.length - 1];
 	public static final Block[] fences = new Block[BlockWood.field_150096_a.length];

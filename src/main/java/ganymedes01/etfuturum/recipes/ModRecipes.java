@@ -1,5 +1,6 @@
 package ganymedes01.etfuturum.recipes;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.ModItems;
@@ -18,7 +19,6 @@ import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.RecipeSorter.Category;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModRecipes {
 
@@ -215,6 +215,11 @@ public class ModRecipes {
 
 		if (EtFuturum.enableDragonRespawn)
 			addShapedRecipe(new ItemStack(ModItems.end_crystal), "xxx", "xyx", "xzx", 'x', "blockGlassColorless", 'y', Items.ender_eye, 'z', Items.ghast_tear);
+
+		if (EtFuturum.enableRoses) {
+			addShapelessRecipe(new ItemStack(Items.dye, 1, 1), ModBlocks.rose);
+			addShapedRecipe(new ItemStack(ModBlocks.rose, 4), "xx", "xx", 'x', new ItemStack(Blocks.red_flower));
+		}
 	}
 
 	private static void addShapedRecipe(ItemStack output, Object... objects) {
