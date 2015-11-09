@@ -1,6 +1,8 @@
 package ganymedes01.etfuturum.core.handlers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
@@ -16,6 +18,13 @@ import net.minecraft.world.World;
 
 public class WorldTickEventHandler {
 
+	private static Map<Block, Block> replacements = new HashMap<Block, Block>();
+
+	static {
+		replacements.put(Blocks.brewing_stand, ModBlocks.brewing_stand);
+		replacements.put(Blocks.beacon, ModBlocks.beacon);
+	}
+
 	private boolean isReplacing = false;
 
 	@SubscribeEvent
@@ -27,8 +36,8 @@ public class WorldTickEventHandler {
 		isReplacing = true;
 		World world = event.world;
 		for (TileEntity tile : (List<TileEntity>) world.loadedTileEntityList) {
-			Block block = world.getBlock(tile.xCoord, tile.yCoord, tile.zCoord);
-			if (block == Blocks.brewing_stand) {
+			Block replacement = replacements.get(world.getBlock(tile.xCoord, tile.yCoord, tile.zCoord));
+			if (replacement != null) {
 				NBTTagCompound nbt = new NBTTagCompound();
 				tile.writeToNBT(nbt);
 				if (tile instanceof IInventory) {
@@ -36,10 +45,10 @@ public class WorldTickEventHandler {
 					for (int i = 0; i < invt.getSizeInventory(); i++)
 						invt.setInventorySlotContents(i, null);
 				}
-				world.setBlock(tile.xCoord, tile.yCoord, tile.zCoord, ModBlocks.brewing_stand);
+				world.setBlock(tile.xCoord, tile.yCoord, tile.zCoord, replacement);
 				TileEntity newTile = world.getTileEntity(tile.xCoord, tile.yCoord, tile.zCoord);
 				newTile.readFromNBT(nbt);
-				return;
+				break;
 			}
 		}
 		isReplacing = false;

@@ -87,6 +87,7 @@ public class ConfigurationHandler {
 		Mending.ID = configInteger("Mending ID", true, Mending.ID);
 		EtFuturum.enableBrewingStands = configBoolean("Brewing Stands", true, EtFuturum.enableBrewingStands);
 		EtFuturum.enableRoses = configBoolean("Old Roses", true, EtFuturum.enableRoses);
+		EtFuturum.enableColourfulBeacons = configBoolean("Colourful Beacon Beams", true, EtFuturum.enableColourfulBeacons);
 
 		EtFuturum.maxStonesPerCluster = configInteger("Max number of 1.8 stones in a cluster", true, EtFuturum.maxStonesPerCluster);
 

@@ -1,5 +1,7 @@
 package ganymedes01.etfuturum.core.proxy;
 
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.client.renderer.block.BlockChestRenderer;
@@ -20,6 +22,7 @@ import ganymedes01.etfuturum.client.renderer.item.ItemSkullRenderer;
 import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityBannerRenderer;
 import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityEndRodRenderer;
 import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityFancySkullRenderer;
+import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityNewBeaconRenderer;
 import ganymedes01.etfuturum.core.handlers.ClientEventHandler;
 import ganymedes01.etfuturum.entities.EntityArmourStand;
 import ganymedes01.etfuturum.entities.EntityEndermite;
@@ -29,13 +32,12 @@ import ganymedes01.etfuturum.entities.EntityRabbit;
 import ganymedes01.etfuturum.entities.EntityZombieVillager;
 import ganymedes01.etfuturum.tileentities.TileEntityBanner;
 import ganymedes01.etfuturum.tileentities.TileEntityEndRod;
+import ganymedes01.etfuturum.tileentities.TileEntityNewBeacon;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
 
@@ -80,6 +82,9 @@ public class ClientProxy extends CommonProxy {
 			RenderingRegistry.registerBlockHandler(new BlockChorusPlantRender());
 			ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEndRod.class, new TileEntityEndRodRenderer());
 		}
+
+		if (EtFuturum.enableColourfulBeacons)
+			ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNewBeacon.class, new TileEntityNewBeaconRenderer());
 
 		RenderingRegistry.registerBlockHandler(new BlockChestRenderer());
 	}

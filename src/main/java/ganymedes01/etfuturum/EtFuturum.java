@@ -99,6 +99,7 @@ public class EtFuturum {
 	public static boolean enableBrewingStands = true;
 	public static boolean enableDragonRespawn = true;
 	public static boolean enableRoses = true;
+	public static boolean enableColourfulBeacons = true;
 
 	public static int maxStonesPerCluster = 33;
 

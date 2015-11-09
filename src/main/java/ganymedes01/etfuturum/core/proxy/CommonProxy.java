@@ -1,5 +1,12 @@
 package ganymedes01.etfuturum.core.proxy;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.IGuiHandler;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.client.gui.inventory.GuiAnvil;
 import ganymedes01.etfuturum.client.gui.inventory.GuiEnchantment;
@@ -22,11 +29,8 @@ import ganymedes01.etfuturum.inventory.ContainerNewBrewingStand;
 import ganymedes01.etfuturum.lib.GUIsID;
 import ganymedes01.etfuturum.tileentities.TileEntityBanner;
 import ganymedes01.etfuturum.tileentities.TileEntityEndRod;
+import ganymedes01.etfuturum.tileentities.TileEntityNewBeacon;
 import ganymedes01.etfuturum.tileentities.TileEntityNewBrewingStand;
-
-import java.util.LinkedList;
-import java.util.List;
-
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,10 +38,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.IGuiHandler;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class CommonProxy implements IGuiHandler {
 
@@ -60,6 +60,8 @@ public class CommonProxy implements IGuiHandler {
 			ModEntityList.registerEntity(EntityTippedArrow.class, "tipped_arrow", 2, EtFuturum.instance, 64, 20, true);
 		if (EtFuturum.enableBrewingStands)
 			GameRegistry.registerTileEntity(TileEntityNewBrewingStand.class, Utils.getUnlocalisedName("brewing_stand"));
+		if (EtFuturum.enableColourfulBeacons)
+			GameRegistry.registerTileEntity(TileEntityNewBeacon.class, Utils.getUnlocalisedName("beacon"));
 
 		if (EtFuturum.enableRabbit) {
 			ModEntityList.registerEntity(EntityRabbit.class, "rabbit", 3, EtFuturum.instance, 80, 3, true, 10051392, 7555121);

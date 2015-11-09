@@ -5,7 +5,8 @@ import java.lang.reflect.Field;
 import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.etfuturum.blocks.BlockBanner;
 import ganymedes01.etfuturum.blocks.BlockBeetroot;
-import ganymedes01.etfuturum.blocks.BlockRose;
+import ganymedes01.etfuturum.blocks.NewBeacon;
+import ganymedes01.etfuturum.blocks.OldRose;
 import ganymedes01.etfuturum.blocks.BlockSilkedMushroom;
 import ganymedes01.etfuturum.blocks.BlockWoodDoor;
 import ganymedes01.etfuturum.blocks.BlockWoodFence;
@@ -69,7 +70,8 @@ public class ModBlocks {
 	public static final Block crying_obsidian = new CryingObsidian();
 	public static final Block frosted_ice = new FrostedIce();
 	public static final Block brewing_stand = new NewBrewingStand();
-	public static final Block rose = new BlockRose();
+	public static final Block rose = new OldRose();
+	public static final Block beacon = new NewBeacon();
 
 	public static final Block[] doors = new Block[BlockWood.field_150096_a.length - 1];
 	public static final Block[] fences = new Block[BlockWood.field_150096_a.length];
