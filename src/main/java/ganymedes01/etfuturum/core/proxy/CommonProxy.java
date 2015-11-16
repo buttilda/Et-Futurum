@@ -33,11 +33,9 @@ import ganymedes01.etfuturum.tileentities.TileEntityEndRod;
 import ganymedes01.etfuturum.tileentities.TileEntityNewBeacon;
 import ganymedes01.etfuturum.tileentities.TileEntityNewBrewingStand;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraftforge.common.MinecraftForge;
 
 public class CommonProxy implements IGuiHandler {
@@ -68,18 +66,22 @@ public class CommonProxy implements IGuiHandler {
 			ModEntityList.registerEntity(EntityRabbit.class, "rabbit", 3, EtFuturum.instance, 80, 3, true, 10051392, 7555121);
 
 			List<BiomeGenBase> biomes = new LinkedList<BiomeGenBase>();
-			label: for (BiomeGenBase biome : BiomeGenBase.getBiomeGenArray())
-				if (biome != null)
-					// Check if pigs can spawn on this biome
-					for (Object obj : biome.getSpawnableList(EnumCreatureType.creature))
-						if (obj instanceof SpawnListEntry) {
-							SpawnListEntry entry = (SpawnListEntry) obj;
-							if (entry.entityClass == EntityPig.class) {
-								biomes.add(biome);
-								continue label;
-							}
-						}
-
+			biomes.add(BiomeGenBase.desert);
+			biomes.add(BiomeGenBase.desertHills);
+			biomes.add(BiomeGenBase.forest);
+			biomes.add(BiomeGenBase.forestHills);
+			biomes.add(BiomeGenBase.taiga);
+			biomes.add(BiomeGenBase.taigaHills);
+			biomes.add(BiomeGenBase.megaTaiga);
+			biomes.add(BiomeGenBase.megaTaigaHills);
+			biomes.add(BiomeGenBase.swampland);
+			biomes.add(BiomeGenBase.birchForest);
+			biomes.add(BiomeGenBase.birchForestHills);
+			biomes.add(BiomeGenBase.roofedForest);
+			biomes.add(BiomeGenBase.coldTaiga);
+			biomes.add(BiomeGenBase.coldTaigaHills);
+			biomes.add(BiomeGenBase.savanna);
+			biomes.add(BiomeGenBase.savannaPlateau);
 			EntityRegistry.addSpawn(EntityRabbit.class, 10, 3, 3, EnumCreatureType.creature, biomes.toArray(new BiomeGenBase[biomes.size()]));
 		}
 
