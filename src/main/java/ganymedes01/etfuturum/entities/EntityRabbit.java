@@ -1,5 +1,8 @@
 package ganymedes01.etfuturum.entities;
 
+import cpw.mods.fml.relauncher.ReflectionHelper;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.etfuturum.ModItems;
 import ganymedes01.etfuturum.entities.ai.BlockPos;
 import ganymedes01.etfuturum.entities.ai.EntityAIMoveToBlock;
@@ -33,9 +36,6 @@ import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.ReflectionHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityRabbit extends EntityAnimal {
 
@@ -212,8 +212,8 @@ public class EntityRabbit extends EntityAnimal {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
-		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.30000001192092896D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(3.0);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3);
 	}
 
 	@Override
@@ -263,6 +263,9 @@ public class EntityRabbit extends EntityAnimal {
 				dropItem(ModItems.cooked_rabbit, 1);
 			else
 				dropItem(ModItems.raw_rabbit, 1);
+
+		if (rand.nextInt(100) <= 10 + fortune)
+			entityDropItem(new ItemStack(ModItems.rabbit_foot), 0.0F);
 	}
 
 	private boolean isRabbitBreedingItem(Item item) {
