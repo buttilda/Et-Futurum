@@ -5,8 +5,6 @@ import java.lang.reflect.Field;
 import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.etfuturum.blocks.BlockBanner;
 import ganymedes01.etfuturum.blocks.BlockBeetroot;
-import ganymedes01.etfuturum.blocks.NewBeacon;
-import ganymedes01.etfuturum.blocks.OldRose;
 import ganymedes01.etfuturum.blocks.BlockSilkedMushroom;
 import ganymedes01.etfuturum.blocks.BlockWoodDoor;
 import ganymedes01.etfuturum.blocks.BlockWoodFence;
@@ -21,8 +19,11 @@ import ganymedes01.etfuturum.blocks.FrostedIce;
 import ganymedes01.etfuturum.blocks.GrassPath;
 import ganymedes01.etfuturum.blocks.InvertedDaylightDetector;
 import ganymedes01.etfuturum.blocks.IronTrapdoor;
+import ganymedes01.etfuturum.blocks.NewBeacon;
 import ganymedes01.etfuturum.blocks.NewBrewingStand;
+import ganymedes01.etfuturum.blocks.NewEnchantmentTable;
 import ganymedes01.etfuturum.blocks.OldGravel;
+import ganymedes01.etfuturum.blocks.OldRose;
 import ganymedes01.etfuturum.blocks.PrismarineBlocks;
 import ganymedes01.etfuturum.blocks.PurpurBlock;
 import ganymedes01.etfuturum.blocks.PurpurPillar;
@@ -72,6 +73,7 @@ public class ModBlocks {
 	public static final Block brewing_stand = new NewBrewingStand();
 	public static final Block rose = new OldRose();
 	public static final Block beacon = new NewBeacon();
+	public static final Block enchantment_table = new NewEnchantmentTable();
 
 	public static final Block[] doors = new Block[BlockWood.field_150096_a.length - 1];
 	public static final Block[] fences = new Block[BlockWood.field_150096_a.length];

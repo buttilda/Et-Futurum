@@ -1,21 +1,5 @@
 package ganymedes01.etfuturum.core.handlers;
 
-import ganymedes01.etfuturum.EtFuturum;
-import ganymedes01.etfuturum.ModBlocks;
-import ganymedes01.etfuturum.ModEnchantments;
-import ganymedes01.etfuturum.ModItems;
-import ganymedes01.etfuturum.core.utils.Utils;
-import ganymedes01.etfuturum.entities.EntityEndermite;
-import ganymedes01.etfuturum.entities.EntityRabbit;
-import ganymedes01.etfuturum.entities.EntityTippedArrow;
-import ganymedes01.etfuturum.entities.EntityZombieVillager;
-import ganymedes01.etfuturum.entities.ai.EntityAIOpenCustomDoor;
-import ganymedes01.etfuturum.inventory.ContainerEnchantment;
-import ganymedes01.etfuturum.items.TippedArrow;
-import ganymedes01.etfuturum.lib.GUIsID;
-import ganymedes01.etfuturum.lib.Reference;
-import ganymedes01.etfuturum.network.BlackHeartParticlesMessage;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,6 +10,24 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.common.eventhandler.Event.Result;
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
+import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.ModBlocks;
+import ganymedes01.etfuturum.ModEnchantments;
+import ganymedes01.etfuturum.ModItems;
+import ganymedes01.etfuturum.entities.EntityEndermite;
+import ganymedes01.etfuturum.entities.EntityRabbit;
+import ganymedes01.etfuturum.entities.EntityTippedArrow;
+import ganymedes01.etfuturum.entities.EntityZombieVillager;
+import ganymedes01.etfuturum.entities.ai.EntityAIOpenCustomDoor;
+import ganymedes01.etfuturum.inventory.ContainerEnchantment;
+import ganymedes01.etfuturum.items.TippedArrow;
+import ganymedes01.etfuturum.lib.GUIsID;
+import ganymedes01.etfuturum.lib.Reference;
+import ganymedes01.etfuturum.network.BlackHeartParticlesMessage;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -57,7 +59,6 @@ import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionHelper;
-import net.minecraft.tileentity.TileEntityEnchantmentTable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
@@ -82,10 +83,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent;
-import cpw.mods.fml.common.eventhandler.Event.Result;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class ServerEventHandler {
 
@@ -269,15 +266,6 @@ public class ServerEventHandler {
 				return;
 			if (player.isSneaking())
 				return;
-
-			if (EtFuturum.enableEnchants) {
-				TileEntityEnchantmentTable tile = Utils.getTileEntity(world, x, y, z, TileEntityEnchantmentTable.class);
-				if (tile != null && world.getBlock(x, y, z) == Blocks.enchanting_table) {
-					player.openGui(EtFuturum.instance, GUIsID.ENCHANTING_TABLE, world, x, y, z);
-					event.setCanceled(true);
-					return;
-				}
-			}
 
 			if (EtFuturum.enableAnvil)
 				if (world.getBlock(x, y, z) == Blocks.anvil) {

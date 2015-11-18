@@ -23,6 +23,7 @@ public class WorldTickEventHandler {
 	static {
 		replacements.put(Blocks.brewing_stand, ModBlocks.brewing_stand);
 		replacements.put(Blocks.beacon, ModBlocks.beacon);
+		replacements.put(Blocks.enchanting_table, ModBlocks.enchantment_table);
 	}
 
 	private boolean isReplacing = false;

@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import ganymedes01.etfuturum.ModBlocks;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -291,7 +291,7 @@ public class ContainerEnchantment extends Container {
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		return world.getBlock(posX, posY, posZ) != Blocks.enchanting_table ? false : player.getDistanceSq(posX + 0.5D, posY + 0.5D, posZ + 0.5D) <= 64.0D;
+		return world.getBlock(posX, posY, posZ) != ModBlocks.enchantment_table ? false : player.getDistanceSq(posX + 0.5D, posY + 0.5D, posZ + 0.5D) <= 64.0D;
 	}
 
 	/**

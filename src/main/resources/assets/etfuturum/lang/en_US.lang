@@ -112,6 +112,7 @@ tile.etfuturum.brewing_stand.name=Brewing Stand
 tile.etfuturum.frosted_ice.name=Frosted Ice
 tile.etfuturum.rose.name=Rose
 tile.etfuturum.beacon.name=Beacon
+tile.etfuturum.enchantment_table.name=Enchantment Table
 
 # Banners
 item.banner.black.name=Black Banner
