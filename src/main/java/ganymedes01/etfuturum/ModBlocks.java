@@ -19,8 +19,10 @@ import ganymedes01.etfuturum.blocks.FrostedIce;
 import ganymedes01.etfuturum.blocks.GrassPath;
 import ganymedes01.etfuturum.blocks.InvertedDaylightDetector;
 import ganymedes01.etfuturum.blocks.IronTrapdoor;
+import ganymedes01.etfuturum.blocks.NewAnvil;
 import ganymedes01.etfuturum.blocks.NewBeacon;
 import ganymedes01.etfuturum.blocks.NewBrewingStand;
+import ganymedes01.etfuturum.blocks.NewDaylightSensor;
 import ganymedes01.etfuturum.blocks.NewEnchantmentTable;
 import ganymedes01.etfuturum.blocks.OldGravel;
 import ganymedes01.etfuturum.blocks.OldRose;
@@ -74,6 +76,8 @@ public class ModBlocks {
 	public static final Block rose = new OldRose();
 	public static final Block beacon = new NewBeacon();
 	public static final Block enchantment_table = new NewEnchantmentTable();
+	public static final Block anvil = new NewAnvil();
+	public static final Block daylight_sensor = new NewDaylightSensor();
 
 	public static final Block[] doors = new Block[BlockWood.field_150096_a.length - 1];
 	public static final Block[] fences = new Block[BlockWood.field_150096_a.length];

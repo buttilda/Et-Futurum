@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 
 import cpw.mods.fml.relauncher.ReflectionHelper;
+import ganymedes01.etfuturum.ModBlocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,13 +23,24 @@ public class ContainerAnvil extends ContainerRepair {
 	private IInventory inputSlots = null;
 	private IInventory outputSlot = null;
 	private String repairedItemName;
+	private final int x, y, z;
+	private final World world;
 
 	public ContainerAnvil(EntityPlayer player, World world, int x, int y, int z) {
 		super(player.inventory, world, x, y, z, player);
 		this.player = player;
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.world = world;
 
 		inputSlots = ReflectionHelper.getPrivateValue(ContainerRepair.class, this, "inputSlots", "field_82853_g");
 		outputSlot = ReflectionHelper.getPrivateValue(ContainerRepair.class, this, "outputSlot", "field_82852_f");
+	}
+
+	@Override
+	public boolean canInteractWith(EntityPlayer player) {
+		return world.getBlock(x, y, z) != ModBlocks.anvil ? false : player.getDistanceSq(x + 0.5D, y + 0.5D, z + 0.5D) <= 64.0D;
 	}
 
 	@Override

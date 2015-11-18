@@ -1,37 +1,31 @@
 package ganymedes01.etfuturum.blocks;
 
-import ganymedes01.etfuturum.EtFuturum;
-import ganymedes01.etfuturum.IConfigurable;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.core.utils.Utils;
-
-import java.util.Random;
-
-import net.minecraft.block.BlockDaylightDetector;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-public class InvertedDaylightDetector extends BlockDaylightDetector implements IConfigurable {
+public class InvertedDaylightDetector extends NewDaylightSensor {
 
 	private static final int[] invertedValues = { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
 
 	public InvertedDaylightDetector() {
-		setHardness(0.2F);
-		setStepSound(soundTypeWood);
 		setBlockTextureName("daylight_detector_inverted_top");
 		setBlockName(Utils.getUnlocalisedName("daylight_detector_inverted"));
-		setCreativeTab(EtFuturum.enableInvertedDaylightSensor ? EtFuturum.creativeTab : null);
 	}
 
 	@Override
-	public Item getItemDropped(int meta, Random rand, int fortune) {
-		return Blocks.daylight_detector.getItemDropped(meta, rand, fortune);
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+		if (!world.isRemote)
+			world.setBlock(x, y, z, ModBlocks.daylight_sensor);
+		return true;
 	}
 
 	@Override
@@ -61,12 +55,6 @@ public class InvertedDaylightDetector extends BlockDaylightDetector implements I
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Item getItem(World world, int x, int y, int z) {
-		return Blocks.daylight_detector.getItem(world, x, y, z);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
 		return side == 1 ? blockIcon : Blocks.daylight_detector.getIcon(side, meta);
 	}
@@ -75,10 +63,5 @@ public class InvertedDaylightDetector extends BlockDaylightDetector implements I
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister reg) {
 		blockIcon = reg.registerIcon(getTextureName());
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return EtFuturum.enableInvertedDaylightSensor;
 	}
 }

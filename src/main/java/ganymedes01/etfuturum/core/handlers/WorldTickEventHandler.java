@@ -24,6 +24,7 @@ public class WorldTickEventHandler {
 		replacements.put(Blocks.brewing_stand, ModBlocks.brewing_stand);
 		replacements.put(Blocks.beacon, ModBlocks.beacon);
 		replacements.put(Blocks.enchanting_table, ModBlocks.enchantment_table);
+		replacements.put(Blocks.daylight_detector, ModBlocks.daylight_sensor);
 	}
 
 	private boolean isReplacing = false;

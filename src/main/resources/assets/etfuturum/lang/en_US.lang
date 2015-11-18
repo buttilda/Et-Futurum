@@ -113,6 +113,10 @@ tile.etfuturum.frosted_ice.name=Frosted Ice
 tile.etfuturum.rose.name=Rose
 tile.etfuturum.beacon.name=Beacon
 tile.etfuturum.enchantment_table.name=Enchantment Table
+tile.etfuturum.anvil.intact.name=Anvil
+tile.etfuturum.anvil.slightlyDamaged.name=Slightly Damaged Anvil
+tile.etfuturum.anvil.veryDamaged.name=Very Damaged Anvil
+tile.etfuturum.daylight_sensor.name=Daylight Sensor
 
 # Banners
 item.banner.black.name=Black Banner

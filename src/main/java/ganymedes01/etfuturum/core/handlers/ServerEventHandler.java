@@ -6,11 +6,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
@@ -18,6 +16,9 @@ import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.ModEnchantments;
 import ganymedes01.etfuturum.ModItems;
+import ganymedes01.etfuturum.blocks.CoarseDirt;
+import ganymedes01.etfuturum.blocks.GrassPath;
+import ganymedes01.etfuturum.blocks.NewAnvil;
 import ganymedes01.etfuturum.entities.EntityEndermite;
 import ganymedes01.etfuturum.entities.EntityRabbit;
 import ganymedes01.etfuturum.entities.EntityTippedArrow;
@@ -25,10 +26,8 @@ import ganymedes01.etfuturum.entities.EntityZombieVillager;
 import ganymedes01.etfuturum.entities.ai.EntityAIOpenCustomDoor;
 import ganymedes01.etfuturum.inventory.ContainerEnchantment;
 import ganymedes01.etfuturum.items.TippedArrow;
-import ganymedes01.etfuturum.lib.GUIsID;
 import ganymedes01.etfuturum.lib.Reference;
 import ganymedes01.etfuturum.network.BlackHeartParticlesMessage;
-import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -53,10 +52,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemShears;
-import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.util.DamageSource;
@@ -64,7 +61,6 @@ import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
-import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.brewing.PotionBrewEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -79,14 +75,11 @@ import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent;
 
 public class ServerEventHandler {
-
-	private Item tinkersShovel;
 
 	@SubscribeEvent
 	public void onPlayerPickXP(PlayerPickupXpEvent event) {
@@ -254,88 +247,14 @@ public class ServerEventHandler {
 	}
 
 	@SubscribeEvent
-	public void onPlayerInteract0(PlayerInteractEvent event) {
-		if (event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
-			World world = event.world;
-			EntityPlayer player = event.entityPlayer;
-			int x = event.x;
-			int y = event.y;
-			int z = event.z;
-
-			if (world == null || world.isRemote)
-				return;
-			if (player.isSneaking())
-				return;
-
-			if (EtFuturum.enableAnvil)
-				if (world.getBlock(x, y, z) == Blocks.anvil) {
-					player.openGui(EtFuturum.instance, GUIsID.ANVIL, world, x, y, z);
-					event.setCanceled(true);
-					return;
-				}
-		}
-	}
-
-	@SubscribeEvent
-	public void onPlayerInteract1(PlayerInteractEvent event) {
-		if (EtFuturum.enableInvertedDaylightSensor)
-			if (event.entityPlayer != null) {
-				World world = event.entityPlayer.worldObj;
-				if (event.action == Action.RIGHT_CLICK_BLOCK)
-					if (world.getBlock(event.x, event.y, event.z) == Blocks.daylight_detector) {
-						world.setBlock(event.x, event.y, event.z, ModBlocks.inverted_daylight_detector);
-						event.entityPlayer.swingItem();
-					} else if (world.getBlock(event.x, event.y, event.z) == ModBlocks.inverted_daylight_detector) {
-						world.setBlock(event.x, event.y, event.z, Blocks.daylight_detector);
-						event.entityPlayer.swingItem();
-					}
-			}
-	}
-
-	@SubscribeEvent
-	public void onPlayerInteract2(PlayerInteractEvent event) {
-		if (EtFuturum.enableGrassPath)
-			if (event.entityPlayer != null) {
-				World world = event.entityPlayer.worldObj;
-				if (event.action == Action.RIGHT_CLICK_BLOCK)
-					if (world.getBlock(event.x, event.y, event.z) == Blocks.grass) {
-						ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
-						if (stack != null && (stack.getItem() instanceof ItemSpade || isTinkersShovel(stack))) {
-							world.setBlock(event.x, event.y, event.z, ModBlocks.grass_path);
-							event.entityPlayer.swingItem();
-							stack.damageItem(1, event.entityPlayer);
-							world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F, Block.soundTypeGravel.getStepResourcePath(), 1.0F, 0.8F);
-						}
-					}
-			}
-	}
-
-	private boolean isTinkersShovel(ItemStack stack) {
-		if (EtFuturum.isTinkersConstructLoaded) {
-			if (tinkersShovel == null)
-				try {
-					Class<?> TinkerTools = Class.forName("tconstruct.tools.TinkerTools");
-					Field field = TinkerTools.getDeclaredField("shovel");
-					field.setAccessible(true);
-					tinkersShovel = (Item) field.get(null);
-				} catch (Exception e) {
-				}
-			return tinkersShovel == stack.getItem();
-		}
-
-		return false;
+	public void onPlayerInteract(PlayerInteractEvent event) {
+		NewAnvil.onPlayerInteract(event);
+		GrassPath.onPlayerInteract(event);
 	}
 
 	@SubscribeEvent
 	public void onHoeUseEvent(UseHoeEvent event) {
-		if (EtFuturum.enableCoarseDirt) {
-			World world = event.world;
-			if (world.getBlock(event.x, event.y, event.z) == ModBlocks.coarse_dirt) {
-				world.setBlock(event.x, event.y, event.z, Blocks.dirt);
-				world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F, Block.soundTypeGravel.getStepResourcePath(), 1.0F, 0.8F);
-				event.setResult(Result.ALLOW);
-			}
-		}
+		CoarseDirt.onHoeEvent(event);
 	}
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
