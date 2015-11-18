@@ -3,6 +3,9 @@ package ganymedes01.etfuturum.inventory;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,10 +15,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
-
-import org.apache.commons.lang3.StringUtils;
-
-import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class ContainerAnvil extends ContainerRepair {
 
@@ -178,13 +177,18 @@ public class ContainerAnvil extends ContainerRepair {
 			if (flag7 && !itemstack1.getItem().isBookEnchantable(itemstack1, itemstack2))
 				itemstack1 = null;
 
+			boolean wasFixed = i > 0;
+			boolean wasRenamed = false;
 			if (StringUtils.isBlank(repairedItemName)) {
 				if (itemstack.hasDisplayName())
 					itemstack1.func_135074_t();
-			} else if (!repairedItemName.equals(itemstack.getDisplayName()))
+			} else if (!repairedItemName.equals(itemstack.getDisplayName())) {
 				itemstack1.setStackDisplayName(repairedItemName);
+				i++;
+				wasRenamed = true;
+			}
 
-			maximumCost = cost + i;
+			maximumCost = wasRenamed && !wasFixed ? 1 : cost + i;
 
 			if (i <= 0)
 				itemstack1 = null;
@@ -192,7 +196,7 @@ public class ContainerAnvil extends ContainerRepair {
 			if (maximumCost >= 40 && !player.capabilities.isCreativeMode)
 				itemstack1 = null;
 
-			if (itemstack1 != null) {
+			if (itemstack1 != null && wasFixed) {
 				int repairCost = itemstack1.getRepairCost();
 
 				if (itemstack2 != null && repairCost < itemstack2.getRepairCost())
