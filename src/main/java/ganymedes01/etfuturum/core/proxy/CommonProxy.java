@@ -1,8 +1,5 @@
 package ganymedes01.etfuturum.core.proxy;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -35,7 +32,6 @@ import ganymedes01.etfuturum.tileentities.TileEntityNewBrewingStand;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
 
 public class CommonProxy implements IGuiHandler {
@@ -64,25 +60,7 @@ public class CommonProxy implements IGuiHandler {
 
 		if (EtFuturum.enableRabbit) {
 			ModEntityList.registerEntity(EntityRabbit.class, "rabbit", 3, EtFuturum.instance, 80, 3, true, 10051392, 7555121);
-
-			List<BiomeGenBase> biomes = new LinkedList<BiomeGenBase>();
-			biomes.add(BiomeGenBase.desert);
-			biomes.add(BiomeGenBase.desertHills);
-			biomes.add(BiomeGenBase.forest);
-			biomes.add(BiomeGenBase.forestHills);
-			biomes.add(BiomeGenBase.taiga);
-			biomes.add(BiomeGenBase.taigaHills);
-			biomes.add(BiomeGenBase.megaTaiga);
-			biomes.add(BiomeGenBase.megaTaigaHills);
-			biomes.add(BiomeGenBase.swampland);
-			biomes.add(BiomeGenBase.birchForest);
-			biomes.add(BiomeGenBase.birchForestHills);
-			biomes.add(BiomeGenBase.roofedForest);
-			biomes.add(BiomeGenBase.coldTaiga);
-			biomes.add(BiomeGenBase.coldTaigaHills);
-			biomes.add(BiomeGenBase.savanna);
-			biomes.add(BiomeGenBase.savannaPlateau);
-			EntityRegistry.addSpawn(EntityRabbit.class, 10, 3, 3, EnumCreatureType.creature, biomes.toArray(new BiomeGenBase[biomes.size()]));
+			EntityRegistry.addSpawn(EntityRabbit.class, 10, 3, 3, EnumCreatureType.creature, EtFuturum.biomesRabbitsSpawn);
 		}
 
 		if (EtFuturum.enableLingeringPotions) {
