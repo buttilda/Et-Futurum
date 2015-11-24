@@ -52,17 +52,14 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionHelper;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.event.brewing.PotionBrewEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
@@ -412,21 +409,6 @@ public class ServerEventHandler {
 			return true;
 		else
 			return false;
-	}
-
-	@SubscribeEvent
-	public void potionBrewEvent(PotionBrewEvent.Pre event) {
-		ItemStack ingredient = event.getItem(3);
-		if (ingredient != null && ingredient.getItem() == ModItems.dragon_breath) {
-			for (int i = 0; i < 3; i++) {
-				ItemStack potion = event.getItem(i);
-				if (potion != null && potion.getItem() == Items.potionitem && ItemPotion.isSplash(potion.getItemDamage()))
-					event.setItem(i, new ItemStack(ModItems.lingering_potion, 1, PotionHelper.applyIngredient(potion.getItemDamage(), ModItems.dragon_breath.getPotionEffect(ingredient))));
-			}
-			if (--ingredient.stackSize <= 0)
-				event.setItem(3, ingredient.getItem().getContainerItem(ingredient));
-			event.setCanceled(true);
-		}
 	}
 
 	@SubscribeEvent

@@ -2,6 +2,10 @@ package ganymedes01.etfuturum.tileentities;
 
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.etfuturum.ModItems;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPotion;
@@ -11,8 +15,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.tileentity.TileEntityBrewingStand;
 import net.minecraftforge.event.ForgeEventFactory;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /*
  * Class copied from vanilla and modified to fit my needs.
@@ -81,7 +83,13 @@ public class TileEntityNewBrewingStand extends TileEntityBrewingStand {
 
 			if (!itemstack.getItem().isPotionIngredient(itemstack))
 				return false;
-			else {
+			else if (itemstack.getItem() == ModItems.dragon_breath) {
+				for (int i = 0; i < 3; i++)
+					if (inventory[i] != null && inventory[i].getItem() == Items.potionitem)
+						if (ItemPotion.isSplash(inventory[i].getItemDamage()))
+							return true;
+				return false;
+			} else {
 				boolean flag = false;
 
 				for (int i = 0; i < 3; i++)
@@ -113,30 +121,37 @@ public class TileEntityNewBrewingStand extends TileEntityBrewingStand {
 		if (ForgeEventFactory.onPotionAttemptBreaw(new ItemStack[] { inventory[0], inventory[1], inventory[2], inventory[3] }))
 			return;
 		if (canBrew()) {
-			ItemStack itemstack = inventory[3];
-
 			for (int i = 0; i < 3; i++)
 				if (inventory[i] != null && inventory[i].getItem() instanceof ItemPotion) {
 					int j = inventory[i].getItemDamage();
-					int k = applyIngredient(j, itemstack);
-					List<?> list = Items.potionitem.getEffects(j);
-					List<?> list1 = Items.potionitem.getEffects(k);
+					if (ItemPotion.isSplash(j) && inventory[3].getItem() == ModItems.dragon_breath)
+						inventory[i] = new ItemStack(ModItems.lingering_potion, inventory[i].stackSize, inventory[i].getItemDamage());
+					else {
+						int k = applyIngredient(j, inventory[3]);
+						List<?> list = Items.potionitem.getEffects(j);
+						List<?> list1 = Items.potionitem.getEffects(k);
 
-					if ((j <= 0 || list != list1) && (list == null || !list.equals(list1) && list1 != null)) {
-						if (j != k)
+						if ((j <= 0 || list != list1) && (list == null || !list.equals(list1) && list1 != null)) {
+							if (j != k)
+								inventory[i].setItemDamage(k);
+						} else if (!ItemPotion.isSplash(j) && ItemPotion.isSplash(k))
 							inventory[i].setItemDamage(k);
-					} else if (!ItemPotion.isSplash(j) && ItemPotion.isSplash(k))
-						inventory[i].setItemDamage(k);
+					}
 				}
 
-			if (itemstack.getItem().hasContainerItem(itemstack))
-				inventory[3] = itemstack.getItem().getContainerItem(itemstack);
-			else {
-				inventory[3].stackSize--;
-
-				if (inventory[3].stackSize <= 0)
-					inventory[3] = null;
+			boolean hasContainerItem = inventory[3].getItem().hasContainerItem(inventory[3]);
+			if (--inventory[3].stackSize <= 0)
+				inventory[3] = hasContainerItem ? inventory[3].getItem().getContainerItem(inventory[3]) : null;
+			else if (hasContainerItem && !worldObj.isRemote) {
+				float f = 0.7F;
+				double x = worldObj.rand.nextFloat() * f + (1.0F - f) * 0.5D;
+				double y = worldObj.rand.nextFloat() * f + (1.0F - f) * 0.5D;
+				double z = worldObj.rand.nextFloat() * f + (1.0F - f) * 0.5D;
+				EntityItem entityitem = new EntityItem(worldObj, xCoord + x, yCoord + y, zCoord + z, inventory[3].getItem().getContainerItem(inventory[3]));
+				entityitem.delayBeforeCanPickup = 10;
+				worldObj.spawnEntityInWorld(entityitem);
 			}
+
 			fuel--;
 			ForgeEventFactory.onPotionBrewed(new ItemStack[] { inventory[0], inventory[1], inventory[2], inventory[3] });
 		}
