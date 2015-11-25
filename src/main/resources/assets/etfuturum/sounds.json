@@ -31,5 +31,12 @@
     "sounds": [
       "mob/rabbit/bunnymurder"
     ]
+  },
+  "block.brewing_stand.brew": {
+    "category": "block",
+    "sounds": [
+      "block/brewing_stand/brew1",
+      "block/brewing_stand/brew2"
+    ]
   }
 }

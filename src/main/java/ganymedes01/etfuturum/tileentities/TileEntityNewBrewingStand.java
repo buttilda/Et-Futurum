@@ -5,6 +5,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.etfuturum.ModItems;
+import ganymedes01.etfuturum.lib.Reference;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -154,6 +155,7 @@ public class TileEntityNewBrewingStand extends TileEntityBrewingStand {
 
 			fuel--;
 			ForgeEventFactory.onPotionBrewed(new ItemStack[] { inventory[0], inventory[1], inventory[2], inventory[3] });
+			worldObj.playSound(xCoord, yCoord, zCoord, Reference.MOD_ID + ":block.brewing_stand.brew", 1.0F, 1.0F, true);
 		}
 	}
 
