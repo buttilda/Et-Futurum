@@ -1,7 +1,7 @@
 package ganymedes01.etfuturum.core.handlers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -37,7 +37,7 @@ public class WorldTickEventHandler {
 
 		isReplacing = true;
 		World world = event.world;
-		for (TileEntity tile : (List<TileEntity>) world.loadedTileEntityList) {
+		for (TileEntity tile : new ArrayList<TileEntity>(world.loadedTileEntityList)) {
 			Block replacement = replacements.get(world.getBlock(tile.xCoord, tile.yCoord, tile.zCoord));
 			if (replacement != null) {
 				NBTTagCompound nbt = new NBTTagCompound();
