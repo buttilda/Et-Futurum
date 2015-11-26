@@ -30,6 +30,7 @@ public class EndCrystal extends ItemSimpleFoiled implements IConfigurable {
 				if (!world.isRemote) {
 					EntityPlacedEndCrystal endCrystal = new EntityPlacedEndCrystal(world);
 					endCrystal.setPosition(x + 0.5, y, z + 0.5);
+					endCrystal.setBlockPos(x, y, z);
 
 					world.spawnEntityInWorld(endCrystal);
 					if (!player.capabilities.isCreativeMode)
