@@ -64,6 +64,7 @@ public class EntityRabbit extends EntityAnimal {
 		tasks.addTask(5, new EntityAIWander(this, 0.6D));
 		tasks.addTask(11, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
 		tasks.addTask(4, new EntityAIAvoidEntity(this, EntityWolf.class, 16.0F, 1.33D, 1.33D));
+		tasks.addTask(4, new EntityAIAvoidEntity(this, EntityPlayer.class, 16.0F, 0.8D, 1.33D));
 		setMovementSpeed(0.0D);
 	}
 
