@@ -34,7 +34,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.oredict.OreDictionary;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUI_FACTORY_CLASS)
@@ -101,7 +100,6 @@ public class EtFuturum {
 	public static boolean enableDragonRespawn = true;
 	public static boolean enableRoses = true;
 	public static boolean enableColourfulBeacons = true;
-	public static BiomeGenBase[] biomesRabbitsSpawn = new BiomeGenBase[] { BiomeGenBase.desert, BiomeGenBase.desertHills, BiomeGenBase.forest, BiomeGenBase.forestHills, BiomeGenBase.taiga, BiomeGenBase.taigaHills, BiomeGenBase.megaTaiga, BiomeGenBase.megaTaigaHills, BiomeGenBase.swampland, BiomeGenBase.birchForest, BiomeGenBase.birchForestHills, BiomeGenBase.roofedForest, BiomeGenBase.coldTaiga, BiomeGenBase.coldTaigaHills, BiomeGenBase.savanna, BiomeGenBase.savannaPlateau };
 
 	public static int maxStonesPerCluster = 33;
 

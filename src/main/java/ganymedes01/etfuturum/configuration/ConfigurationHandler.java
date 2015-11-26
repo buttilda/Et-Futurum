@@ -8,7 +8,6 @@ import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.enchantment.FrostWalker;
 import ganymedes01.etfuturum.enchantment.Mending;
 import ganymedes01.etfuturum.lib.Reference;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.config.Configuration;
 
 public class ConfigurationHandler {
@@ -90,13 +89,6 @@ public class ConfigurationHandler {
 		EtFuturum.enableRoses = configBoolean("Old Roses", true, EtFuturum.enableRoses);
 		EtFuturum.enableColourfulBeacons = configBoolean("Colourful Beacon Beams", true, EtFuturum.enableColourfulBeacons);
 		EtFuturum.maxStonesPerCluster = configInteger("Max number of 1.8 stones in a cluster", true, EtFuturum.maxStonesPerCluster);
-
-		int[] biomeIDs = new int[EtFuturum.biomesRabbitsSpawn.length];
-		for (int i = 0; i < biomeIDs.length; i++)
-			biomeIDs[i] = EtFuturum.biomesRabbitsSpawn[i].biomeID;
-		biomeIDs = configFile.get(Configuration.CATEGORY_GENERAL, "Rabbit biome IDs", biomeIDs).getIntList();
-		for (int i = 0; i < biomeIDs.length; i++)
-			EtFuturum.biomesRabbitsSpawn[i] = BiomeGenBase.getBiome(biomeIDs[i]);
 
 		if (configFile.hasChanged())
 			configFile.save();

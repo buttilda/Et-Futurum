@@ -1,5 +1,8 @@
 package ganymedes01.etfuturum.core.proxy;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -30,8 +33,11 @@ import ganymedes01.etfuturum.tileentities.TileEntityEndRod;
 import ganymedes01.etfuturum.tileentities.TileEntityNewBeacon;
 import ganymedes01.etfuturum.tileentities.TileEntityNewBrewingStand;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraftforge.common.MinecraftForge;
 
 public class CommonProxy implements IGuiHandler {
@@ -60,7 +66,20 @@ public class CommonProxy implements IGuiHandler {
 
 		if (EtFuturum.enableRabbit) {
 			ModEntityList.registerEntity(EntityRabbit.class, "rabbit", 3, EtFuturum.instance, 80, 3, true, 10051392, 7555121);
-			EntityRegistry.addSpawn(EntityRabbit.class, 10, 3, 3, EnumCreatureType.creature, EtFuturum.biomesRabbitsSpawn);
+
+			List<BiomeGenBase> biomes = new LinkedList<BiomeGenBase>();
+			label: for (BiomeGenBase biome : BiomeGenBase.getBiomeGenArray())
+				if (biome != null)
+					// Check if pigs can spawn on this biome
+					for (Object obj : biome.getSpawnableList(EnumCreatureType.creature))
+						if (obj instanceof SpawnListEntry) {
+							SpawnListEntry entry = (SpawnListEntry) obj;
+							if (entry.entityClass == EntityPig.class) {
+								biomes.add(biome);
+								continue label;
+							}
+						}
+			EntityRegistry.addSpawn(EntityRabbit.class, 10, 3, 3, EnumCreatureType.creature, biomes.toArray(new BiomeGenBase[biomes.size()]));
 		}
 
 		if (EtFuturum.enableLingeringPotions) {
