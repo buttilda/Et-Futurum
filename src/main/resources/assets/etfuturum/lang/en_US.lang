@@ -19,6 +19,7 @@ entity.etfuturum.wooden_armorstand.name=Armour Stand
 entity.etfuturum.rabbit.name=Rabbit
 entity.etfuturum.villager_zombie.name=Villager Zombie
 entity.etfuturum.end_crystal.name=End Crystal
+entity.etfuturum.ender_dragon.name=Ender Dragon
 
 # Items
 item.etfuturum.mutton_raw.name=Raw Mutton

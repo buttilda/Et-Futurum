@@ -1,6 +1,5 @@
 package ganymedes01.etfuturum.entities;
 
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.world.World;
@@ -9,12 +8,6 @@ public class EntityRespawnedDragon extends EntityDragon {
 
 	public EntityRespawnedDragon(World world) {
 		super(world);
-	}
-
-	@Override
-	protected void applyEntityAttributes() {
-		super.applyEntityAttributes();
-		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
 	}
 
 	@Override
