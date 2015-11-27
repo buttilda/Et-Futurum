@@ -10,12 +10,15 @@ import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.blocks.PrismarineBlocks;
 import ganymedes01.etfuturum.client.OpenGLHelper;
 import ganymedes01.etfuturum.client.PrismarineIcon;
+import ganymedes01.etfuturum.client.model.ModelPlayer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent.SetArmorModel;
 import net.minecraftforge.client.event.TextureStitchEvent;
 
 public class ClientEventHandler {
+
+	private boolean replacedPlayerModel = false;
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
@@ -32,6 +35,11 @@ public class ClientEventHandler {
 
 	@SubscribeEvent
 	public void renderPlayerEventPre(RenderPlayerEvent.Pre event) {
+		if (EtFuturum.enableTransparentPlayerOverlay && !replacedPlayerModel) {
+			replacedPlayerModel = true;
+			event.renderer.modelBipedMain = new ModelPlayer();
+		}
+
 		if (EtFuturum.enableTransparentAmour) {
 			OpenGLHelper.enableBlend();
 			OpenGLHelper.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
