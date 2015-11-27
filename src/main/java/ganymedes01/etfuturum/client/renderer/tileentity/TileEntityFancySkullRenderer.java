@@ -1,18 +1,6 @@
 package ganymedes01.etfuturum.client.renderer.tileentity;
 
-import ganymedes01.etfuturum.client.OpenGLHelper;
-import ganymedes01.etfuturum.client.model.ModelHead;
-import ganymedes01.etfuturum.core.utils.Utils;
-
 import java.util.Map;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntitySkull;
-import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
@@ -22,6 +10,16 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.etfuturum.client.OpenGLHelper;
+import ganymedes01.etfuturum.client.model.ModelHead;
+import ganymedes01.etfuturum.core.utils.Utils;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntitySkull;
+import net.minecraft.util.ResourceLocation;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityFancySkullRenderer extends TileEntitySpecialRenderer {

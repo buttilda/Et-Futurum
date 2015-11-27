@@ -2,12 +2,12 @@ package ganymedes01.etfuturum.client;
 
 import java.lang.reflect.Field;
 
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureUtil;
-import net.minecraft.client.resources.data.AnimationMetadataSection;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureUtil;
+import net.minecraft.client.resources.data.AnimationMetadataSection;
 
 @SideOnly(Side.CLIENT)
 public class PrismarineIcon extends TextureAtlasSprite {

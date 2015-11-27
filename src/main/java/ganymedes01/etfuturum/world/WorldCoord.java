@@ -1,9 +1,9 @@
 package ganymedes01.etfuturum.world;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class WorldCoord implements Comparable<WorldCoord> {
 

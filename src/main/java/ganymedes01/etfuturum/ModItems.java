@@ -1,5 +1,8 @@
 package ganymedes01.etfuturum;
 
+import java.lang.reflect.Field;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.etfuturum.items.Beetroot;
 import ganymedes01.etfuturum.items.BeetrootSeeds;
 import ganymedes01.etfuturum.items.BeetrootSoup;
@@ -20,11 +23,7 @@ import ganymedes01.etfuturum.items.RabbitHide;
 import ganymedes01.etfuturum.items.RabbitRaw;
 import ganymedes01.etfuturum.items.RabbitStew;
 import ganymedes01.etfuturum.items.TippedArrow;
-
-import java.lang.reflect.Field;
-
 import net.minecraft.item.Item;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModItems {
 

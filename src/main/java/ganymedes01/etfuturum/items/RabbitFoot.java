@@ -1,17 +1,16 @@
 package ganymedes01.etfuturum.items;
 
-import ganymedes01.etfuturum.EtFuturum;
-import ganymedes01.etfuturum.IConfigurable;
-import ganymedes01.etfuturum.core.utils.Utils;
-
 import java.lang.reflect.Field;
 import java.util.HashMap;
 
+import cpw.mods.fml.relauncher.ReflectionHelper;
+import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.IConfigurable;
+import ganymedes01.etfuturum.core.utils.Utils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionHelper;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class RabbitFoot extends Item implements IConfigurable {
 

@@ -1,12 +1,12 @@
 package ganymedes01.etfuturum.network;
 
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import ganymedes01.etfuturum.entities.EntityArmourStand;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public class ArmourStandInteractMessage implements IMessage {
 

@@ -1,10 +1,9 @@
 package ganymedes01.etfuturum.core.utils;
 
-import ganymedes01.etfuturum.lib.Reference;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import ganymedes01.etfuturum.lib.Reference;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;

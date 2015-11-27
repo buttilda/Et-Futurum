@@ -1,8 +1,8 @@
 package ganymedes01.etfuturum.entities.ai;
 
-import net.minecraft.util.MathHelper;
-
 import com.google.common.base.Objects;
+
+import net.minecraft.util.MathHelper;
 
 public class Vec3i implements Comparable<Vec3i> {
 

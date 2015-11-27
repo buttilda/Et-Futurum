@@ -1,15 +1,14 @@
 package ganymedes01.etfuturum.items;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.entities.EntityArmourStand;
 import ganymedes01.etfuturum.entities.Rotations;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

@@ -1,20 +1,19 @@
 package ganymedes01.etfuturum.world;
 
-import ganymedes01.etfuturum.EtFuturum;
-import ganymedes01.etfuturum.ModBlocks;
-import ganymedes01.etfuturum.blocks.ChorusFlower;
-
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.common.IWorldGenerator;
+import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.ModBlocks;
+import ganymedes01.etfuturum.blocks.ChorusFlower;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.common.IWorldGenerator;
 
 public class EtFuturumWorldGenerator implements IWorldGenerator {
 

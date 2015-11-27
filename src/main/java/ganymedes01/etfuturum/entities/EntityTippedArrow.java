@@ -1,11 +1,12 @@
 package ganymedes01.etfuturum.entities;
 
+import java.awt.Color;
+
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import ganymedes01.etfuturum.ModItems;
 import ganymedes01.etfuturum.items.TippedArrow;
 import io.netty.buffer.ByteBuf;
-
-import java.awt.Color;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -15,8 +16,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class EntityTippedArrow extends EntityArrow implements IEntityAdditionalSpawnData {
 

@@ -1,12 +1,13 @@
 package ganymedes01.etfuturum.blocks;
 
-import ganymedes01.etfuturum.IConfigurable;
-import ganymedes01.etfuturum.ModBlocks.ISubBlocksBlock;
-import ganymedes01.etfuturum.items.block.ItemGenericSlab;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.etfuturum.IConfigurable;
+import ganymedes01.etfuturum.ModBlocks.ISubBlocksBlock;
+import ganymedes01.etfuturum.items.block.ItemGenericSlab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,8 +19,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class GenericSlab extends Block implements ISubBlocksBlock, IConfigurable {
 

@@ -1,28 +1,26 @@
 package ganymedes01.etfuturum.client.renderer.tileentity;
 
-import ganymedes01.etfuturum.client.LayeredColorMaskTexture;
-import ganymedes01.etfuturum.client.OpenGLHelper;
-import ganymedes01.etfuturum.client.model.ModelBanner;
-import ganymedes01.etfuturum.lib.EnumColour;
-import ganymedes01.etfuturum.tileentities.TileEntityBanner;
-import ganymedes01.etfuturum.tileentities.TileEntityBanner.EnumBannerPattern;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.etfuturum.client.LayeredColorMaskTexture;
+import ganymedes01.etfuturum.client.OpenGLHelper;
+import ganymedes01.etfuturum.client.model.ModelBanner;
+import ganymedes01.etfuturum.lib.EnumColour;
+import ganymedes01.etfuturum.tileentities.TileEntityBanner;
+import ganymedes01.etfuturum.tileentities.TileEntityBanner.EnumBannerPattern;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityBannerRenderer extends TileEntitySpecialRenderer {

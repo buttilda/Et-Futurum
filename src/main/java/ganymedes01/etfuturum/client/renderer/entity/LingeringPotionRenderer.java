@@ -1,5 +1,7 @@
 package ganymedes01.etfuturum.client.renderer.entity;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.etfuturum.ModItems;
 import ganymedes01.etfuturum.client.OpenGLHelper;
 import ganymedes01.etfuturum.entities.EntityLingeringPotion;
@@ -8,8 +10,6 @@ import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class LingeringPotionRenderer extends RenderSnowball {
