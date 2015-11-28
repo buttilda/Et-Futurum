@@ -73,20 +73,20 @@ public class ModelPlayer extends ModelBiped {
 
 		if (isChild) {
 			float f6 = 2.0F;
-			GL11.glPushMatrix();
-			GL11.glScalef(1.5F / f6, 1.5F / f6, 1.5F / f6);
-			GL11.glTranslatef(0.0F, 16.0F * scale, 0.0F);
+			OpenGLHelper.pushMatrix();
+			OpenGLHelper.scale(1.5F / f6, 1.5F / f6, 1.5F / f6);
+			OpenGLHelper.translate(0.0F, 16.0F * scale, 0.0F);
 			bipedHead.render(scale);
-			GL11.glPopMatrix();
-			GL11.glPushMatrix();
-			GL11.glScalef(1.0F / f6, 1.0F / f6, 1.0F / f6);
-			GL11.glTranslatef(0.0F, 24.0F * scale, 0.0F);
+			OpenGLHelper.popMatrix();
+			OpenGLHelper.pushMatrix();
+			OpenGLHelper.scale(1.0F / f6, 1.0F / f6, 1.0F / f6);
+			OpenGLHelper.translate(0.0F, 24.0F * scale, 0.0F);
 			bipedBody.render(scale);
 			bipedRightArm.render(scale);
 			bipedLeftArm.render(scale);
 			bipedRightLeg.render(scale);
 			bipedLeftLeg.render(scale);
-			GL11.glPopMatrix();
+			OpenGLHelper.popMatrix();
 		} else {
 			bipedHead.render(scale);
 			bipedBody.render(scale);
