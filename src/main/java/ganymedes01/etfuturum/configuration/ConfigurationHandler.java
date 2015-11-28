@@ -89,7 +89,7 @@ public class ConfigurationHandler {
 		EtFuturum.enableRoses = configBoolean("Old Roses", true, EtFuturum.enableRoses);
 		EtFuturum.enableColourfulBeacons = configBoolean("Colourful Beacon Beams", true, EtFuturum.enableColourfulBeacons);
 		EtFuturum.maxStonesPerCluster = configInteger("Max number of 1.8 stones in a cluster", true, EtFuturum.maxStonesPerCluster);
-		EtFuturum.enableTransparentPlayerOverlay = configBoolean("Skin overlays render with transparency", true, EtFuturum.enableTransparentPlayerOverlay);
+		EtFuturum.enablePlayerSkinOverlay = configBoolean("Skin overlays", true, EtFuturum.enablePlayerSkinOverlay);
 
 		if (configFile.hasChanged())
 			configFile.save();

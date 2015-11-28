@@ -1,7 +1,12 @@
 package ganymedes01.etfuturum.core.proxy;
 
+import java.io.File;
+
+import com.mojang.authlib.minecraft.MinecraftSessionService;
+
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.client.renderer.block.BlockChestRenderer;
@@ -24,6 +29,8 @@ import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityBannerRenderer
 import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityEndRodRenderer;
 import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityFancySkullRenderer;
 import ganymedes01.etfuturum.client.renderer.tileentity.TileEntityNewBeaconRenderer;
+import ganymedes01.etfuturum.client.skins.NewRenderPlayer;
+import ganymedes01.etfuturum.client.skins.NewSkinManager;
 import ganymedes01.etfuturum.core.handlers.ClientEventHandler;
 import ganymedes01.etfuturum.entities.EntityArmourStand;
 import ganymedes01.etfuturum.entities.EntityEndermite;
@@ -35,6 +42,10 @@ import ganymedes01.etfuturum.entities.EntityZombieVillager;
 import ganymedes01.etfuturum.tileentities.TileEntityBanner;
 import ganymedes01.etfuturum.tileentities.TileEntityEndRod;
 import ganymedes01.etfuturum.tileentities.TileEntityNewBeacon;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntitySkull;
@@ -91,6 +102,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerBlockHandler(new BlockChestRenderer());
 	}
 
+	@SuppressWarnings("unchecked")
 	private void registerEntityRenderers() {
 		if (EtFuturum.enableArmourStand)
 			RenderingRegistry.registerEntityRenderingHandler(EntityArmourStand.class, new ArmourStandRenderer());
@@ -106,5 +118,14 @@ public class ClientProxy extends CommonProxy {
 			RenderingRegistry.registerEntityRenderingHandler(EntityZombieVillager.class, new VillagerZombieRenderer());
 		if (EtFuturum.enableDragonRespawn)
 			RenderingRegistry.registerEntityRenderingHandler(EntityPlacedEndCrystal.class, new PlacedEndCrystalRenderer());
+		if (EtFuturum.enablePlayerSkinOverlay) {
+			TextureManager texManager = Minecraft.getMinecraft().renderEngine;
+			File fileAssets = ReflectionHelper.getPrivateValue(Minecraft.class, Minecraft.getMinecraft(), "fileAssets", "field_110446_Y", " field_110607_c");
+			File skinFolder = new File(fileAssets, "skins");
+			MinecraftSessionService sessionService = Minecraft.getMinecraft().func_152347_ac();
+			ReflectionHelper.setPrivateValue(Minecraft.class, Minecraft.getMinecraft(), new NewSkinManager(Minecraft.getMinecraft().func_152342_ad(), texManager, skinFolder, sessionService), "field_152350_aA");
+
+			RenderManager.instance.entityRenderMap.put(EntityPlayer.class, new NewRenderPlayer());
+		}
 	}
 }
