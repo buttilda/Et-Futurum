@@ -20,6 +20,7 @@ entity.etfuturum.rabbit.name=Rabbit
 entity.etfuturum.villager_zombie.name=Villager Zombie
 entity.etfuturum.end_crystal.name=End Crystal
 entity.etfuturum.ender_dragon.name=Ender Dragon
+entity.etfuturum.snow_golem.name=Snow Golem
 
 # Items
 item.etfuturum.mutton_raw.name=Raw Mutton

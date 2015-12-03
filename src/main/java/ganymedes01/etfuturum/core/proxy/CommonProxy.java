@@ -19,6 +19,7 @@ import ganymedes01.etfuturum.entities.EntityArmourStand;
 import ganymedes01.etfuturum.entities.EntityEndermite;
 import ganymedes01.etfuturum.entities.EntityLingeringEffect;
 import ganymedes01.etfuturum.entities.EntityLingeringPotion;
+import ganymedes01.etfuturum.entities.EntityNewSnowGolem;
 import ganymedes01.etfuturum.entities.EntityPlacedEndCrystal;
 import ganymedes01.etfuturum.entities.EntityRabbit;
 import ganymedes01.etfuturum.entities.EntityRespawnedDragon;
@@ -95,6 +96,9 @@ public class CommonProxy implements IGuiHandler {
 			ModEntityList.registerEntity(EntityPlacedEndCrystal.class, "end_crystal", 7, EtFuturum.instance, 256, Integer.MAX_VALUE, false);
 			ModEntityList.registerEntity(EntityRespawnedDragon.class, "ender_dragon", 8, EtFuturum.instance, 160, 3, true);
 		}
+
+		if (EtFuturum.enableShearableGolems)
+			ModEntityList.registerEntity(EntityNewSnowGolem.class, "snow_golem", 9, EtFuturum.instance, 80, 3, true);
 	}
 
 	public void registerRenderers() {

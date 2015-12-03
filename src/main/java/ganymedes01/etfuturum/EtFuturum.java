@@ -106,6 +106,7 @@ public class EtFuturum {
 	public static boolean enableRoses = true;
 	public static boolean enableColourfulBeacons = true;
 	public static boolean enablePlayerSkinOverlay = true;
+	public static boolean enableShearableGolems = true;
 
 	public static int maxStonesPerCluster = 33;
 

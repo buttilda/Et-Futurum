@@ -19,6 +19,7 @@ import ganymedes01.etfuturum.client.renderer.entity.ArmourStandRenderer;
 import ganymedes01.etfuturum.client.renderer.entity.EndermiteRenderer;
 import ganymedes01.etfuturum.client.renderer.entity.LingeringEffectRenderer;
 import ganymedes01.etfuturum.client.renderer.entity.LingeringPotionRenderer;
+import ganymedes01.etfuturum.client.renderer.entity.NewSnowGolemRenderer;
 import ganymedes01.etfuturum.client.renderer.entity.PlacedEndCrystalRenderer;
 import ganymedes01.etfuturum.client.renderer.entity.RabbitRenderer;
 import ganymedes01.etfuturum.client.renderer.entity.VillagerZombieRenderer;
@@ -36,6 +37,7 @@ import ganymedes01.etfuturum.entities.EntityArmourStand;
 import ganymedes01.etfuturum.entities.EntityEndermite;
 import ganymedes01.etfuturum.entities.EntityLingeringEffect;
 import ganymedes01.etfuturum.entities.EntityLingeringPotion;
+import ganymedes01.etfuturum.entities.EntityNewSnowGolem;
 import ganymedes01.etfuturum.entities.EntityPlacedEndCrystal;
 import ganymedes01.etfuturum.entities.EntityRabbit;
 import ganymedes01.etfuturum.entities.EntityZombieVillager;
@@ -127,5 +129,7 @@ public class ClientProxy extends CommonProxy {
 
 			RenderManager.instance.entityRenderMap.put(EntityPlayer.class, new NewRenderPlayer());
 		}
+		if (EtFuturum.enableShearableGolems)
+			RenderingRegistry.registerEntityRenderingHandler(EntityNewSnowGolem.class, new NewSnowGolemRenderer());
 	}
 }

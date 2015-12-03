@@ -20,6 +20,7 @@ import ganymedes01.etfuturum.blocks.CoarseDirt;
 import ganymedes01.etfuturum.blocks.GrassPath;
 import ganymedes01.etfuturum.blocks.NewAnvil;
 import ganymedes01.etfuturum.entities.EntityEndermite;
+import ganymedes01.etfuturum.entities.EntityNewSnowGolem;
 import ganymedes01.etfuturum.entities.EntityRabbit;
 import ganymedes01.etfuturum.entities.EntityTippedArrow;
 import ganymedes01.etfuturum.entities.EntityZombieVillager;
@@ -39,6 +40,7 @@ import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -98,6 +100,16 @@ public class ServerEventHandler {
 
 					zombie.setDead();
 				}
+			}
+
+		if (EtFuturum.enableShearableGolems)
+			if (!event.entityLiving.worldObj.isRemote && event.entityLiving.getClass() == EntitySnowman.class) {
+				EntityNewSnowGolem golen = new EntityNewSnowGolem(event.entityLiving.worldObj);
+				golen.copyLocationAndAnglesFrom(event.entityLiving);
+				golen.onSpawnWithEgg(null);
+				golen.worldObj.spawnEntityInWorld(golen);
+
+				event.entityLiving.setDead();
 			}
 	}
 
