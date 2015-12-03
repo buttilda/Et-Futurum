@@ -91,6 +91,7 @@ public class ConfigurationHandler {
 		EtFuturum.maxStonesPerCluster = configInteger("Max number of 1.8 stones in a cluster", true, EtFuturum.maxStonesPerCluster);
 		EtFuturum.enablePlayerSkinOverlay = configBoolean("Skin overlays", true, EtFuturum.enablePlayerSkinOverlay);
 		EtFuturum.enableShearableGolems = configBoolean("Shearing Snow Golems", true, EtFuturum.enableShearableGolems);
+		EtFuturum.enableShearableCobwebs = configBoolean("Shears harvest cobwebs", true, EtFuturum.enableShearableCobwebs);
 
 		if (configFile.hasChanged())
 			configFile.save();

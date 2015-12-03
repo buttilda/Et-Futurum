@@ -253,6 +253,15 @@ public class ServerEventHandler {
 					for (int i = 0; i < event.world.rand.nextInt(3); i++)
 						event.drops.add(new ItemStack(Items.stick));
 			}
+
+		if (EtFuturum.enableShearableCobwebs)
+			if (event.block == Blocks.web && event.harvester != null) {
+				ItemStack stack = event.harvester.getCurrentEquippedItem();
+				if (stack != null && stack.getItem() instanceof ItemShears) {
+					event.drops.clear();
+					event.drops.add(new ItemStack(Blocks.web));
+				}
+			}
 	}
 
 	@SubscribeEvent
