@@ -10,6 +10,8 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
+import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -26,6 +28,7 @@ import ganymedes01.etfuturum.network.ArmourStandInteractHandler;
 import ganymedes01.etfuturum.network.ArmourStandInteractMessage;
 import ganymedes01.etfuturum.network.BlackHeartParticlesHandler;
 import ganymedes01.etfuturum.network.BlackHeartParticlesMessage;
+import ganymedes01.etfuturum.recipes.BrewingFuelRegistry;
 import ganymedes01.etfuturum.recipes.ModRecipes;
 import ganymedes01.etfuturum.world.EtFuturumWorldGenerator;
 import ganymedes01.etfuturum.world.OceanMonument;
@@ -34,6 +37,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUI_FACTORY_CLASS)
@@ -157,6 +162,17 @@ public class EtFuturum {
 			Blocks.ladder.setHarvestLevel("axe", 0);
 			Blocks.melon_block.setHarvestLevel("axe", 0);
 		}
+	}
+
+	@EventHandler
+	public void processIMCRequests(IMCEvent event) {
+		for (IMCMessage message : event.getMessages())
+			if (message.key.equals("register-brewing-fuel")) {
+				NBTTagCompound nbt = message.getNBTValue();
+				ItemStack stack = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("Fuel"));
+				int brews = nbt.getInteger("Brews");
+				BrewingFuelRegistry.registerFuel(stack, brews);
+			}
 	}
 
 	private void setFinalField(Class<?> cls, Object obj, Object newValue, String... fieldNames) {

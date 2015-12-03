@@ -2,6 +2,7 @@ package ganymedes01.etfuturum.inventory;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.etfuturum.recipes.BrewingFuelRegistry;
 import ganymedes01.etfuturum.tileentities.TileEntityNewBrewingStand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -18,7 +19,7 @@ public class ContainerNewBrewingStand extends Container {
 
 	private TileEntityNewBrewingStand tile;
 	private final Slot ingredientSlot;
-	private int prevBrewTime, prevFuel;
+	private int prevBrewTime, prevFuel, prevCurrentFuel;
 
 	public ContainerNewBrewingStand(InventoryPlayer playerInvt, TileEntityNewBrewingStand tile) {
 		this.tile = tile;
@@ -37,13 +38,6 @@ public class ContainerNewBrewingStand extends Container {
 	}
 
 	@Override
-	public void addCraftingToCrafters(ICrafting crafting) {
-		super.addCraftingToCrafters(crafting);
-		crafting.sendProgressBarUpdate(this, 0, tile.getBrewTime());
-		crafting.sendProgressBarUpdate(this, 1, tile.getFuel());
-	}
-
-	@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
 
@@ -54,9 +48,12 @@ public class ContainerNewBrewingStand extends Container {
 				icrafting.sendProgressBarUpdate(this, 0, tile.getBrewTime());
 			if (prevFuel != tile.getFuel())
 				icrafting.sendProgressBarUpdate(this, 1, tile.getFuel());
+			if (prevCurrentFuel != tile.getCurrentFuel())
+				icrafting.sendProgressBarUpdate(this, 2, tile.getCurrentFuel());
 		}
 		prevBrewTime = tile.getBrewTime();
 		prevFuel = tile.getFuel();
+		prevCurrentFuel = tile.getCurrentFuel();
 	}
 
 	@Override
@@ -66,6 +63,8 @@ public class ContainerNewBrewingStand extends Container {
 			tile.func_145938_d(value);
 		else if (id == 1)
 			tile.setFuel(value);
+		else if (id == 2)
+			tile.setCurrentFuel(value);
 	}
 
 	@Override
@@ -126,7 +125,7 @@ public class ContainerNewBrewingStand extends Container {
 
 		@Override
 		public boolean isItemValid(ItemStack stack) {
-			return stack != null && stack.getItem() == Items.blaze_powder;
+			return stack != null && BrewingFuelRegistry.isFuel(stack);
 		}
 	}
 

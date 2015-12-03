@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.etfuturum.ModItems;
 import ganymedes01.etfuturum.lib.Reference;
+import ganymedes01.etfuturum.recipes.BrewingFuelRegistry;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -15,6 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.tileentity.TileEntityBrewingStand;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.ForgeEventFactory;
 
 /*
@@ -32,7 +34,7 @@ public class TileEntityNewBrewingStand extends TileEntityBrewingStand {
 	private int brewTime;
 	private int prevFilledSlots;
 	private Item ingredientID;
-	private int fuel;
+	private int fuel, currentFuel;
 
 	@Override
 	public int getSizeInventory() {
@@ -42,9 +44,9 @@ public class TileEntityNewBrewingStand extends TileEntityBrewingStand {
 	@Override
 	public void updateEntity() {
 		if (fuel <= 0 && inventory[4] != null) {
+			fuel = currentFuel = BrewingFuelRegistry.getBrewAmount(inventory[4]);
 			if (--inventory[4].stackSize <= 0)
-				inventory[4] = null;
-			fuel = 30;
+				inventory[4] = inventory[4].getItem().hasContainerItem(inventory[4]) ? inventory[4].getItem().getContainerItem(inventory[4]) : null;
 			markDirty();
 		}
 
@@ -179,7 +181,14 @@ public class TileEntityNewBrewingStand extends TileEntityBrewingStand {
 
 		brewTime = nbt.getShort("BrewTime");
 
-		fuel = nbt.getShort("Fuel");
+		if (nbt.hasKey("Fuel", Constants.NBT.TAG_SHORT)) {
+			fuel = nbt.getShort("Fuel");
+			if (fuel > 0)
+				currentFuel = 30;
+		} else {
+			fuel = nbt.getInteger("Fuel");
+			currentFuel = nbt.getInteger("CurrentFuel");
+		}
 	}
 
 	@Override
@@ -198,7 +207,8 @@ public class TileEntityNewBrewingStand extends TileEntityBrewingStand {
 
 		nbt.setTag("Items", nbttaglist);
 
-		nbt.setShort("Fuel", (short) fuel);
+		nbt.setInteger("Fuel", fuel);
+		nbt.setInteger("CurrentFuel", currentFuel);
 	}
 
 	@Override
@@ -268,7 +278,15 @@ public class TileEntityNewBrewingStand extends TileEntityBrewingStand {
 		return fuel;
 	}
 
+	public int getCurrentFuel() {
+		return currentFuel;
+	}
+
 	public void setFuel(int fuel) {
 		this.fuel = fuel;
+	}
+
+	public void setCurrentFuel(int currentFuel) {
+		this.currentFuel = currentFuel;
 	}
 }
