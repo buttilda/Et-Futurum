@@ -152,6 +152,7 @@ public class EtFuturum {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		Items.blaze_rod.setFull3D();
+		Blocks.trapped_chest.setCreativeTab(CreativeTabs.tabRedstone);
 
 		if (enableUpdatedFoodValues) {
 			setFinalField(ItemFood.class, Items.carrot, 3, "healAmount", "field_77853_b");
