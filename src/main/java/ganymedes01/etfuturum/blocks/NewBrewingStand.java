@@ -3,6 +3,7 @@ package ganymedes01.etfuturum.blocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.lib.GUIsID;
 import ganymedes01.etfuturum.tileentities.TileEntityNewBrewingStand;
@@ -14,7 +15,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityBrewingStand;
 import net.minecraft.world.World;
 
-public class NewBrewingStand extends BlockBrewingStand {
+public class NewBrewingStand extends BlockBrewingStand implements IConfigurable {
 
 	public NewBrewingStand() {
 		setHardness(0.5F);
@@ -45,5 +46,10 @@ public class NewBrewingStand extends BlockBrewingStand {
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileEntityNewBrewingStand();
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return EtFuturum.enableBrewingStands;
 	}
 }

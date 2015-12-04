@@ -8,6 +8,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
 import cpw.mods.fml.relauncher.Side;
+import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -38,8 +39,11 @@ public class WorldTickEventHandler {
 		isReplacing = true;
 		World world = event.world;
 		for (TileEntity tile : new ArrayList<TileEntity>(world.loadedTileEntityList)) {
-			Block replacement = replacements.get(world.getBlock(tile.xCoord, tile.yCoord, tile.zCoord));
-			if (replacement != null) {
+			int x = tile.xCoord;
+			int y = tile.yCoord;
+			int z = tile.zCoord;
+			Block replacement = replacements.get(world.getBlock(x, y, z));
+			if (replacement != null && ((IConfigurable) replacement).isEnabled()) {
 				NBTTagCompound nbt = new NBTTagCompound();
 				tile.writeToNBT(nbt);
 				if (tile instanceof IInventory) {
@@ -47,8 +51,8 @@ public class WorldTickEventHandler {
 					for (int i = 0; i < invt.getSizeInventory(); i++)
 						invt.setInventorySlotContents(i, null);
 				}
-				world.setBlock(tile.xCoord, tile.yCoord, tile.zCoord, replacement);
-				TileEntity newTile = world.getTileEntity(tile.xCoord, tile.yCoord, tile.zCoord);
+				world.setBlock(x, y, z, replacement);
+				TileEntity newTile = world.getTileEntity(x, y, z);
 				newTile.readFromNBT(nbt);
 				break;
 			}
