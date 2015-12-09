@@ -219,7 +219,8 @@ public class ModRecipes {
 
 		if (EtFuturum.enableRoses) {
 			addShapelessRecipe(new ItemStack(Items.dye, 1, 1), ModBlocks.rose);
-			addShapedRecipe(new ItemStack(ModBlocks.rose, 4), "xx", "xx", 'x', new ItemStack(Blocks.red_flower));
+			addShapedRecipe(new ItemStack(Blocks.double_plant, 1, 4), "xx", "xx", "xx", 'x', new ItemStack(ModBlocks.rose));
+			addShapedRecipe(new ItemStack(ModBlocks.rose, 12), "xx", 'x', new ItemStack(Blocks.double_plant, 1, 4));
 		}
 	}
 
