@@ -27,7 +27,7 @@ public class EntityNewSnowGolem extends EntitySnowman implements IShearable {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound nbt) {
 		super.readEntityFromNBT(nbt);
-		dataWatcher.updateObject(HAS_PUMPKIN, nbt.getBoolean("HasPumpkin"));
+		dataWatcher.updateObject(HAS_PUMPKIN, nbt.getBoolean("HasPumpkin") ? (byte) 1 : (byte) 0);
 	}
 
 	@Override
