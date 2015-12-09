@@ -53,7 +53,7 @@ public class NewSkinManager extends SkinManager {
 	}
 
 	@Override
-	public ResourceLocation func_152789_a(MinecraftProfileTexture texture, final Type type, final SkinManager.SkinAvailableCallback callBack) {
+	public ResourceLocation func_152789_a(final MinecraftProfileTexture texture, final Type type, final SkinManager.SkinAvailableCallback callBack) {
 		final ResourceLocation resLocation = new ResourceLocation(Reference.MOD_ID, "skins/" + texture.getHash());
 		ITextureObject itextureobject = textureManager.getTexture(resLocation);
 
@@ -90,7 +90,7 @@ public class NewSkinManager extends SkinManager {
 	}
 
 	@Override
-	public void func_152790_a(GameProfile profile, NewSkinManager.SkinAvailableCallback callBack, boolean requireSecure) {
+	public void func_152790_a(final GameProfile profile, final NewSkinManager.SkinAvailableCallback callBack, final boolean requireSecure) {
 		// Get 1.7.10 style skins and store them in the default cache
 		super.func_152790_a(profile, callBack instanceof ISkinDownloadCallback ? null : callBack, requireSecure);
 
