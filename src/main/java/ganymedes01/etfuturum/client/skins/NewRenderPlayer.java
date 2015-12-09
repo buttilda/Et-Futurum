@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 @SideOnly(Side.CLIENT)
 public class NewRenderPlayer extends RenderPlayer {
 
-	public static final ResourceLocation STEVE_SKIN = new ResourceLocation("etfuturum", "textures/steve.png");
+	public static final ResourceLocation STEVE_SKIN = new ResourceLocation(Reference.MOD_ID, "textures/steve.png");
 
 	public NewRenderPlayer() {
 		renderManager = RenderManager.instance;
