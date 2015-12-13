@@ -22,7 +22,7 @@ public class ConfigurationHandler {
 
 	private int configInteger(String name, String tooltip, boolean requireRestart, int def) {
 		int config = configFile.get(Configuration.CATEGORY_GENERAL, name, def, tooltip).getInt(def);
-		return config > 0 ? config : def;
+		return config >= 0 ? config : def;
 	}
 
 	private boolean configBoolean(String name, String tooltip, boolean requireRestart, boolean def) {
