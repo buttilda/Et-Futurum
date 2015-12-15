@@ -14,6 +14,8 @@ import net.minecraft.client.renderer.ImageBufferDownload;
 @SideOnly(Side.CLIENT)
 public class NewImageBufferDownload extends ImageBufferDownload {
 
+	private BufferedImage oldStyleImage;
+
 	private int[] imageData;
 	private int imageWidth;
 	private int imageHeight;
@@ -22,6 +24,7 @@ public class NewImageBufferDownload extends ImageBufferDownload {
 	public BufferedImage parseUserSkin(BufferedImage buffImg) {
 		if (buffImg == null)
 			return null;
+		oldStyleImage = super.parseUserSkin(buffImg);
 
 		imageWidth = 64;
 		imageHeight = 64;
@@ -56,6 +59,10 @@ public class NewImageBufferDownload extends ImageBufferDownload {
 		setAreaOpaque(16, 48, 48, 64);
 		setAreaTransparent(48, 48, 64, 64);
 		return buffImg2;
+	}
+
+	public BufferedImage getOldSyleImage() {
+		return oldStyleImage;
 	}
 
 	private void setAreaTransparent(int minX, int minY, int maxX, int maxY) {
