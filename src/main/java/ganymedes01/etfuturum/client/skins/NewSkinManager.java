@@ -64,10 +64,18 @@ public class NewSkinManager extends SkinManager {
 					imgDownload.func_152634_a();
 					callBack.func_152121_a(type, isSpecialCallBack ? resLocation : resLocationOld);
 				}
-			});
+			}) {
+				@Override
+				public void setBufferedImage(BufferedImage buffImg) {
+					super.setBufferedImage(buffImg);
+					if (imgDownload != null) {
+						BufferedImage oldStyleImg = imgDownload.getOldSyleImage();
+						if (oldStyleImg != null)
+							textureManager.loadTexture(resLocationOld, new DynamicTexture(oldStyleImg));
+					}
+				}
+			};
 			textureManager.loadTexture(resLocation, imgData);
-			if (imgDownload != null)
-				textureManager.loadTexture(resLocationOld, new DynamicTexture(imgDownload.getOldSyleImage()));
 		}
 
 		return isSpecialCallBack ? resLocation : resLocationOld;
