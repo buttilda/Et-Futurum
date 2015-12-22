@@ -12,8 +12,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.etfuturum.api.client.ISkinDownloadCallback;
 import ganymedes01.etfuturum.lib.Reference;
 import net.minecraft.client.renderer.IImageBuffer;
-import net.minecraft.client.renderer.ThreadDownloadImageData;
-import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.resources.SkinManager;
@@ -52,7 +50,7 @@ public class NewSkinManager extends SkinManager {
 			File file1 = new File(skinFolder, texture.getHash().substring(0, 2));
 			File file2 = new File(file1, texture.getHash());
 			final NewImageBufferDownload imgDownload = new NewImageBufferDownload();
-			ThreadDownloadImageData imgData = new ThreadDownloadImageData(file2, texture.getUrl(), field_152793_a, new IImageBuffer() {
+			ITextureObject imgData = new NewThreadDownloadImageData(file2, texture.getUrl(), field_152793_a, imgDownload, resLocationOld, new IImageBuffer() {
 
 				@Override
 				public BufferedImage parseUserSkin(BufferedImage buffImg) {
@@ -64,17 +62,7 @@ public class NewSkinManager extends SkinManager {
 					imgDownload.func_152634_a();
 					callBack.func_152121_a(type, isSpecialCallBack ? resLocation : resLocationOld);
 				}
-			}) {
-				@Override
-				public void setBufferedImage(BufferedImage buffImg) {
-					super.setBufferedImage(buffImg);
-					if (imgDownload != null) {
-						BufferedImage oldStyleImg = imgDownload.getOldSyleImage();
-						if (oldStyleImg != null)
-							textureManager.loadTexture(resLocationOld, new DynamicTexture(oldStyleImg));
-					}
-				}
-			};
+			});
 			textureManager.loadTexture(resLocation, imgData);
 		}
 
