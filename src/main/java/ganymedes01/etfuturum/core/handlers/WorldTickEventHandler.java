@@ -8,6 +8,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
 import cpw.mods.fml.relauncher.Side;
+import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.ModBlocks;
 import net.minecraft.block.Block;
@@ -19,15 +20,7 @@ import net.minecraft.world.World;
 
 public class WorldTickEventHandler {
 
-	private static Map<Block, Block> replacements = new HashMap<Block, Block>();
-
-	static {
-		replacements.put(Blocks.brewing_stand, ModBlocks.brewing_stand);
-		replacements.put(Blocks.beacon, ModBlocks.beacon);
-		replacements.put(Blocks.enchanting_table, ModBlocks.enchantment_table);
-		replacements.put(Blocks.daylight_detector, ModBlocks.daylight_sensor);
-	}
-
+	private static Map<Block, Block> replacements;
 	private boolean isReplacing = false;
 
 	@SubscribeEvent
@@ -36,8 +29,24 @@ public class WorldTickEventHandler {
 		if (event.side != Side.SERVER || event.phase != Phase.END || isReplacing)
 			return;
 
+		if (replacements == null) {
+			replacements = new HashMap<Block, Block>();
+			if (EtFuturum.enableBrewingStands)
+				replacements.put(Blocks.brewing_stand, ModBlocks.brewing_stand);
+			if (EtFuturum.enableColourfulBeacons)
+				replacements.put(Blocks.beacon, ModBlocks.beacon);
+			if (EtFuturum.enableEnchants)
+				replacements.put(Blocks.enchanting_table, ModBlocks.enchantment_table);
+			if (EtFuturum.enableInvertedDaylightSensor)
+				replacements.put(Blocks.daylight_detector, ModBlocks.daylight_sensor);
+		}
+
+		if (replacements.isEmpty())
+			return;
+
 		isReplacing = true;
 		World world = event.world;
+
 		for (TileEntity tile : new ArrayList<TileEntity>(world.loadedTileEntityList)) {
 			int x = tile.xCoord;
 			int y = tile.yCoord;
