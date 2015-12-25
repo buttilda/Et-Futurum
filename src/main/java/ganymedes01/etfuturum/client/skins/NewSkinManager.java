@@ -64,6 +64,7 @@ public class NewSkinManager extends SkinManager {
 				}
 			});
 			textureManager.loadTexture(resLocation, imgData);
+			textureManager.loadTexture(resLocationOld, imgData); // Avoid thrown exception if the image is requested before the download is done
 		}
 
 		return isSpecialCallBack ? resLocation : resLocationOld;
