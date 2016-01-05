@@ -54,6 +54,7 @@ public class NewSkinManager extends SkinManager {
 
 				@Override
 				public BufferedImage parseUserSkin(BufferedImage buffImg) {
+					PlayerModelManager.analyseTexture(buffImg, resLocation);
 					return imgDownload.parseUserSkin(buffImg);
 				}
 

@@ -7,6 +7,7 @@ import ganymedes01.etfuturum.client.model.ModelPlayer;
 import ganymedes01.etfuturum.lib.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
@@ -18,11 +19,35 @@ import net.minecraft.util.ResourceLocation;
 public class NewRenderPlayer extends RenderPlayer {
 
 	public static final ResourceLocation STEVE_SKIN = new ResourceLocation(Reference.MOD_ID, "textures/steve.png");
+	private static final ModelBase STEVE = new ModelPlayer(0.0F, false);
+	private static final ModelBase ALEX = new ModelPlayer(0.0F, true);
 
 	public NewRenderPlayer() {
 		renderManager = RenderManager.instance;
-		mainModel = new ModelPlayer(0.0F, false);
+		setModel(false);
+	}
+
+	private void setModel(boolean isAlex) {
+		mainModel = isAlex ? ALEX : STEVE;
 		modelBipedMain = (ModelBiped) mainModel;
+	}
+
+	@Override
+	protected int shouldRenderPass(AbstractClientPlayer player, int pass, float partialTickTime) {
+		setModel(PlayerModelManager.isPlayerModelAlex(getEntityTexture(player)));
+		return super.shouldRenderPass(player, pass, partialTickTime);
+	}
+
+	@Override
+	public void doRender(AbstractClientPlayer player, double x, double y, double z, float someFloat, float partialTickTime) {
+		setModel(PlayerModelManager.isPlayerModelAlex(getEntityTexture(player)));
+		super.doRender(player, x, y, z, someFloat, partialTickTime);
+	}
+
+	@Override
+	protected void renderEquippedItems(AbstractClientPlayer player, float partialTickTime) {
+		setModel(PlayerModelManager.isPlayerModelAlex(getEntityTexture(player)));
+		super.renderEquippedItems(player, partialTickTime);
 	}
 
 	@Override
@@ -44,7 +69,9 @@ public class NewRenderPlayer extends RenderPlayer {
 
 	@Override
 	public void renderFirstPersonArm(EntityPlayer player) {
-		Minecraft.getMinecraft().getTextureManager().bindTexture(getEntityTexture(player));
+		ResourceLocation texture = getEntityTexture(player);
+		setModel(PlayerModelManager.isPlayerModelAlex(texture));
+		Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
 
 		super.renderFirstPersonArm(player);
 		((ModelPlayer) modelBipedMain).bipedRightArmwear.render(0.0625F);
