@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.client.model.ModelPlayer;
+import ganymedes01.etfuturum.command.SetPlayerModelCommand;
 import ganymedes01.etfuturum.lib.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -13,7 +14,9 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.util.Constants;
 
 @SideOnly(Side.CLIENT)
 public class NewRenderPlayer extends RenderPlayer {
@@ -24,29 +27,38 @@ public class NewRenderPlayer extends RenderPlayer {
 
 	public NewRenderPlayer() {
 		renderManager = RenderManager.instance;
-		setModel(false);
+		mainModel = STEVE;
+		modelBipedMain = (ModelBiped) mainModel;
 	}
 
-	private void setModel(boolean isAlex) {
+	private void setModel(EntityPlayer player) {
+		boolean isAlex;
+
+		NBTTagCompound nbt = player.getEntityData();
+		if (nbt.hasKey(SetPlayerModelCommand.MODEL_KEY, Constants.NBT.TAG_BYTE))
+			isAlex = nbt.getBoolean(SetPlayerModelCommand.MODEL_KEY);
+		else
+			isAlex = PlayerModelManager.isPlayerModelAlex(getEntityTexture(player));
+
 		mainModel = isAlex ? ALEX : STEVE;
 		modelBipedMain = (ModelBiped) mainModel;
 	}
 
 	@Override
 	protected int shouldRenderPass(AbstractClientPlayer player, int pass, float partialTickTime) {
-		setModel(PlayerModelManager.isPlayerModelAlex(getEntityTexture(player)));
+		setModel(player);
 		return super.shouldRenderPass(player, pass, partialTickTime);
 	}
 
 	@Override
 	public void doRender(AbstractClientPlayer player, double x, double y, double z, float someFloat, float partialTickTime) {
-		setModel(PlayerModelManager.isPlayerModelAlex(getEntityTexture(player)));
+		setModel(player);
 		super.doRender(player, x, y, z, someFloat, partialTickTime);
 	}
 
 	@Override
 	protected void renderEquippedItems(AbstractClientPlayer player, float partialTickTime) {
-		setModel(PlayerModelManager.isPlayerModelAlex(getEntityTexture(player)));
+		setModel(player);
 		super.renderEquippedItems(player, partialTickTime);
 	}
 
@@ -69,9 +81,8 @@ public class NewRenderPlayer extends RenderPlayer {
 
 	@Override
 	public void renderFirstPersonArm(EntityPlayer player) {
-		ResourceLocation texture = getEntityTexture(player);
-		setModel(PlayerModelManager.isPlayerModelAlex(texture));
-		Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
+		setModel(player);
+		Minecraft.getMinecraft().getTextureManager().bindTexture(getEntityTexture(player));
 
 		super.renderFirstPersonArm(player);
 		((ModelPlayer) modelBipedMain).bipedRightArmwear.render(0.0625F);
