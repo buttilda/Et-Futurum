@@ -38,7 +38,7 @@ public class NewSkinManager extends SkinManager {
 		if (type != Type.SKIN)
 			return super.func_152789_a(texture, type, callBack);
 
-		boolean isSpecialCallBack = callBack instanceof ISkinDownloadCallback;
+		final boolean isSpecialCallBack = callBack instanceof ISkinDownloadCallback;
 		final ResourceLocation resLocationOld = new ResourceLocation("skins/" + texture.getHash());
 		final ResourceLocation resLocation = new ResourceLocation(Reference.MOD_ID, resLocationOld.getResourcePath());
 		ITextureObject itextureobject = textureManager.getTexture(resLocation);

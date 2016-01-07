@@ -11,7 +11,10 @@ import java.util.Random;
 
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
+import cpw.mods.fml.relauncher.Side;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.ModEnchantments;
@@ -19,6 +22,7 @@ import ganymedes01.etfuturum.ModItems;
 import ganymedes01.etfuturum.blocks.CoarseDirt;
 import ganymedes01.etfuturum.blocks.GrassPath;
 import ganymedes01.etfuturum.blocks.NewAnvil;
+import ganymedes01.etfuturum.command.SetPlayerModelCommand;
 import ganymedes01.etfuturum.entities.EntityEndermite;
 import ganymedes01.etfuturum.entities.EntityNewSnowGolem;
 import ganymedes01.etfuturum.entities.EntityRabbit;
@@ -29,6 +33,7 @@ import ganymedes01.etfuturum.inventory.ContainerEnchantment;
 import ganymedes01.etfuturum.items.TippedArrow;
 import ganymedes01.etfuturum.lib.Reference;
 import ganymedes01.etfuturum.network.BlackHeartParticlesMessage;
+import ganymedes01.etfuturum.network.SetPlayerModelMessage;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -56,11 +61,15 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
@@ -79,6 +88,40 @@ import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent;
 
 public class ServerEventHandler {
+
+	public static final ServerEventHandler INSTANCE = new ServerEventHandler();
+
+	private ServerEventHandler() {
+	}
+
+	private Integer playerLoggedInCooldown = null;
+
+	@SubscribeEvent
+	public void onPlayerLoggedIn(PlayerLoggedInEvent event) {
+		if (EtFuturum.enablePlayerSkinOverlay)
+			playerLoggedInCooldown = 20;
+	}
+
+	@SubscribeEvent
+	@SuppressWarnings("unchecked")
+	public void onWorldTick(TickEvent.ServerTickEvent event) {
+		if (event.phase != TickEvent.Phase.END || event.side != Side.SERVER)
+			return;
+
+		if (EtFuturum.enablePlayerSkinOverlay)
+			if (playerLoggedInCooldown != null)
+				if (--playerLoggedInCooldown <= 0) {
+					for (World world : MinecraftServer.getServer().worldServers)
+						for (EntityPlayer player : (List<EntityPlayer>) world.playerEntities) {
+							NBTTagCompound nbt = player.getEntityData();
+							if (nbt.hasKey(SetPlayerModelCommand.MODEL_KEY, Constants.NBT.TAG_BYTE)) {
+								boolean isAlex = nbt.getBoolean(SetPlayerModelCommand.MODEL_KEY);
+								EtFuturum.networkWrapper.sendToAll(new SetPlayerModelMessage(player, isAlex));
+							}
+						}
+					playerLoggedInCooldown = null;
+				}
+	}
 
 	@SubscribeEvent
 	public void onPlayerPickXP(PlayerPickupXpEvent event) {

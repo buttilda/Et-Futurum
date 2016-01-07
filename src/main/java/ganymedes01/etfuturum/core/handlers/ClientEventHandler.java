@@ -17,6 +17,11 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 
 public class ClientEventHandler {
 
+	public static final ClientEventHandler INSTANCE = new ClientEventHandler();
+
+	private ClientEventHandler() {
+	}
+
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void loadTextures(TextureStitchEvent.Pre event) {

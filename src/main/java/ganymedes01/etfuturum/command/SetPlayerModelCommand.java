@@ -12,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 public class SetPlayerModelCommand extends CommandBase {
 
 	public static final String MODEL_KEY = Reference.MOD_ID + "_model";
+	public static final int MODEL_DATA_KEY = 31;
 
 	@Override
 	public int getRequiredPermissionLevel() {
@@ -30,7 +31,7 @@ public class SetPlayerModelCommand extends CommandBase {
 
 	@Override
 	public void processCommand(ICommandSender sender, String[] args) {
-		if (args.length != 1 || !"alex".equals(args[0].toLowerCase()) || !"steve".equals(args[0].toLowerCase()))
+		if (args.length != 1 || !"alex".equals(args[0].toLowerCase()) && !"steve".equals(args[0].toLowerCase()))
 			throw new WrongUsageException(getCommandUsage(sender));
 
 		if (sender instanceof EntityPlayer) {
@@ -38,7 +39,6 @@ public class SetPlayerModelCommand extends CommandBase {
 			NBTTagCompound nbt = player.getEntityData();
 			boolean isAlex = "alex".equals(args[0].toLowerCase());
 			nbt.setBoolean(MODEL_KEY, isAlex);
-
 			EtFuturum.networkWrapper.sendToAll(new SetPlayerModelMessage(player, isAlex));
 		}
 	}

@@ -185,7 +185,8 @@ public class EtFuturum {
 
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent event) {
-		event.registerServerCommand(new SetPlayerModelCommand());
+		if (EtFuturum.enablePlayerSkinOverlay)
+			event.registerServerCommand(new SetPlayerModelCommand());
 	}
 
 	private void setFinalField(Class<?> cls, Object obj, Object newValue, String... fieldNames) {
