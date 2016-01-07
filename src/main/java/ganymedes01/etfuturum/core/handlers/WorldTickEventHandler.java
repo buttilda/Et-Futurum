@@ -1,6 +1,5 @@
 package ganymedes01.etfuturum.core.handlers;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +23,6 @@ public class WorldTickEventHandler {
 	private boolean isReplacing = false;
 
 	@SubscribeEvent
-	@SuppressWarnings("unchecked")
 	public void tick(WorldTickEvent event) {
 		if (event.side != Side.SERVER || event.phase != Phase.END || isReplacing)
 			return;
@@ -47,7 +45,8 @@ public class WorldTickEventHandler {
 		isReplacing = true;
 		World world = event.world;
 
-		for (TileEntity tile : new ArrayList<TileEntity>(world.loadedTileEntityList)) {
+		for (int i = 0; i < world.loadedTileEntityList.size(); i++) {
+			TileEntity tile = (TileEntity) world.loadedTileEntityList.get(i);
 			int x = tile.xCoord;
 			int y = tile.yCoord;
 			int z = tile.zCoord;
@@ -57,8 +56,8 @@ public class WorldTickEventHandler {
 				tile.writeToNBT(nbt);
 				if (tile instanceof IInventory) {
 					IInventory invt = (IInventory) tile;
-					for (int i = 0; i < invt.getSizeInventory(); i++)
-						invt.setInventorySlotContents(i, null);
+					for (int j = 0; j < invt.getSizeInventory(); j++)
+						invt.setInventorySlotContents(j, null);
 				}
 				world.setBlock(x, y, z, replacement);
 				TileEntity newTile = world.getTileEntity(x, y, z);
