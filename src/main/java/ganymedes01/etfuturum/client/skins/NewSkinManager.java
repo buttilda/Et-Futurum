@@ -62,7 +62,8 @@ public class NewSkinManager extends SkinManager {
 				@Override
 				public void func_152634_a() {
 					imgDownload.func_152634_a();
-					callBack.func_152121_a(type, isSpecialCallBack ? resLocation : resLocationOld);
+					if (callBack != null)
+						callBack.func_152121_a(type, isSpecialCallBack ? resLocation : resLocationOld);
 				}
 			});
 			textureManager.loadTexture(resLocation, imgData);
