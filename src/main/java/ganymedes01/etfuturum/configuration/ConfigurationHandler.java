@@ -92,6 +92,7 @@ public class ConfigurationHandler {
 		EtFuturum.enablePlayerSkinOverlay = configBoolean("Skin overlays", true, EtFuturum.enablePlayerSkinOverlay);
 		EtFuturum.enableShearableGolems = configBoolean("Shearing Snow Golems", true, EtFuturum.enableShearableGolems);
 		EtFuturum.enableShearableCobwebs = configBoolean("Shears harvest cobwebs", true, EtFuturum.enableShearableCobwebs);
+		EtFuturum.enableDragonRespawn = configBoolean("Dragon respawning", true, EtFuturum.enableDragonRespawn);
 
 		if (configFile.hasChanged())
 			configFile.save();
