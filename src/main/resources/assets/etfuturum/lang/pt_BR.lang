@@ -2,14 +2,14 @@
 itemGroup.etfuturum=Et Futurum
 
 # Enchantments
-enchantment.frost_walker=Frost Walker
-enchantment.mending=Mending
+enchantment.frost_walker=Caminhante do Gelo
+enchantment.mending=Remendo
 
 # Containers
 container.etfuturum.banner=Estandarte
 container.enchant.lapis.one=1 Lápis-Lazúli
 container.enchant.lapis.many=%d Lápis-Lazúlis
-container.enchant.level.one=1Nível de Encantamento
+container.enchant.level.one=1 Nível de Encantamento
 container.enchant.level.many=%d Níveis de Encantamento
 container.enchant.clue=%s . . . ?
 
@@ -39,9 +39,9 @@ item.etfuturum.beetroot_soup.name=Ensopado de Beterraba
 item.etfuturum.chorus_fruit.name=Fruta Chorus
 item.etfuturum.chorus_fruit_popped.name=Fruta Chorus Estourada
 item.etfuturum.dragon_breath.name=Sopro do Dragão
-item.etfuturum.elytra.name=Elytra
+item.etfuturum.elytra.name=Élitros
 item.etfuturum.end_crystal.name=Cristal Ender
-potion.prefix.lingering=Lingering
+potion.prefix.lingering=Duradoura
 
 # Arrows
 tipped_arrow.potion.nightVision.name=Flecha de Visão Noturna
@@ -137,6 +137,7 @@ item.banner.lightBlue.name=Estandarte Azul Claro
 item.banner.magenta.name=Estandarte Magenta
 item.banner.orange.name=Estandarte Laranja
 item.banner.white.name=Estandarte Branco
+
 item.banner.border.black=Borda Preta
 item.banner.border.blue=Borda Azul
 item.banner.border.brown=Borda Marrom
@@ -408,6 +409,7 @@ item.banner.half_vertical.red=Partido Vermelho
 item.banner.half_vertical.silver=Partido Cinza Claro
 item.banner.half_vertical.white=Partido Branco
 item.banner.half_vertical.yellow=Partido Amarelo
+
 item.banner.half_vertical_right.black=Partido Invertido Preto
 item.banner.half_vertical_right.blue=Partido Invertido Azul
 item.banner.half_vertical_right.brown=Partido Invertido Marrom
