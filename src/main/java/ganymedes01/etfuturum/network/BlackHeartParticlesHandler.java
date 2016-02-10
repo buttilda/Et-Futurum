@@ -25,6 +25,5 @@ public class BlackHeartParticlesHandler implements IMessageHandler<BlackHeartPar
 		double z = message.z;
 
 		Minecraft.getMinecraft().effectRenderer.addEffect(new BlackHeartFX(world, x, y, z));
-
 	}
 }

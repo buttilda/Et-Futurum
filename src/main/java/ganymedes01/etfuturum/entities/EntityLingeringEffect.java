@@ -4,18 +4,15 @@ import java.util.List;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 import ganymedes01.etfuturum.ModItems;
 import ganymedes01.etfuturum.items.LingeringPotion;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class EntityLingeringEffect extends Entity implements IEntityAdditionalSpawnData {
@@ -83,7 +80,6 @@ public class EntityLingeringEffect extends Entity implements IEntityAdditionalSp
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public void onUpdate() {
 		int ticks = dataWatcher.getWatchableObjectInt(TICKS_DATA_WATCHER);
 
@@ -108,28 +104,6 @@ public class EntityLingeringEffect extends Entity implements IEntityAdditionalSp
 			}
 			return;
 		}
-
-		AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(posX - width, posY, posZ - width, posX + width, posY + height, posZ + width);
-		List<EntityArrow> arrows = worldObj.getEntitiesWithinAABB(EntityArrow.class, bb);
-		if (arrows != null && !arrows.isEmpty())
-			for (EntityArrow arrow : arrows)
-				if (!(arrow instanceof EntityTippedArrow)) {
-					boolean isGround = ReflectionHelper.getPrivateValue(EntityArrow.class, arrow, "inGround", "field_70254_i");
-					if (isGround)
-						continue;
-					if (arrow.shootingEntity == null)
-						continue;
-
-					EntityTippedArrow tippedArrow = new EntityTippedArrow(worldObj);
-					NBTTagCompound nbt = new NBTTagCompound();
-					arrow.writeToNBT(nbt);
-					tippedArrow.readFromNBT(nbt);
-					tippedArrow.setEffect(((LingeringPotion) ModItems.lingering_potion).getEffects(stack).get(0));
-					arrow.setDead();
-					worldObj.spawnEntityInWorld(tippedArrow);
-					if (setTickCount(ticks + 5 * 20))
-						return;
-				}
 
 		setTickCount(++ticks);
 	}
