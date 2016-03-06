@@ -9,6 +9,7 @@ enchantment.mending=Mending
 container.etfuturum.banner=Banner
 container.enchant.lapis.one=1 Lapis Lazuli
 container.enchant.lapis.many=%d Lapis Lazuli
+container.enchant.level.required=Level Requirement
 container.enchant.level.one=1 Enchantment Level
 container.enchant.level.many=%d Enchantment Levels
 container.enchant.clue=%s . . . ?
