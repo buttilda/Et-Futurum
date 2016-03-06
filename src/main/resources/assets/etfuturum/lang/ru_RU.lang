@@ -1,10 +1,15 @@
 # Creative Tab
 itemGroup.etfuturum=Et Futurum
 
+# Enchantments
+enchantment.frost_walker=Ходьба на льду
+enchantment.mending=Починка
+
 # Containers
 container.etfuturum.banner=Флаг
 container.enchant.lapis.one=1 лазурит
 container.enchant.lapis.many=Лазурита: %d
+container.enchant.level.required=Требуемый уровень
 container.enchant.level.one=1 уровень зачарования
 container.enchant.level.many=Уровней зачарования: %d
 container.enchant.clue=%s . . . ?
@@ -14,6 +19,9 @@ entity.etfuturum.endermite.name=Чешуйница Края
 entity.etfuturum.wooden_armorstand.name=Стойка для брони
 entity.etfuturum.rabbit.name=Кролик
 entity.etfuturum.villager_zombie.name=Зомби-житель
+entity.etfuturum.end_crystal.name=Кристалл Края
+entity.etfuturum.ender_dragon.name=Дракон Эндера
+entity.etfuturum.snow_golem.name=Снеговик
 
 # Items
 item.etfuturum.mutton_raw.name=Сырая баранина
@@ -32,6 +40,8 @@ item.etfuturum.beetroot_soup.name=Борщ
 item.etfuturum.chorus_fruit.name=Плод коруса
 item.etfuturum.chorus_fruit_popped.name=Приготовленный плод коруса
 item.etfuturum.dragon_breath.name=Дыхание дракона
+item.etfuturum.elytra.name=Надкрылья
+item.etfuturum.end_crystal.name=Кристалл Края
 potion.prefix.lingering=Длительное
 
 # Arrows
@@ -101,6 +111,15 @@ tile.etfuturum.end_rod.name=Стержень Края
 tile.etfuturum.chorus_flower.name=Цветок коруса
 tile.etfuturum.chorus_plant.name=Растение коруса
 tile.etfuturum.crying_obsidian.name=Плачущий обсидиан
+tile.etfuturum.brewing_stand.name=Варочная стойка
+tile.etfuturum.frosted_ice.name=Замороженный лёд
+tile.etfuturum.rose.name=Роза
+tile.etfuturum.beacon.name=Маяк
+tile.etfuturum.enchantment_table.name=Стол зачарований
+tile.etfuturum.anvil.intact.name=Наковальня
+tile.etfuturum.anvil.slightlyDamaged.name=Повреждённая наковальня
+tile.etfuturum.anvil.veryDamaged.name=Сильно повреждённая наковальня
+tile.etfuturum.daylight_sensor.name=Датчик дневного света
 
 # Banners
 item.banner.black.name=Чёрный флаг
