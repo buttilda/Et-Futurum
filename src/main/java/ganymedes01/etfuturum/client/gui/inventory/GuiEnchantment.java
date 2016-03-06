@@ -226,7 +226,7 @@ public class GuiEnchantment extends GuiContainer {
 						var10.add("");
 
 					if (mc.thePlayer.experienceLevel < var7)
-						var10.add(EnumChatFormatting.RED.toString() + "Level Requirement: " + field_147075_G.enchantLevels[var6]);
+						var10.add(EnumChatFormatting.RED.toString() + I18n.format("container.enchant.level.required", new Object[0]) + ": " + field_147075_G.enchantLevels[var6]);
 					else {
 						var11 = "";
 
