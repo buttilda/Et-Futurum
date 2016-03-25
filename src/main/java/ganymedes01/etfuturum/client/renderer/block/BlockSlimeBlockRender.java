@@ -66,7 +66,9 @@ public class BlockSlimeBlockRender implements ISimpleBlockRenderingHandler {
 		float f = 0.0625F;
 		renderer.setRenderBounds(f * 3, f * 3, f * 3, f * 13, f * 13, f * 13);
 		renderer.renderAllFaces = true;
-		return renderer.renderStandardBlock(ModBlocks.slime, x, y, z);
+		boolean flag = renderer.renderStandardBlock(ModBlocks.slime, x, y, z);
+		renderer.renderAllFaces = false;
+		return flag;
 	}
 
 	@Override

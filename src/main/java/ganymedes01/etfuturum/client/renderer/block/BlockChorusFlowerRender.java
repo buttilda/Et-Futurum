@@ -71,6 +71,7 @@ public class BlockChorusFlowerRender implements ISimpleBlockRenderingHandler {
 		renderer.setRenderBounds(2 / 16F, 0, 2 / 16F, 14 / 16F, 14 / 16F, 14 / 16F);
 		renderer.renderStandardBlock(block, x, y, z);
 
+		renderer.renderAllFaces = false;
 		return true;
 	}
 
