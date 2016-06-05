@@ -45,7 +45,9 @@ import net.minecraftforge.common.MinecraftForge;
 public class CommonProxy implements IGuiHandler {
 
 	public void registerEvents() {
-		FMLCommonHandler.instance().bus().register(new WorldTickEventHandler());
+		if (EtFuturum.enableTileReplacement) {
+			FMLCommonHandler.instance().bus().register(new WorldTickEventHandler());
+		}
 		FMLCommonHandler.instance().bus().register(ConfigurationHandler.INSTANCE);
 		FMLCommonHandler.instance().bus().register(ServerEventHandler.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(ServerEventHandler.INSTANCE);

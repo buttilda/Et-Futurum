@@ -93,6 +93,7 @@ public class ConfigurationHandler {
 		EtFuturum.enableShearableGolems = configBoolean("Shearing Snow Golems", true, EtFuturum.enableShearableGolems);
 		EtFuturum.enableShearableCobwebs = configBoolean("Shears harvest cobwebs", true, EtFuturum.enableShearableCobwebs);
 		EtFuturum.enableDragonRespawn = configBoolean("Dragon respawning", true, EtFuturum.enableDragonRespawn);
+		EtFuturum.enableTileReplacement = configBoolean("Replace old Brewing Stands/Enchanting Tables/Daylight SensorS/Beacons with new one on the fly", false, EtFuturum.enableTileReplacement);
 
 		if (configFile.hasChanged())
 			configFile.save();

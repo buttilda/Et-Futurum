@@ -112,6 +112,7 @@ public class EtFuturum {
 	public static boolean enablePlayerSkinOverlay = true;
 	public static boolean enableShearableGolems = true;
 	public static boolean enableShearableCobwebs = true;
+	public static boolean enableTileReplacement = false;
 
 	public static int maxStonesPerCluster = 33;
 
