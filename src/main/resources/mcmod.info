@@ -3,7 +3,7 @@
   "modid": "etfuturum",
   "name": "Et Futurum",
   "description": "A mod dedicated to bring future features to 1.7.10",
-  "version": "1.5.5",
+  "version": "${version}",
   "url": "",
   "updateUrl": "",
   "authorList": [
