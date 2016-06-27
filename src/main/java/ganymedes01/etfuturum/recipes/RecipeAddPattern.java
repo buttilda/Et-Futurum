@@ -54,7 +54,7 @@ public class RecipeAddPattern implements IRecipe {
 
 		EnumBannerPattern pattern = getPattern(grid);
 		if (pattern != null) {
-			int dyeMeta = 0;
+			int dyeMeta = 15;
 			ItemStack slot;
 			for (int i = 0; i < grid.getSizeInventory(); i++) {
 				slot = grid.getStackInSlot(i);
