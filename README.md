@@ -1,6 +1,6 @@
 # Et-Futurum
 
-Download: http://minecraft.curseforge.com/mc-mods/230114-et-futurum
+Download: https://minecraft.curseforge.com/projects/et-futurum
 
 WARNING!
 
