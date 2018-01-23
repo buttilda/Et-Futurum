@@ -17,13 +17,15 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.5.5"
+version = "1.5.5-spec"
 group = "ganymedes01.etfuturum"
 archivesBaseName = "Et Futurum"
 
 minecraft {
     version = "1.7.10-10.13.4.1558-1.7.10"
     runDir = "eclipse/assets"
+	replaceIn 'reference.java'
+	replace "@VERSION@", project.version
 }
 
 processResources {
